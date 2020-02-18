@@ -98,6 +98,7 @@ slideOpts = {
           todoKey:  data[x].todoKey,
           name:  data[x].name,
           time:  data[x].time,
+          add:  data[x].address,
           userID:  data[x].userID,
           photoURL:data[x].photoURL})
           
@@ -225,5 +226,10 @@ async presentLoading() {
 
   loading.dismiss()
 }
-
+clubHome(info)
+  {
+    console.log(info);
+    // this.router.navigate(['/done'],{queryParams:{tickets:tickets,price:price,eventKey:this.eventKey}})
+    this.router.navigateByUrl("club-home")
+  }
 }

@@ -6,17 +6,17 @@
     <br/>
 
     <ion-item>
-        <ion-slides startAutoplay [options]="slideOpts">
+        <ion-slides startAutoplay [options]="slideOpts" >
             <ion-slide>
-                <ion-button routerLink="/add-club" class="actButtons" color="primary" shape="round">
+                <ion-button routerLink="/add-club" class="actButtons" color="primary" shape="round"expand="block">
                     <ion-icon name="add-circle"></ion-icon> Create</ion-button>
             </ion-slide>
             <ion-slide>
-                <ion-button [disabled]="true" class="actButtons" color="primary" shape="round">
+                <ion-button [disabled]="true" class="actButtons" color="primary" shape="round" expand="block">
                     <ion-icon name="navigate"></ion-icon> Discover </ion-button>
             </ion-slide>
             <ion-slide>
-                <ion-button [disabled]="true" class="actButtons" color="primary" shape="round">
+                <ion-button [disabled]="true" class="actButtons" color="primary" shape="round" expand="block">
                     <ion-icon name="people"></ion-icon> Members </ion-button>
             </ion-slide>
         </ion-slides>

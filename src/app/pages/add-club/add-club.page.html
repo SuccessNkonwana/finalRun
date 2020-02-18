@@ -47,7 +47,7 @@
                                         </ion-fab>
 
 
-                                        <input id="file-input2" class="input"  type="file" (change)="uploadClubPic($event)" />
+                                        <input id="file-input2" formControlName="club" class="input"  type="file" (change)="uploadClubPic($event)" />
                                     </div>
                                 </div>
                                 <br><br><br>
@@ -58,7 +58,7 @@
                                 <br><br><br><br>
                                 <ion-item id="item" color="transparent">
                                     <ion-label position="floating">Club name</ion-label>
-                                    <ion-input type="text" formControlName="club"></ion-input>
+                                    <ion-input type="text"></ion-input>
                                 </ion-item>
                                 <div class="error" *ngIf="clubForm.get('club').hasError('required') && clubForm.get('club').touched">
                                     Please input your club

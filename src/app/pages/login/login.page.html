@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content style="overflow-y: hidden;">
 
 
     <body>
@@ -13,7 +13,7 @@
 
                         <div class="div1">
 
-                            <br><br><br>
+                            <br><br>
                             <img src="assets/images/logo.png" alt="Avatar" class="imgC">
 
                             <br><br><br>
@@ -26,22 +26,29 @@
                                         <br>
                                         <div padding>
                                             <div text-center>
-                                                <h3>Welcome !</h3>
+                                                <h3>Welcome</h3>
                                             </div>
                                             <br><br>
-                                            <ion-item id="item" color="transparent">
-                                                <ion-label position="floating">Your@email.com</ion-label>
-                                                <ion-input type="email" formControlName="email"></ion-input>
+
+
+
+                                            <ion-label position="floating" class="lbl">Email</ion-label>
+                                            <ion-item class="item" lines="none">
+                                               
+                                                <ion-input type="email" formControlName="email" padding-horizontal clear-input="true"></ion-input>
                                             </ion-item>
+                        
                                             <div class="error" *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
                                                 Please input your email
                                             </div>
                                             <div class="error" *ngIf="loginForm.get('email').hasError('pattern') && loginForm.get('email').touched">
                                                 Email address invalid
                                             </div>
-                                            <ion-item id="item" color="transparent">
-                                                <ion-label position="floating">Password</ion-label>
-                                                <ion-input  type="password" formControlName="password"></ion-input>
+                                            <br>
+                                            <ion-label position="floating">Password</ion-label>
+                                            <ion-item lines="none">
+                                                
+                                                <ion-input  type="password" formControlName="password" padding-horizontal clear-input="true"></ion-input>
                                             </ion-item>
                                             <div class="error" *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
                                                 Please input your password
@@ -54,32 +61,13 @@
                                             </div>
 
                                         </div>
-                                        <!-- <ion-item lines="none">
-                                            <div id="h">
-                                                <h2>Login</h2>
-                                            </div>
-
-                                            <div id="but">
-                                                <ion-fab-button [disabled]="!loginForm.valid" (click)="login()" color="primary" size="small">
-                                                    <ion-icon name="arrow-forward"></ion-icon>
-                                                </ion-fab-button>
-
-                                            </div>
-                                        </ion-item> -->
+                             
                                         <br>
                                         <ion-col>
                                             <ion-button shape="round" expand="full" color="primary" [disabled]="!loginForm.valid" (click)="login()">Login</ion-button>
                                         </ion-col>
                                         <br><br><br><br>
-                                        <!-- <div class="centered">
-                                            <ion-item lines="none">
-                                                No account yet? <a routerLink='/signup'>Create an account.</a>
-                                            </ion-item>
-                                            <ion-item lines="none">
-
-                                                <a routerLink='/reset'>Forgot password?</a>
-                                            </ion-item>
-                                        </div> -->
+                                       
                                         <a class="forgett" routerLink='/reset'>Forgot Password</a><br><br>
                                         <a routerLink='/signup'> No account yet? Create an account.</a>
 

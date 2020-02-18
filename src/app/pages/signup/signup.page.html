@@ -108,15 +108,7 @@
                                         <div class="error" *ngIf="signupForm.get('gender').hasError('required') && signupForm.get('gender').touched">
                                             Please please select gender
                                         </div>
-                                        <!-- <ion-item id="item" color="transparent">
-                                            <ion-label position="floating">Age</ion-label>
-                                            <ion-select formControlName="age">
-                                                <ion-select-option value="10-21">10-21</ion-select-option>
-                                                <ion-select-option value="21-26">21-26</ion-select-option>
-                                                <ion-select-option value="26-31">31-38</ion-select-option>
-                                                <ion-select-option value="38-45">38-45</ion-select-option>
-                                            </ion-select>
-                                        </ion-item> -->
+                                       
 
                                         <ion-item id="item" color="transparent">
                                             <ion-label position="floating">Age</ion-label>
@@ -131,20 +123,10 @@
                                     <br>
                                     <br>
 
-                                    <!-- <ion-item lines="none">
-                                    <div id="h">
-                                        <h2>Signup</h2>
-                                    </div>
-                                   
-                                    <div id="but">
-                                        <ion-fab-button [disabled]="!signupForm.valid" (click)="tryRegister()" color="primary" size="small">
-                                            <ion-icon name="arrow-forward"></ion-icon>
-                                        </ion-fab-button>
-
-                                    </div>
-                                  </ion-item> -->
+                                  
                                     <ion-col>
                                         <ion-button shape="round" expand="full" color="primary" [disabled]="!signupForm.valid" (click)="tryRegister()">Signup</ion-button>
+                                        
                                     </ion-col>
                                     <br>
                                     <br>

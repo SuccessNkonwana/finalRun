@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">PaintfunRace</string>
+    <string name="title_activity_main">PaintfunRace</string>
+    <string name="package_name">paint.fun.race</string>
+    <string name="custom_url_scheme">paint.fun.race</string>
+</resources>

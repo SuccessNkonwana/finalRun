@@ -16,6 +16,7 @@ export class AddPage implements OnInit {
   slides: any;
 slideOpts = {
     slidesPerView: 2.5,
+    spaceBetween:10,
     coverflowEffect: {
       rotate: 50,
       stretch: 0,

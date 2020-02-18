@@ -17,7 +17,8 @@ export class ClubProfilePage implements OnInit {
   isSlide: boolean = true;
   slides: any;
   slideOpts = {
-    slidesPerView: 1.5,
+    slidesPerView: 2.5,
+    spaceBetween:10,
     coverflowEffect: {
       rotate: 50,
       stretch: 0,
