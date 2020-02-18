@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="paint.fun.race">
+=======
+    package="com.running">
+>>>>>>> acecaef5a17eda558adb31b205240ed97cca7070
 
     <application
         android:allowBackup="true"
@@ -12,7 +16,11 @@
 
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+<<<<<<< HEAD
             android:name="paint.fun.race.MainActivity"
+=======
+            android:name="com.running.MainActivity"
+>>>>>>> acecaef5a17eda558adb31b205240ed97cca7070
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBarLaunch"
             android:launchMode="singleTask">

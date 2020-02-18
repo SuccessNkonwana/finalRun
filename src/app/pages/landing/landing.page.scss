@@ -20,9 +20,10 @@ body {
     height: 100%;
     width: 100%;
     // overflow: scroll;
-    background-image: url('/assets/images/YELLOW.png');
+    background-image: url('/assets/images/4jw0uD.jpg');
     background-repeat: no-repeat;
     background-position: center;
+  
     // background: url(/assets/icon/bgs.PNG) no-repeat center center;
     // -webkit-background-size: cover;
     // -moz-background-size: cover;
@@ -32,51 +33,40 @@ body {
     #h1 {
         $fontsize: 25px;
         font-size: $fontsize;
-        $font-family: "Times New Roman", Times, serif;
-        font-family: $font-family;
+      //  $font-family: "Times New Roman", Times, serif;
+      //  font-family: $font-family;
         margin-bottom: 200%;
         text-align: center;
     }
-    #img {
-        $myheight: 60%;
-        height: $myheight;
-    }
+    // #img {
+    //     $myheight: 60%;
+    //     height: $myheight;
+    // }
     .imgC {
         width: 200px;
-        height: 200px;
-        // border-radius: 50%;
+        height: 210px;
+      padding-top: 70px;
     }
     .gett {
         text-align: center;
-        font-family: "Times New Roman", Times, serif;
+      //  font-family: "Times New Roman", Times, serif;
     }
-    .content {
-        max-width: 500px;
-        margin: auto;
-        bottom: 400px;
-        margin-top: 130px;
-    }
+
     ion-button {
-        width: 160px;
+        width: 120px;
         font-size: 15px;
-        margin-top: 100px;
+        margin-top: 170px;
     }
     h1 {
         font-size: 26px;
     }
-    // .form {
-    //     width: 100%;
-    //     height: 100%;
-    //     color: white;
-    //     position: absolute;
-    //     padding: 10px 18px;
-    //     // background: rgba(179, 179, 179, 0.623);
-    //     -webkit-text-fill-color: aliceblue;
-    //     width: 100%;
-    //     height: 100%;
-    //     border-radius: 20px;
-    //     background: rgba(0, 0, 0, 0.6);
-    //     text-align: center;
-    //     margin-right: 300px;
-    // }
+    .div1{
+        -webkit-text-fill-color: aliceblue;
+        width: 100%;
+        height: 1000px;
+        border-radius: 0px;
+        background: rgba(0, 0, 0, 0.6);
+        text-align: center;
+    }
+  
 }

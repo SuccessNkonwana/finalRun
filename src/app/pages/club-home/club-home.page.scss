@@ -11,10 +11,8 @@ $fontsize: 18px;
     // overflow: scroll;
     .div2 {
     $background-color:  #000;
-
  background-color: $background-color;
-     background-image: url('/assets/images/rep.jpg');
-
+  //  background-image: url('/assets/images/rep.jpg');
     background-position: center no-repeat;
     background-size: cover ;
     $mywidth: 100%;
@@ -42,7 +40,6 @@ $fontsize: 18px;
     -ms-transform: skewY(-4deg);
     -webkit-transform:skewY(-4deg);
     transform:skewY(-4deg);
-
 }
 .div1 {
     -ms-transform: skewY(4deg);
@@ -62,11 +59,8 @@ $fontsize: 18px;
     -ms-transform: skewY(-4deg);
     -webkit-transform:skewY(-4deg);
     transform:skewY(-4deg);
-
 }
 img{
-
-
     $mywidth: 100%;
     width: $mywidth;
    // $margin-right: 20%;

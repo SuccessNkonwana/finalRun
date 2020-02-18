@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "appId": "paint.fun.race",
   "appName": "PaintfunRace",
+=======
+  "appId": "com.running",
+  "appName": "running",
+>>>>>>> acecaef5a17eda558adb31b205240ed97cca7070
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

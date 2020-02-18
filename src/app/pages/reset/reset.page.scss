@@ -8,6 +8,7 @@ body {
     $myheight: 100%;
     height: $myheight;
     text-align: center;
+    display: flex;
     // overflow: scroll;
     #bg {
         // background-color: #11C2D4;
@@ -43,10 +44,11 @@ body {
         color: $textcolor;
     }
     #div1 {
-        $background-color: #11C2D4;
-        background-color: $background-color;
-        $myheight: 100%;
-        height: $myheight;
+        background-image: url('/assets/images/4jw0uD.jpg');
+        background-repeat: no-repeat;
+       
+        background-size: 100% 50%;
+      
     }
     #buts {
         margin-left: 85px;

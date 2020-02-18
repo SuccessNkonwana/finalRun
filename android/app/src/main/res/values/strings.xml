@@ -1,7 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+<<<<<<< HEAD
     <string name="app_name">PaintfunRace</string>
     <string name="title_activity_main">PaintfunRace</string>
     <string name="package_name">paint.fun.race</string>
     <string name="custom_url_scheme">paint.fun.race</string>
+=======
+    <string name="app_name">running</string>
+    <string name="title_activity_main">running</string>
+    <string name="package_name">com.running</string>
+    <string name="custom_url_scheme">com.running</string>
+>>>>>>> acecaef5a17eda558adb31b205240ed97cca7070
 </resources>
