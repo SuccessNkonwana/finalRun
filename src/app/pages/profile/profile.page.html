@@ -9,6 +9,8 @@
                         <ion-col align-self-center size-md="12" size-lg="11" size-xs="12">
 
                             <div class="div1">
+                                <div class="div3">
+                                    <br>
                                 <h2 id="heading" text-center>My Profile</h2>
 
                                 <ion-label (click)="nameUpdate(user)" id="name" text-center>{{user.name}}
@@ -44,13 +46,18 @@
 
                                         <input id="file-input2" class="input" type="file" (change)="uploadProfilePic($event)" />
                                     </div>
+                                    <div class="spinner" *ngIf="((uploadPercent | async ) >0 && (uploadPercent | async ) !='') || (progress>0 && progress !='')">
+                                        <ion-spinner name="crescent" color="success"></ion-spinner>
+                                    </div>
                                 </div>
                                 <br>
 
-                                <div class="div2">
+                                <div class="div2" >
+
+
                                     <br><br><br>
                                     <br><br><br>
-                                    <ion-list lines="none">
+                                    <ion-list lines="none" class="ion-padding">
                                         <ion-item detail-push>
 
                                             <ion-label>
@@ -99,9 +106,7 @@
 
 
                                 </div>
-                                <div class="line">
-                                    <img src="\assets\images\tbo-removebg-preview.png">
-                                </div>
+                            </div>
                             </div>
                         </ion-col>
 

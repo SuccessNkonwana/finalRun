@@ -17,13 +17,13 @@ body {
     width: $mywidth;
     $myheight: 100%;
     height: $myheight;
-    text-align: center;
-    overflow: scroll;
+    // text-align: center;
+    overflow-y: auto;
   //  $font-family: "Microsoft Sans Serif";
   //  font-family: $font-family;
     // 
     #bg {
-        overflow: scroll;
+        overflow-y: auto;
         // background-color: #11C2D4;
         // $mywidth: 100%;
         // width: $mywidth;
@@ -55,7 +55,7 @@ body {
       //  font-family: $font-family;
         $textcolor: #11C2D4;
         color: $textcolor;
-        text-align: start;
+        text-align: center;
     }
     h2 {
         $fontsize: 25px;
@@ -71,9 +71,16 @@ body {
         $font-size: inherit;
         font-size: $font-size;
     }
+    .lbl{
+        // margin-right: 14px;
+        align-items: flex-end;
+    }
     #item {
-        $textcolor: #11C2D4;
-        color: $textcolor;
+        // $textcolor: #11C2D4;
+        // color: $textcolor;
+        border: 1px solid rgb(199, 199, 199);
+        padding: 0px;
+        border-radius: 25px;
     }
     #cen {
         $margin: 5px 20px 5px 300px;
@@ -114,15 +121,45 @@ body {
         $myheight: 60%;
         height: $myheight;
     }
+    // .div1 {
+    //     $background-color: #11C2D4;
+    //     background-color: $background-color;
+    //     $myheight: 100%;
+    //     height: $myheight;
+
+    // }
     .div1 {
-        $background-color: #11C2D4;
-        background-color: $background-color;
-        $myheight: 100%;
-        height: $myheight;
+       
+        background-image: url('/assets/images/man-running- png.png');
+        background-repeat: no-repeat;
+       
+        background-size: 100% 50%;
+      
     }
     .imgC {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
         width: 150px;
         height: 150px;
-       // border-radius: 50%;
+        
     }
+    .cr{
+        padding-left: 50px;
+    }
+    .div3{
+        // -webkit-text-fill-color: aliceblue;
+        // width: 100%;
+        // height: 100%;
+        background-repeat: no-repeat;
+       
+        background-size: 100% 50%;
+        border-radius: 0px;
+        background: rgba(0, 0, 0, 0.6);
+    
+    }
+}
+.error{
+    color: red;
+    font-size: 15px;
 }

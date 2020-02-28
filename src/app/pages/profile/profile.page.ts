@@ -108,17 +108,20 @@ onSelect(address:string,i){
    //
    this.file = event.target.files[0];
          
-   this.uniqkey = this.aname + 'Logo';
+   this.uniqkey ='pic' +  Math.random().toString(36).substring(2);
    const filePath = this.uniqkey;
    this.fileRef = this.storage.ref(filePath);
    this.task = this.storage.upload(filePath, this.file);
+   this.uploadPercent = this.task.percentageChanges();
+
    this.task.snapshotChanges().pipe(
      finalize(() => {
        this.downloadU = this.fileRef.getDownloadURL().subscribe(urlPath => {
          console.log(urlPath);
 
          this.photoURL=urlPath
-         console.log(this.urlPath,"fighter");
+         this.uploadPercent = null;
+         console.log(this.urlPath,"profile picture");
          
        });
      })

@@ -35,6 +35,17 @@ body {
         $order-top-right-radius: 8%;
         border-top-left-radius: 8%;
     }
+    .div3{
+        // -webkit-text-fill-color: aliceblue;
+        // width: 100%;
+        // height: 100%;
+        background-repeat: no-repeat;
+       
+        background-size: 100% 50%;
+        border-radius: 0px;
+        background: rgba(0, 0, 0, 0.6);
+    
+    }
     #img {
         $myheight: 60%;
         height: $myheight;
@@ -44,7 +55,8 @@ body {
         color: $textcolor;
     }
     #div1 {
-        background-image: url('/assets/images/4jw0uD.jpg');
+        margin: -3%;
+        background-image: url('/assets/images/man-running- png.png');
         background-repeat: no-repeat;
        
         background-size: 100% 50%;

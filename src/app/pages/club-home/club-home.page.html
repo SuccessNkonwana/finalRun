@@ -20,14 +20,15 @@
           <div class="div3" >
         <ion-list  >
             <ion-item lines="none">
-              <ion-label >Name: {{myclub.name}}</ion-label>
+              <h1 > {{myclub.name}}</h1>
           </ion-item>
           <ion-item lines="none">
-              <ion-label>Location: {{myclub.address}} </ion-label>
+            <ion-icon name="map"></ion-icon>&nbsp; {{myclub.address}}
+            
               
           </ion-item>
           <ion-item lines="none">
-            <ion-label>Operating Hours: {{myclub.openingHours}} To {{myclub.closingHours}}</ion-label>
+            <ion-icon name="alarm"></ion-icon> &nbsp; {{myclub.openingHours}} To {{myclub.closingHours}}
         </ion-item>
           </ion-list>
           <br>
@@ -38,7 +39,7 @@
     <div *ngIf="saved">
     <div   *ngFor="let ev of events" class="div3">
       <ion-item  routerLink="/book-event" (click)="booking(ev)" >
-        <ion-icon name="calendar"></ion-icon>     Event Name: {{ev.name}}<br/>
+        <ion-icon name="calendar"></ion-icon> &nbsp;    Event Name: {{ev.name}}<br/>
         Date: {{ev.date}}
         
     </ion-item>   

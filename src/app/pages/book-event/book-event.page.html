@@ -1,13 +1,14 @@
 <ion-content>
    
     <body *ngFor="let myevents of events">
-            <ion-toolbar>
+        <div class="div3">
+        
                     <ion-buttons slot="start"  (click)="backClicked()">
-                        <ion-icon color="primary" name="arrow-back" style="zoom:1.5"></ion-icon>
+                        <ion-icon color="light" name="arrow-back" style="zoom:1.5"></ion-icon>
                     </ion-buttons>
-                </ion-toolbar>
+              
         <br><br>
-        <h2>Confirmation!</h2>
+        <h2>Confirmation</h2>
         <br><br>
         <ion-card class="card1">
 
@@ -55,7 +56,7 @@
                     <ion-fab-button (click)="sub(1)" center color="light" size="small">
                         <ion-icon color="primary" name="remove"></ion-icon>
                     </ion-fab-button>
-                    {{tickets}}
+                    <h1>{{tickets}}</h1>
                     <ion-fab-button (click)="add(1)" color="light" size="small">
                         <ion-icon color="primary" name="add"></ion-icon>
                     </ion-fab-button>
@@ -84,6 +85,7 @@
             <br><br><br>
             <ion-button routerLink="/tabs/events" shape="round" expand="block" (click)="BookEvent(tickets,price)"><b>Book now</b></ion-button>
         </ion-card>
+    </div>
     </body>
 
 </ion-content>

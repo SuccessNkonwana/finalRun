@@ -10,19 +10,15 @@
                     <ion-row color="primary" justify-content-center>
                         <br>
                         
-                        <ion-col align-self-center size-md="6" size-lg="11" size-xs="12">
+                        <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
 
                             <div class="div1">
-                                <ion-buttons slot="start"  routerLink="/tabs/add">
-                                    <ion-icon color="light" name="arrow-back" style="zoom:1.5"></ion-icon>
+                                <div class="div3">
+                                <ion-buttons slot="start">
+                                    <ion-icon   routerLink="/tabs/add" color="light" name="arrow-back" style="zoom:1.5"></ion-icon>
                                 </ion-buttons> 
-                                 
-                                  
-
-                                <!-- <ion-avatar class="avatar">
-                             
-                              <img src="assets/images/rep.jpg" alt="Avatar" class="img">
-                          </ion-avatar> -->
+                                <h2 id="heading">Add Your Club</h2>  
+                              
                                 <div class="profile-image">
                                     <div *ngIf="urlPath =='' ">
                                         <img src="\assets\images\profile-user.png" class="x">
@@ -49,18 +45,24 @@
                                         </ion-fab>
 
 
-                                        <input id="file-input2" formControlName="club" class="input"  type="file" (change)="uploadClubPic($event)" />
+                                        <input id="file-input2" class="input"  type="file" (change)="uploadClubPic($event)" />
+                                    
                                     </div>
+                                    <div class="spinner" *ngIf="((uploadPercent | async ) >0 && (uploadPercent | async ) !='') || (progress>0 && progress !='')">
+                                        <ion-spinner name="crescent" color="success"></ion-spinner>
+                                    </div>
+                                   
                                 </div>
+                               
                                 <br><br><br>
-                            </div>
-
+                               
 
                             <div class="div2">
                                 <br><br><br><br>
-                                <ion-item id="item" color="transparent">
-                                    <ion-label position="floating">Club name</ion-label>
-                                    <ion-input type="text" formControlName="newName"></ion-input>
+                                <!-- club name -->
+                                <ion-label position="floating" class="lbl">Club name</ion-label>   
+                                <ion-item id="item" >
+                                    <ion-input type="text"  padding-horizontal clear-input="true" formControlName="newName"></ion-input>
                                 </ion-item>
                                 <div class="error" *ngIf="clubForm.get('newName').hasError('required') && clubForm.get('newName').touched">
                                     Please input your club
@@ -71,20 +73,20 @@
                                 <div class="error" *ngIf="clubForm.get('newName').hasError('maxlength') && clubForm.get('newName').touched">
                                     Maximum 30 characters
                                 </div>
-<!-- address search -->
-<ion-item id="item" color="transparent">
-    <ion-label position="floating">Address</ion-label>
-    <ion-input type="text" [(ngModel)]="newAddress" formControlName="newAddress" (ionInput)="search($event)"  [value]="selectedAddress" clearInput></ion-input>
-</ion-item>
-<div style="position: absolute; max-width: 90%; min-width: 90%; z-index: 999; " class="search">
-    <ion-list lines="none" *ngIf="addresses.length > 0" color="lightb" style="background: var(--ion-item-background,var(--ion-background-color, black)); ">
-        <ion-item *ngFor="let address of addresses ; let i=index" (click)="onSelect(address, i)" color="dark">
-            <ion-icon name="pin"></ion-icon>
-            <p class="searchv">{{address}}</p>
-        </ion-item>
-    </ion-list>
-</div>
-<!-- address search -->
+                                <!-- address search -->
+                                <ion-label position="floating">Address</ion-label>
+                                <ion-item id="item" >
+                                <ion-input  padding-horizontal clear-input="true" type="text" [(ngModel)]="newAddress" formControlName="newAddress" (ionInput)="search($event)"  [value]="selectedAddress" clearInput></ion-input>
+                                </ion-item>
+                                <div style="position: absolute; max-width: 90%; min-width: 90%; z-index: 999; " class="search">
+                                    <ion-list lines="none" *ngIf="addresses.length > 0" color="lightb" style="background: var(--ion-item-background,var(--ion-background-color, black)); ">
+                                        <ion-item *ngFor="let address of addresses ; let i=index" (click)="onSelect(address, i)" color="dark">
+                                            <ion-icon name="pin"></ion-icon>
+                                            <p class="searchv">{{address}}</p>
+                                        </ion-item>
+                                    </ion-list>
+                                </div>
+                                <!-- address search -->
  
 
                                 <div *ngIf="clubForm.controls.newAddress.invalid && clubForm.controls.newAddress.dirty">
@@ -96,9 +98,10 @@
                                 <ion-grid>
                                     <ion-row>
                                         <ion-col>
-                                            <ion-item id="item" color="transparent">
-                                                <ion-label position="floating">Open Time</ion-label>
-                                                <ion-datetime formControlName="newOpeningHours" displayFormat="H:mm a"></ion-datetime>
+                                            <ion-label position="floating">Open Time</ion-label>
+                                               
+                                            <ion-item id="item" >
+                                                <ion-datetime formControlName="newOpeningHours"max="11:59" displayFormat="H:mm a"></ion-datetime>
                                             </ion-item>
                                             <div *ngIf="clubForm.controls.newOpeningHours.invalid && clubForm.controls.newOpeningHours.dirty">
                                             </div>
@@ -107,9 +110,9 @@
                                             </div>
                                         </ion-col>
                                         <ion-col>
-                                            <ion-item id="item" color="transparent">
-                                                <ion-label position="floating">Close Time</ion-label>
-                                                <ion-datetime formControlName="newClosingHours" displayFormat="H:mm a"></ion-datetime>
+                                            <ion-label position="floating">Close Time</ion-label>
+                                            <ion-item id="item">
+                                                 <ion-datetime formControlName="newClosingHours"min="12:00" displayFormat="H:mm a"></ion-datetime>
                                             </ion-item>
                                             <!-- <div *ngIf="clubForm.controls.newClosingHours.invalid && clubForm.controls.Hours.newClosingHours">
                                             </div> -->
@@ -125,13 +128,14 @@
                                 <br>
                                
                                 <ion-col>
-                                    <ion-button shape="round" routerLink="tabs/add" expand="full" color="primary" (click)="addClub(newName, newAddress, newOpeningHours, newClosingHours) " [disabled]="!clubForm.valid">Submit</ion-button>
+                                    <ion-button style="margin-right: 4%;margin-left: 4%;" shape="round"  expand="full" color="primary" (click)="addClub() " [disabled]="!clubForm.valid || urlPath == ''">Submit</ion-button>
                                 </ion-col>
 
 
                             </div>
 
-
+                        </div>
+                    </div>
                         </ion-col>
 
                     </ion-row>

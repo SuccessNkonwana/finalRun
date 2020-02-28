@@ -17,8 +17,10 @@
 
     .actButtons
     {
-     width: 100%;
-        font-size: 13px;
+        left: 10px;
+        left:0px;
+        font-size: 15px;
+       
      
     }
     .noClubs
@@ -63,4 +65,52 @@
 
 
 }
+}
+.div1 {
+       
+    background-image: url('/assets/images/man-running- png.png');
+    background-repeat: no-repeat;
+   margin: -3.5%;
+   padding: 5%;
+   height: 400px;
+    background-size: 100% 350px;
+  
+  
+}
+.div2 {
+    $background-color: #fff;
+    background-color: $background-color;
+    // $mywidth: 100%;
+    // width: $mywidth;
+    $margin-left: 0%;
+    margin-left: $margin-left;
+    $myheight: 500px;
+    height: $myheight;
+    $margin-bottom: 0%;
+    margin-bottom: $margin-bottom;
+    border-top-right-radius: 15%;
+    border-top-left-radius: 15%;
+    // padding-left: au;
+    text-align: center;
+    padding: 5%;
+}
+
+.div3{
+   
+    background-repeat: no-repeat;
+    margin: -6%;
+   height: 400px;
+    text-align: center;
+    border-radius: 0px;
+    background: rgba(0, 0, 0, 0.6);
+    background-size: 100% 250px;
+
+
+}
+.title{
+
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
 }

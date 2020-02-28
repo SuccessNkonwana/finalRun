@@ -9,6 +9,7 @@ import { NavController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 // import { eventNames } from 'cluster';
 import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 @Injectable({
   providedIn: 'root'
 })
@@ -67,7 +68,7 @@ export class RunningService {
   eventKey: string;
   address: string;
   price: string;
-  constructor(public loadingController: LoadingController,public auths: AuthService, private storage: AngularFireStorage, private afs: AngularFirestore, public navCtrl: NavController, public route: Router) {
+  constructor(private auth: AngularFireAuth,public loadingController: LoadingController,public auths: AuthService, private storage: AngularFireStorage, private afs: AngularFirestore, public navCtrl: NavController, public route: Router) {
   }
   currentClub(myclubs) {
    
@@ -169,27 +170,12 @@ this.clubOne = []
       console.log(result.length);
     })
     console.log(result);
-    //this.LandMarks()
+  
     return result
 
-    // console.log(this.todos,"hh")
-    // return this.todos
   }
-  //return individuals clubs
-  async rtMyClubs() {
-    let result: any
-    await this.getIndividualsClubs().then(data => {
-      result = data
 
-      console.log(result.length);
-    })
-    console.log(result);
-    //this.LandMarks()
-    return result
-
-    // console.log(this.todos,"hh")
-    // return this.todos
-  }
+ 
   async rtUsers() {
     let result: any
     await this.getUser().then(data => {
@@ -206,7 +192,7 @@ this.clubOne = []
   }
   
   //add a club
-  addClub(newName, newAddress, newOpeningHours, newClosingHours) {
+  addClub(newName, newAddress, newOpeningHours, newClosingHours, url) {
 
     var styt = newOpeningHours.substring(11, 16);
     var etyt = newClosingHours.substring(11, 16);
@@ -214,21 +200,13 @@ this.clubOne = []
     let userID = user.uid
     console.log("HOT ", userID)
 
-    this.uniqkey = newName + 'Logo';
-    const filePath = this.uniqkey;
-    this.fileRef = this.storage.ref(filePath);
-    this.task = this.storage.upload(filePath, this.file);
-    this.task.snapshotChanges().pipe(
-      finalize(() => {
-        this.downloadU = this.fileRef.getDownloadURL().subscribe(urlPath => {
-          console.log(urlPath);
           this.dbfire.collection("clubs").add({
             name: newName,
             address: newAddress,
             openingHours: styt,
             closingHours: etyt,
             userID: userID,
-            photoURL: urlPath
+            photoURL: url
 
           }).then((data) => {
 
@@ -241,11 +219,6 @@ this.clubOne = []
           })
 
           this.uploadPercent = null;
-        });
-      })
-    ).subscribe();
-    return this.uploadPercent = this.task.percentageChanges();
-    this.file = null;
 
   }
   ///update a club
@@ -295,6 +268,19 @@ this.clubOne = []
     // return this.todos
   }
   ///////get todos
+  rtMyClubs() {
+    let uid = this.auth.auth.currentUser.uid;
+    return this.afs.collection("clubs", ref => ref.where('userID', '==', uid))
+      .snapshotChanges().pipe(
+        map(actions => actions.map(a => {
+          const data = a.payload.doc.data() as any;
+          const id = a.payload.doc.id;
+          console.log("club ID"+id)
+          return { id, ...data };
+         
+        })))
+
+  }
   getClubs() {
     this.clubs = []
     this.clubsTemp = []
@@ -355,7 +341,14 @@ this.clubOne = []
     let user = this.readCurrentSession()
     let userID = user.uid
     //
-
+ // ngOnInit() {
+  //   this.news = this.db.collection('123').snapshotChanges().map(actions => {
+  //     return actions.map(a => {
+  //       const data = a.payload.doc.data();
+  //       const id = a.payload.doc.id;
+  //       return { id, ...data };
+  //     });
+  // });
 
     return new Promise((resolve, reject) => {
       this.dbfire.collection("clubs").get().then((querySnapshot) => {
@@ -397,17 +390,13 @@ this.clubOne = []
 
   }
 
-  ////single clubs events
+  //single clubs events
   getAClubsEvents(myclubs) {
-
     this.events = []
     this.eventsTemp = []
     let ans = []
     let ans2 = []
     this.currClub = []
-
-
-
  console.log(myclubs, "the club select");
  
     //push current club
@@ -415,7 +404,6 @@ this.clubOne = []
     // this.currentClub(this.currClub)
     console.log(this.currClub, "the current club hai");
     console.log(myclubs, "the current club from function");
-
     // let user=this.readCurrentSession()
     // let userID=user.uid
     let clubKey = myclubs.clubKey
@@ -424,7 +412,6 @@ this.clubOne = []
     return new Promise((resolve, reject) => {
       this.dbfire.collection("events").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-
           // ans.push(doc.data())
           console.log(doc.id, '=>', doc.data());
           this.eventsTemp.push({
@@ -438,32 +425,24 @@ this.clubOne = []
             closingHours: doc.data().closingHours,
             userID: doc.data().userID,
             clubKey: doc.data().clubKey
-
           })
           console.log(this.eventsTemp, "events array")
           console.log(name, "event array")
-
           console.log(this.eventsTemp.length, "events array SIZE")
           //  this.todoTemp.push()
-
         });
         console.log(this.eventsTemp.length, "events array SIZE")
         for (let x = 0; x < this.eventsTemp.length; x++) {
           console.log(this.eventsTemp[x].clubKey, "CLUB id at x ")
-
           if (this.eventsTemp[x].clubKey === clubKey) {
             this.events.push(this.eventsTemp[x])
-
           }
-
         }
         console.log(this.events, "my events array")
         console.log(ans, "ans array")
         resolve(this.events)
       });
     });
-
-
   }
   ////upload a club pic
   uploadClubPic(event) {
@@ -473,29 +452,7 @@ this.clubOne = []
     console.log("the user", userID);
     this.file = event.target.files[0];
     console.log(this.file)
-    // let user = this.readCurrentSession()
-    // let userID = user['uid']
-    // console.log("the user", userID);
-    // this.file = event.target.files[0];
-    // console.log(this.file)
-    // this.uniqkey = 'PIC' + this.dateTime;
-    // const filePath = this.uniqkey;
-    // const fileRef = this.storage.ref(filePath);
-    // const task = this.storage.upload(filePath, this.file);
-    // // observe percentage changes
-    // task.snapshotChanges().pipe(
-    //   finalize(() => {
-    //     this.downloadU = fileRef.getDownloadURL().subscribe(urlPath => {
-    //       console.log(urlPath);
-
-    //       this.afs.doc('clubs/' + userID).update({
-    //         photoURL: urlPath
-    //       })
-    //       this.uploadPercent = null;
-    //     });
-    //   })
-    // ).subscribe();
-    // return this.uploadPercent = task.percentageChanges();
+  
   }
 
 
@@ -557,8 +514,8 @@ this.clubOne = []
   }
 
   ///create event 
-  addEvent(newName, newAddress, newOpeningHours, newClosingHours, newPrice, newDistance, newDate) {
-
+  addEvent(newName, newAddress, newOpeningHours, newClosingHours, newPrice, newDistance, newDate,url) {
+    console.log(this.rtMyClubs())
     console.log(newOpeningHours, newClosingHours, "times as strings");
 
     let styt = newOpeningHours.substring(11, 16);
@@ -570,14 +527,7 @@ this.clubOne = []
     console.log(this.currClub, " addevnt page club");
 
     console.log("HOT ", this.currClub[0].myclubs.myclubs.clubKey)
-    this.uniqkey = newName + 'Logo';
-    const filePath = this.uniqkey;
-    this.fileRef = this.storage.ref(filePath);
-    this.task = this.storage.upload(filePath, this.file);
-    this.task.snapshotChanges().pipe(
-      finalize(() => {
-        this.downloadU = this.fileRef.getDownloadURL().subscribe(urlPath => {
-          console.log(urlPath);
+  
 
           this.dbfire.collection("events").add({
             name: newName,
@@ -589,7 +539,7 @@ this.clubOne = []
             userID: userID,
             clubKey: clubKey,
             price: newPrice,
-            photoURL: urlPath
+            photoURL: url
 
           }).then((data) => {
             console.log(data)
@@ -601,12 +551,9 @@ this.clubOne = []
             console.log(error)
           })
           this.uploadPercent = null;
-        });
-      })
-    ).subscribe();
-    return this.uploadPercent = this.task.percentageChanges();
-    this.file = null;
-
+       
+    
+ 
 
   }
   async presentLoading() {

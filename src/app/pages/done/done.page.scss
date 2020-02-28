@@ -59,7 +59,8 @@ body {
         text-align: center;
     }
     .cd {
-        margin-left: 70px;
+        display: block;
+       text-align: center;
         color: black;
     }
     h6 {
@@ -114,10 +115,11 @@ body {
         height: $myheight;
     }
     .div1 {
-        $background-color: #11C2D4;
-        background-color: $background-color;
-        // $myheight: 100%;
-        // height: $myheight;
+        background-image: url('/assets/images/man-running- png.png');
+        background-repeat: no-repeat;
+       
+        background-size: 100% 100%;
+ 
         border-bottom-right-radius: 20%;
         border-bottom-left-radius: 20%;
         padding: 10px 0px 0px 0px !important;
@@ -127,6 +129,18 @@ body {
     }
     .bah {
         top: 60px;
+    }
+    .div3{
+        // -webkit-text-fill-color: aliceblue;
+        // width: 100%;
+        // height: 100%;
+        background-repeat: no-repeat;
+       margin-top: -5%;
+        background-size: 100% 100%;
+        border-bottom-right-radius: 20%;
+        border-bottom-left-radius: 20%;
+        background: rgba(0, 0, 0, 0.6);
+    
     }
     #out {
         text-align: start;
@@ -153,10 +167,12 @@ body {
     }
     .card1 {
         background-color: white;
-        top: 100px;
+        top: 30px;
         padding: 0 !important;
         border: 55px;
         color: #11C2D4;
+        text-align: center;
+       
     }
     .ref {
         color: black;

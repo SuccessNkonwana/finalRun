@@ -23,7 +23,7 @@ export class MapboxService {
   }
   search_word(query:string){
     const url="https://api.mapbox.com/geocoding/v5/mapbox.places/";
-    return this.http.get(url +query +'.json?type=address&access_token=pk.eyJ1Ijoic3VjY2VzcyIsImEiOiJjanhxMjNxemkwbTJyM2NwOWwxeG1tbGZjIn0.bDNdundlCIPQcFAc5MAqJg')
+    return this.http.get(url +query +'.json?country=ZA&type=address&access_token=pk.eyJ1Ijoic3VjY2VzcyIsImEiOiJjanhxMjNxemkwbTJyM2NwOWwxeG1tbGZjIn0.bDNdundlCIPQcFAc5MAqJg')
     .pipe(map((res:MapboxOutput)=>{
       return res.features;
     }));

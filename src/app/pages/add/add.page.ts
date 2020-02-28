@@ -28,7 +28,7 @@ slideOpts = {
   constructor(public runn: RunningService, private router: Router, public loadingController: LoadingController,) {
 
     this.clubs=[]      
-    this.getdata()
+    
   
    }
    slideChanged()
@@ -39,7 +39,7 @@ slideOpts = {
    {
      
      return new Promise((resolve, reject) => {
-       this.runn.rtMyClubs().then(data =>{
+       this.runn.rtMyClubs().subscribe(data =>{
       
          console.log( data.length);
          for( let x = 0; x < data.length; x++ )
@@ -47,7 +47,7 @@ slideOpts = {
           console.log(x);
           
          this.clubs.push({ 
-           clubKey:  data[x].clubKey,
+           clubKey:  data[x].id,
            name:  data[x].name,
            openingHours:  data[x].openingHours,
            closingHours:  data[x].closingHours,
@@ -64,18 +64,21 @@ slideOpts = {
        }
 
       })
-      this.presentLoading();
+      
      })
     
    }
   ngOnInit() {
+    this.clubs = []
+    this.getdata()
   }
 
 
   getAClubsEvents(myclub){
-
-    console.log(myclub);
+    // this.runn.chooseClub(myclub);
+   
      this.runn.getAClubsEvents(myclub)
+     console.log(myclub);
     this.router.navigateByUrl('club-profile');
 
 
@@ -86,8 +89,7 @@ slideOpts = {
       duration: 2000
     });
     await loading.present();
-    // this.getdata()
-    // loading.dismiss()
+    
   }
 
 }

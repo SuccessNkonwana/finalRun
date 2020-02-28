@@ -11,7 +11,7 @@
                     <ion-col align-self-center size-md="6" size-lg="11" size-xs="12">
 
                         <div class="div1">
-
+<div class="div3">
                             <ion-buttons color="light" slot="start">
                                 <ion-back-button defaultHref="book-event"></ion-back-button>
                             </ion-buttons>
@@ -19,15 +19,15 @@
                             <ion-card class="card1">
                                 <br><br><br>
                                 <ion-label class="ref">Deposit reference code</ion-label>
-                                <ion-input>
-                                    <h1 class="cd">{{theName}}</h1>
-                                </ion-input>
+                                <div class="cd">
+                                    <h1>{{theName}}</h1>
+                                </div>
                                 <br><br>
 
                             </ion-card>
-
                         </div>
-                        <br><br><br><br>
+                        </div>
+                        <br>
 
                         <div class="div2" *ngFor="let item of myAccount">
                             <br>

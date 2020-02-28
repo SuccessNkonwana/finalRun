@@ -47,7 +47,7 @@ export class AddEventPage implements OnInit {
   fileRef: any;
   task: any;
   downloadU: any;
-  urlPath: any;
+  urlPath = '';
 //adress
   search(event: any) {
     const searchTerm = event.target.value.toLowerCase();
@@ -85,7 +85,7 @@ export class AddEventPage implements OnInit {
     
     this.eventForm = fb.group({
 
-      newName: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30), Validators.required])],
+      newName: ['', Validators.compose([Validators.pattern('[a-zA-Z0-9 ]*'), Validators.minLength(4), Validators.maxLength(30), Validators.required])],
       newDistance: ['', Validators.compose([Validators.pattern('[0-9 ]*'), Validators.required])],
       newAddress: ['', Validators.required],
       newOpeningHours: ['', Validators.required],
@@ -102,42 +102,54 @@ export class AddEventPage implements OnInit {
    this.theUser=[]    
  
    }
-
+   public date: string
+   x;
   ngOnInit() {
-    
+    this.date = new Date().toISOString();
+    // this.date = new Date().toISOString();
+   this.x= this.date.split('T')[0]
+    console.log(this.date)
+    console.log( this.x)
   }
+ 
 addEvent()
 {
  this.newDate=this.datePipe.transform(this.newDate,"dd-MM-yyyy");
+ 
  console.log(this.newDate)
-      this.runn.addEvent(this.newName,this.newAddress,this.newOpeningHours,this.newClosingHours,this.newPrice,this.newDistance,this.newDate)
+      this.runn.addEvent(this.newName,this.newAddress,this.newOpeningHours,this.newClosingHours,this.newPrice,this.newDistance,this.newDate>this.x, this.urlPath)
 this.presentLoading()
     }
 
 uploadEventPic(event){
-  this.runn.uploadEventPic(event)
+  // this.runn.uploadEventPic(event)
 
     //
     this.file = event.target.files[0];
-    this.uniqkey = this.newName + 'Logo';
+    this.uniqkey ='pic' +  Math.random().toString(36).substring(2);
     const filePath = this.uniqkey;
     this.fileRef = this.storage.ref(filePath);
-    this.task = this.storage.upload(filePath, this.file);
-    this.task.snapshotChanges().pipe(
-      finalize(() => {
-        this.downloadU = this.fileRef.getDownloadURL().subscribe(urlPath => {
-          console.log(urlPath);
+    this.task = this.storage.upload("eventPictures/"+ filePath +"/", this.file);
+    this.uploadPercent = this.task.percentageChanges();
 
-          this.urlPath=urlPath
-          console.log(this.urlPath,"fighter");
-          
-        });
+    this.task.then(results => {
+
+      return results.ref.getDownloadURL().then(url => {
+        console.log(url);
+
+        this.urlPath = url
+        this.uploadPercent = null;
+        console.log(this.urlPath, "event profile picture");
+
       })
-    ).subscribe();
-  }
-  file(filePath: any, file: any): any {
-    throw new Error("Method not implemented.");
-    //
+
+    });
+ 
+}
+file(filePath: any, file: any): any {
+  throw new Error("Method not implemented.");
+  //
+  // this.presentLoading();
 }
 
 async presentLoading() {

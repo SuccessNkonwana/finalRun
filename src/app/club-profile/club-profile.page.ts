@@ -10,6 +10,7 @@ import { LoadingController } from '@ionic/angular';
 })
 export class ClubProfilePage implements OnInit {
   clubs=[]
+  saved=false;
   hasAEvent=false
   clubName:String=""
   photoURL:String=""
@@ -31,9 +32,9 @@ export class ClubProfilePage implements OnInit {
     this.clubs=[] 
     this.events= []; 
     this.clubName=null
-  this.photoURL=null    
+  this.photoURL=null  
     this.getdata()
-   
+    this.getEES()
 
    }
   slideChanged()
@@ -42,8 +43,52 @@ export class ClubProfilePage implements OnInit {
   }
   ngOnInit() {
     // this.presentLoading();
+  
+
   }
  
+getEES()
+{
+
+ this.events= []; 
+
+
+
+ return new Promise((resolve, reject) => {
+   this.runn.rtClubEvents().then(data =>{
+  
+     console.log( data.length);
+     for( let x = 0; x < data.length; x++ )
+     {
+      console.log(x);
+      
+     this.events.push({ 
+       eventKey:  data[x].eventKey,
+       name:  data[x].name,
+       address:  data[x].address,
+       date: data[x].date,
+       openingHours:  data[x].openingHours,
+       closingHours:data[x].closingHours,
+       price:data[x].price,
+       photoURL:data[x].photoURL,
+       clubKey:data[x].clubKey
+     
+     })
+      
+     }
+     if(this.events.length!=0 && this.events!=null)
+     {
+       this.hasAEvent=true;
+       this.saved=true;
+     }
+
+   console.log(this.events,"LAST ONE")
+
+  })
+ 
+ })
+
+}
 
   getdata()
   {
@@ -72,7 +117,7 @@ export class ClubProfilePage implements OnInit {
           address:  data[x].address,
           openingHours:  data[x].openingHours,
           closingHours:data[x].closingHours,
-          newPrice:data[x].newPrice,
+          price:data[x].price,
           photoURL:data[x].photoURL,
           clubKey:data[x].clubKey
         
@@ -84,7 +129,7 @@ export class ClubProfilePage implements OnInit {
           this.hasAEvent=true;
         }
  
-      console.log(this.events,"LAST ONE")
+      console.log(this.events,"the event")
 
      })
      this.presentLoading();
@@ -106,4 +151,5 @@ export class ClubProfilePage implements OnInit {
     
     loading.dismiss()
   }
+
 }
