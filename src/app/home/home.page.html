@@ -1,4 +1,5 @@
 <ion-content class="body">
+
     <body>
         <div *ngFor="let user of theUser ">
             <div id="bg">
@@ -9,120 +10,118 @@
 
                             <div class="div1">
                                 <div class="div3">
-                               
 
-                                <ion-label (click)="nameUpdate(user)" id="name" text-center>{{user.name}}
-                                    <ion-icon name="create"></ion-icon>
-                                </ion-label>
-                                <br>
 
-                                <div *ngFor="let user of theUser ">
+                                    <ion-label (click)="nameUpdate(user)" id="name" text-center>{{user.name}}
+                                        <ion-icon name="create"></ion-icon>
+                                    </ion-label>
                                     <br>
-                                    <div *ngIf="defaultpic">
-                                        <img class="img" src="{{user.photoURL}}">
+
+                                    <div *ngFor="let user of theUser ">
+                                        <br>
+                                        <div *ngIf="defaultpic">
+                                            <img class="img" src="{{user.photoURL}}">
+                                        </div>
+                                        <div *ngIf="!defaultpic">
+                                            <img class="img" src="\assets\images\profile-user.png">
+                                        </div>
                                     </div>
-                                    <div *ngIf="!defaultpic">
-                                        <img class="img" src="\assets\images\profile-user.png">
+
+                                    <br>
+                                    <ion-grid class="grid">
+                                        <ion-row>
+                                            <ion-col class="col">
+                                                <h2>50</h2>
+                                            </ion-col>
+                                            <ion-col class="col">
+                                                <h2>584</h2>
+                                            </ion-col>
+                                            <ion-col>
+                                                <h2>789</h2>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col class="col">
+                                                <p>kilo</p>
+                                            </ion-col>
+                                            <ion-col class="col">
+                                                <p>kilo used</p>
+                                            </ion-col>
+                                            <ion-col>
+                                                <p>kilos</p>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                    <div class="div2">
+                                        <br>
+                                        <h2 text-center class="cent"> Events You Going To
+                                            <!-- <ion-icon class="iconSize" name="compass"></ion-icon> -->
+                                        </h2>
+
+
+                                        <!-- all the boked tickets -->
+
+                                        <div *ngIf="hasATicket">
+                                            <div *ngIf="isSlide">
+                                                <ion-slides startAutoplay [options]="slideOptsT">
+
+                                                    <ion-slide *ngFor="let event of tickets">
+
+                                                        <ion-card class="booked">
+                                                            <ion-card-title class="wordsCards">
+                                                                <ion-icon name="information-circle"></ion-icon> {{event.name}}</ion-card-title> <br/>
+                                                            <ion-card-content class="wordsCard">
+                                                                Time: {{event.openingHours}}<br/> Date: {{event.date}}
+                                                            </ion-card-content>
+                                                        </ion-card>
+
+
+                                                    </ion-slide>
+                                                </ion-slides>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="noClubs" *ngIf="!hasATicket">
+
+
+                                            <p text-center color="medium" class="sadname"> You Don't Have Any Tickets Yet ! </p>
+
+
+                                        </div>
+
+                                        <!-- all registered clubs -->
+                                        <div *ngIf="isSlide">
+                                            <h2 text-center class="cent"> Running Clubs
+                                                <!-- <ion-icon class="iconSize" name="people"></ion-icon> -->
+                                            </h2>
+                                            <div *ngIf="hasAClub">
+
+
+                                                <ion-slides class="slick-slide" startAutoplay [options]="slideOpts">
+                                                    <ion-slide *ngFor="let clubss of clubs">
+                                                        <ion-card class="slideCards" [ngStyle]="{'background-image':'url('+clubss.photoURL+')'}" routerLink="/club-home" (click)="chooseClub(clubss)">
+                                                            <ion-card-content>
+                                                                <h2 class="cName">{{clubss.name}}</h2>
+                                                            </ion-card-content>
+                                                        </ion-card>
+
+                                                    </ion-slide>
+                                                </ion-slides>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="noClubs" *ngIf="!hasAClub">
+
+                                            <p text-center color="medium" class="sadname"> There Are No Clubs To View Yet ! </p>
+
+
+                                        </div>
+
+
                                     </div>
                                 </div>
-
-                                <br>
-                                <ion-grid class="grid">
-                                    <ion-row>
-                                        <ion-col class="col">
-                                            <h2>50</h2>
-                                        </ion-col>
-                                        <ion-col class="col">
-                                            <h2>584</h2>
-                                        </ion-col>
-                                        <ion-col>
-                                            <h2>789</h2>
-                                        </ion-col>
-                                    </ion-row>
-                                    <ion-row>
-                                        <ion-col class="col">
-                                            <p>kilo</p>
-                                        </ion-col>
-                                        <ion-col class="col">
-                                       <p>kilo used</p>
-                                        </ion-col>
-                                        <ion-col>
-                                            <p>kilos</p>
-                                        </ion-col>
-                                    </ion-row>
-                                </ion-grid>
-                                <div class="div2">
-                                    <br>
-                                <h2 text-center class="cent"> Events You Going To
-                                    <!-- <ion-icon class="iconSize" name="compass"></ion-icon> -->
-                                </h2>
-                                <br>
-
-                                <!-- all the boked tickets -->
-                                
-                                <div  *ngIf="hasATicket">
-                                    <div *ngIf="isSlide">
-                                        <ion-slides  startAutoplay [options]="slideOptsT">
-                                        
-                                            <ion-slide *ngFor="let event of tickets">
-                                                
-                                                    <ion-card class="booked">
-                                                        <ion-card-title class="wordsCard"><ion-icon name="information-circle"></ion-icon> {{event.name}}</ion-card-title> <br/>   
-                                                        <ion-card-content  class="wordsCard">
-                                                        Time: {{event.openingHours}}<br/>
-                                                        Date: {{event.date}}
-                                                        </ion-card-content>
-                                                    </ion-card>
-                                                    
-                                            
-                                            </ion-slide>
-                                        </ion-slides>
-                                    </div>
-        
-                                 </div>
-                                
-                                <div class="noClubs" *ngIf="!hasATicket">
-                                    <br>
-                                    <br>
-                                    <p text-center color="medium" class="sadname"> You Don't Have Any Tickets Yet ! </p>
-                                    <br>
-                            
-                                </div>
-                            
-                                <br>
-                              <!-- all registered clubs -->
-                                <div *ngIf="isSlide">
-                                    <h2 text-center class="cent"> Running Clubs
-                                        <!-- <ion-icon class="iconSize" name="people"></ion-icon> -->
-                                    </h2>
-                                    <div *ngIf="hasAClub" >
-                                    <br>
-                                   
-                                    <ion-slides class="slick-slide" startAutoplay [options]="slideOpts" >
-                                        <ion-slide *ngFor="let clubss of clubs">
-                                            <ion-card class="slideCards" [ngStyle]="{'background-image':'url('+clubss.photoURL+')'}" routerLink="/club-home" (click)="chooseClub(clubss)">
-                                                <ion-card-content>
-                                                    <h2 class="cName">{{clubss.name}}</h2>
-                                                </ion-card-content>
-                                            </ion-card>
-                            
-                                        </ion-slide>
-                                    </ion-slides>
-                            
-                                </div>
-                            </div>
-                            
-                                <div class="noClubs" *ngIf="!hasAClub">
-                                    <br/>
-                                    <br/>
-                                    <p text-center color="medium" class="sadname"> There Are No Clubs To View Yet ! </p>
-                                    <br/>
-                            
-                                </div>
-
-
-                                </div>
-                            </div>
                             </div>
                         </ion-col>
 
@@ -131,7 +130,7 @@
 
 
             </div>
-      
+
 
         </div>
     </body>

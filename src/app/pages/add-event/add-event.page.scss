@@ -1,10 +1,8 @@
-
 $fontsize: 18px;
 
 /* Use the variables */
 
 body {
-  
     font-size: $fontsize;
     $mywidth: 100%;
     width: $mywidth;
@@ -17,18 +15,15 @@ body {
         width: 106% !important;
         margin: 0px -50% 50px -3% !important;
         padding: 10px 0px 0px 0px !important;
-       
         $myheight: 100%;
         height: $myheight;
         $myposition: absolute;
         position: $myposition;
         $z-index: -1;
         z-index: $z-index;
-       
         top: -20px;
     }
     #bd {
-      
         $mywidth: 100%;
         width: $mywidth;
         $myheight: 100%;
@@ -43,7 +38,6 @@ body {
         font-size: $fontsize;
         $textcolor: #ffff;
         color: $textcolor;
-      
     }
     p {
         $textcolor: #11C2D4;
@@ -62,7 +56,6 @@ body {
     #heading {
         $fontsize: 25px;
         font-size: $fontsize;
-     
         $textcolor: #fff;
         color: $textcolor;
         text-align: center;
@@ -121,7 +114,6 @@ body {
         // height: $myheight;
         background-image: url('/assets/images/man-running- png.png');
         background-repeat: no-repeat;
-       
         background-size: 100% 35%;
         border-bottom-right-radius: 20%;
         border-bottom-left-radius: 20%;
@@ -178,7 +170,7 @@ body {
     .input {
         font-size: 25px;
     }
-     ion-spinner {
+    ion-spinner {
         display: block;
         margin: auto;
         top: -60px;
@@ -196,27 +188,41 @@ body {
         top: 80px !important;
     }
 }
-.div3{
+
+.div3 {
     // -webkit-text-fill-color: aliceblue;
     // width: 100%;
     margin-top: -3%;
     background-repeat: no-repeat;
-   
     background-size: 100% 50%;
     border-bottom-right-radius: 20%;
-        border-bottom-left-radius: 20%;
+    border-bottom-left-radius: 20%;
     background: rgba(0, 0, 0, 0.6);
-
 }
+
 .item {
     border: 1px solid rgb(199, 199, 199);
-  padding: 0px;
-  border-radius: 25px;
+    padding: 0px;
+    border-radius: 25px;
 }
-.error{
+
+.error {
     color: red;
     font-size: 15px;
 }
-.lbl{
+
+.lbl {
     margin-right: 14px;
+}
+
+ion-input {
+    color: black;
+}
+
+ion-button {
+    width: 80%;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

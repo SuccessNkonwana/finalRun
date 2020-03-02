@@ -1,18 +1,17 @@
+<ion-toolbar color="primary">
+    <ion-title class="toolwords">Event Feed</ion-title>
+</ion-toolbar>
 
-        <ion-toolbar color="primary">
-                <ion-title class="toolwords" >Event Feed</ion-title>
-      </ion-toolbar>
- 
-<ion-content class="body" >
-        <div >
-                <h1 text-center class="title" >
-                        Sponsored*
-                </h1>       
-                      
-          <br/>
-          
-       <ion-item>
-       <!-- <ion-slides startAutoplay [options]="slideOpts" autoplay="3000" loop="true" speed="1" pager="true" >
+<ion-content class="body">
+    <div>
+        <h1 text-center class="title">
+            Sponsored by
+        </h1>
+
+
+
+        <ion-item>
+            <!-- <ion-slides startAutoplay [options]="slideOpts" autoplay="3000" loop="true" speed="1" pager="true" >
             <ion-slide >
                     <ion-card class="eventCard1">
                          
@@ -32,68 +31,67 @@
                      </ion-card>
              </ion-slide>
         </ion-slides> -->
-        <ion-slides startAutoplay [options]="slideOpts" autoplay="3000" loop="true" speed="1" pager="true" >
-                <ion-slide >
-                        <ion-card class="eventCard1" href="https://www.sprint.com">
-                             
-                               
-                         </ion-card>
-                 </ion-slide>
-                 <ion-slide >
-                        <ion-card class="eventCard2" href="https://www.herbalife.com">
-                             
-                               
-                         </ion-card>
-                 </ion-slide>
-                 <ion-slide >
-                        <ion-card class="eventCard3" href="https://www.wish.com">
-                             
-                               
-                         </ion-card>
-                 </ion-slide>
+            <ion-slides startAutoplay [options]="slideOpts" autoplay="3000" loop="true" speed="1" pager="true">
+                <ion-slide>
+                    <ion-card class="eventCard1" href="https://www.sprint.com">
+
+
+                    </ion-card>
+                </ion-slide>
+                <ion-slide>
+                    <ion-card class="eventCard2" href="https://www.herbalife.com">
+
+
+                    </ion-card>
+                </ion-slide>
+                <ion-slide>
+                    <ion-card class="eventCard3" href="https://www.wish.com">
+
+
+                    </ion-card>
+                </ion-slide>
             </ion-slides>
-      </ion-item>
-          
-            <br/>  
-            <br/>
-            <div class="subtitle"> 
-                <h1>
-                        Events
-                        </h1>
-            </div>
-             
-            <br/>
-            <div class="eventCard">
-                <ion-list lines="none" *ngFor="let myevents of events">
-                        <ion-item  class="item" *ngIf="hasAEvent" >
-                           <ion-card>
-                               <img class="ecardimg" src="{{myevents.photoURL}}">
-                                <ion-card-header>
-                                  <ion-card-subtitle><ion-icon name="pin"></ion-icon> {{myevents.address}} </ion-card-subtitle>
-                                  <ion-card-title>{{myevents.name}}</ion-card-title>
-                                </ion-card-header>
-                                <ion-card-content>
-                                    <ion-icon name="alarm"></ion-icon>  Opening Hours: {{myevents.openingHours}} <br/>
-                                    <ion-icon name="alarm"></ion-icon>  Closing Hours: {{myevents.closingHours}} <br/>
-                                    <ion-icon name="cash"></ion-icon>   Price: R{{myevents.price}} <br/>
-                                </ion-card-content>
-                                <ion-button routerLink="/book-event" (click)="booking(myevents)" shape="round" color="primary" style="width:30%">Book Now</ion-button>
-                            </ion-card>
-                       </ion-item>
-                     </ion-list>
+        </ion-item>
 
-            </div>
-       
 
-          <div class="noClubs" *ngIf="!hasAEvent" >
-                <br/>
-                <br/>
-            <p text-center color="medium" class="sadname">  No Events Available ! </p>
-             <br/>
-            
-          </div>
-          <!-- <body> -->
-        
+        <div class="subtitle">
+            <h1>
+                Events
+            </h1>
+        </div>
+
+        <div class="eventCard">
+            <ion-list lines="none" *ngFor="let myevents of events">
+                <ion-item class="item" *ngIf="hasAEvent">
+                    <ion-card>
+                        <img class="ecardimg" src="{{myevents.photoURL}}">
+                        <ion-card-header>
+                            <ion-card-subtitle>
+                                <ion-icon name="pin"></ion-icon> {{myevents.address}} </ion-card-subtitle>
+                            <ion-card-title>{{myevents.name}}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-icon name="alarm"></ion-icon> Opening Hours: {{myevents.openingHours}} <br/>
+                            <ion-icon name="alarm"></ion-icon> Closing Hours: {{myevents.closingHours}} <br/>
+                            <ion-icon name="cash"></ion-icon> Price: R{{myevents.price}} <br/>
+                        </ion-card-content>
+                        <ion-button routerLink="/book-event" (click)="booking(myevents)" style="width: 90%;" shape="round" expand="full" color="primary">Book Now</ion-button>
+
+                    </ion-card>
+                </ion-item>
+            </ion-list>
+
+        </div>
+
+
+        <div class="noClubs" *ngIf="!hasAEvent">
+
+            <p text-center color="medium" class="sadname"> No Events Available ! </p>
+
+
+        </div>
+        <!-- <body> -->
+
         <!-- </body> -->
-      </div>
-      </ion-content>
+    </div>
+</ion-content>

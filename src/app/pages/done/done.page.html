@@ -7,27 +7,28 @@
 
             <ion-grid>
                 <ion-row color="primary" justify-content-center>
-                    <br>
+
                     <ion-col align-self-center size-md="6" size-lg="11" size-xs="12">
 
                         <div class="div1">
-<div class="div3">
-                            <ion-buttons color="light" slot="start">
-                                <ion-back-button defaultHref="book-event"></ion-back-button>
-                            </ion-buttons>
+                            <div class="div3">
+                                <br>
+                                <ion-buttons slot="start">
+                                    <ion-back-button class="bsk" defaultHref="book-event"></ion-back-button>
+                                </ion-buttons>
 
-                            <ion-card class="card1">
-                                <br><br><br>
-                                <ion-label class="ref">Deposit reference code</ion-label>
-                                <div class="cd">
-                                    <h1>{{theName}}</h1>
-                                </div>
-                                <br><br>
+                                <ion-card class="card1">
+                                    <br><br><br>
+                                    <ion-label class="ref">Deposit reference code</ion-label>
+                                    <div class="cd">
+                                        <h1>{{theName}}</h1>
+                                    </div>
+                                    <br><br>
 
-                            </ion-card>
+                                </ion-card>
+                            </div>
                         </div>
-                        </div>
-                        <br>
+
 
                         <div class="div2" *ngFor="let item of myAccount">
                             <br>
@@ -51,7 +52,8 @@
                             <P>Use payment reference: {{theName}} </P>
                             <br>
                             <ion-col>
-                                <ion-button (click)="updateDeposit()" shape="round" routerLink="/complete" expand="full" color="primary">I've made the deposit</ion-button>
+                                <ion-button (click)="updateDeposit()" routerLink="/complete" style="width: 90%;" shape="round" expand="full" color="primary">Paid the deposit</ion-button>
+
                             </ion-col>
                             <br><br>
 

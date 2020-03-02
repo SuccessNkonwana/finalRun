@@ -70,6 +70,8 @@ export class AddClubPage implements OnInit {
 
       newOpeningHours: ['', Validators.required],
       newClosingHours: ['', Validators.required],
+      // newUrl: ['', Validators.required],
+        
         
 
 
@@ -98,6 +100,7 @@ export class AddClubPage implements OnInit {
     const filePath = this.uniqkey;
     this.fileRef = this.storage.ref(filePath);
     this.task = this.storage.upload("clubPictures/" + filePath + "/", this.file);
+    // this.task = this.storage.upload(filePath, this.file);
     this.uploadPercent = this.task.percentageChanges();
 
     this.task.then(results => {

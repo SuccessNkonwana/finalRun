@@ -51,9 +51,9 @@ body {
     }
     h3 {
         $fontsize: 25px;
-       font-size: $fontsize;
-    //    $font-family: "Times New Roman", Times, serif;
-    //    font-family: $font-family;
+        font-size: $fontsize;
+        //    $font-family: "Times New Roman", Times, serif;
+        //    font-family: $font-family;
         $textcolor: #11C2D4;
         color: $textcolor;
         text-align: start;
@@ -61,8 +61,8 @@ body {
     h2 {
         $fontsize: 25px;
         font-size: $fontsize;
-      //  $font-family: "Comic Sans MS";
-       // font-family: $font-family;
+        //  $font-family: "Comic Sans MS";
+        // font-family: $font-family;
         $textcolor: #11C2D4;
         color: $textcolor;
         // $padding: 0px 280px 50px 0px;
@@ -114,21 +114,18 @@ body {
         $order-top-right-radius: 13%;
         border-top-left-radius: 13%;
         padding-left: 15px;
-       
     }
     #img {
         $myheight: 60%;
         height: $myheight;
     }
     .div1 {
-       
-     // $background-color: #11C2D4;
+        // $background-color: #11C2D4;
         // background-color: $background-color;
         // $myheight: 100%;
         // height: $myheight;
         background-image: url('/assets/images/man-running- png.png');
         background-repeat: no-repeat;
-       
         background-size: 100% 35%;
         border-bottom-right-radius: 20%;
         border-bottom-left-radius: 20%;
@@ -144,11 +141,9 @@ body {
     #heading {
         $fontsize: 25px;
         font-size: $fontsize;
-     
         $textcolor: #fff;
         color: $textcolor;
         text-align: center;
-        
     }
     a {
         color: #11C2D4;
@@ -224,27 +219,41 @@ body {
         top: 76px !important;
     }
 }
-.error{
+
+.error {
     color: red;
     font-size: 15px;
 }
-.div3{
+
+.div3 {
     // -webkit-text-fill-color: aliceblue;
     // width: 100%;
     margin-top: -3%;
     background-repeat: no-repeat;
-   
     background-size: 100% 50%;
     border-bottom-right-radius: 20%;
-        border-bottom-left-radius: 20%;
+    border-bottom-left-radius: 20%;
     background: rgba(0, 0, 0, 0.6);
-
 }
+
 .item {
     border: 1px solid rgb(199, 199, 199);
-  padding: 0px;
-  border-radius: 25px;
+    padding: 0px;
+    border-radius: 25px;
 }
-.lbl{
+
+.lbl {
     margin-right: 14px;
+}
+
+ion-input {
+    color: black;
+}
+
+ion-button {
+    width: 80%;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
