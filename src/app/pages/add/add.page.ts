@@ -40,6 +40,8 @@ slideOpts = {
      
      return new Promise((resolve, reject) => {
        this.runn.rtMyClubs().subscribe(data =>{
+
+        this.clubs = [];
       
          console.log( data.length);
          for( let x = 0; x < data.length; x++ )

@@ -58,9 +58,9 @@ export class RunningService {
   closingHours: String
   userID: String
   photoURL: String
-  thetickets=[]
-  clubOne=[]
-   theprice: string 
+  thetickets = []
+  clubOne = []
+  theprice: string
   ///
 
   currentBook = [];
@@ -68,14 +68,14 @@ export class RunningService {
   eventKey: string;
   address: string;
   price: string;
-  constructor(private auth: AngularFireAuth,public loadingController: LoadingController,public auths: AuthService, private storage: AngularFireStorage, private afs: AngularFirestore, public navCtrl: NavController, public route: Router) {
+  constructor(private auth: AngularFireAuth, public loadingController: LoadingController, public auths: AuthService, private storage: AngularFireStorage, private afs: AngularFirestore, public navCtrl: NavController, public route: Router) {
   }
   currentClub(myclubs) {
-   
 
-    console.log(myclubs,"the current Choosen club ");
-    
-      console.log(myclubs.clubKey,"the current Choosen club ID");
+
+    console.log(myclubs, "the current Choosen club ");
+
+    console.log(myclubs.clubKey, "the current Choosen club ID");
     this.currClub = []
 
 
@@ -87,16 +87,15 @@ export class RunningService {
 
 
   }
-  chooseClub(myclubs)
-  {
-    
+  chooseClub(myclubs) {
+
     return new Promise((resolve, reject) => {
-      
-console.log(myclubs,"***");
-this.clubOne = []
-   this.clubOne.push({myclubs})
-   console.log(this.clubOne,"oooo");
-   
+
+      console.log(myclubs, "***");
+      this.clubOne = []
+      this.clubOne.push({ myclubs })
+      console.log(this.clubOne, "oooo");
+
       resolve(this.clubOne)
     })
   }
@@ -155,12 +154,10 @@ this.clubOne = []
       console.log(result.length);
       console.log(result);
     })
-    // console.log(result);
-    //this.LandMarks()
+
     return result
 
-    // console.log(this.todos,"hh")
-    // return this.todos
+
   }
   async rtClubEvents() {
     let result: any
@@ -170,12 +167,12 @@ this.clubOne = []
       console.log(result.length);
     })
     console.log(result);
-  
+
     return result
 
   }
 
- 
+
   async rtUsers() {
     let result: any
     await this.getUser().then(data => {
@@ -190,7 +187,7 @@ this.clubOne = []
     // console.log(this.todos,"hh")
     // return this.todos
   }
-  
+
   //add a club
   addClub(newName, newAddress, newOpeningHours, newClosingHours, url) {
 
@@ -200,25 +197,25 @@ this.clubOne = []
     let userID = user.uid
     console.log("HOT ", userID)
 
-          this.dbfire.collection("clubs").add({
-            name: newName,
-            address: newAddress,
-            openingHours: styt,
-            closingHours: etyt,
-            userID: userID,
-            photoURL: url
+    this.dbfire.collection("clubs").add({
+      name: newName,
+      address: newAddress,
+      openingHours: styt,
+      closingHours: etyt,
+      userID: userID,
+      photoURL: url
 
-          }).then((data) => {
+    }).then((data) => {
 
 
 
-            console.log(data)
-            this.navCtrl.navigateRoot("/tabs/add")
-          }).catch((error) => {
-            console.log(error)
-          })
+      console.log(data)
+      this.navCtrl.navigateRoot("/tabs/add")
+    }).catch((error) => {
+      console.log(error)
+    })
 
-          this.uploadPercent = null;
+    this.uploadPercent = null;
 
   }
   ///update a club
@@ -275,9 +272,9 @@ this.clubOne = []
         map(actions => actions.map(a => {
           const data = a.payload.doc.data() as any;
           const id = a.payload.doc.id;
-          console.log("club ID"+id)
+          console.log("club ID" + id)
           return { id, ...data };
-         
+
         })))
 
   }
@@ -290,7 +287,7 @@ this.clubOne = []
     let userID = user.uid
     //
     return new Promise((resolve, reject) => {
-     
+
       this.dbfire.collection("clubs").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
 
@@ -299,7 +296,7 @@ this.clubOne = []
           this.clubsTemp.push({
             clubKey: doc.id,
             name: doc.data().name,
-           address: doc.data().address,
+            address: doc.data().address,
             openingHours: doc.data().openingHours,
             closingHours: doc.data().closingHours,
             userID: doc.data().userID,
@@ -331,7 +328,7 @@ this.clubOne = []
 
   }
   ///////get todos
- 
+
   ///get a individuals club
   getIndividualsClubs() {
     this.clubs = []
@@ -341,14 +338,14 @@ this.clubOne = []
     let user = this.readCurrentSession()
     let userID = user.uid
     //
- // ngOnInit() {
-  //   this.news = this.db.collection('123').snapshotChanges().map(actions => {
-  //     return actions.map(a => {
-  //       const data = a.payload.doc.data();
-  //       const id = a.payload.doc.id;
-  //       return { id, ...data };
-  //     });
-  // });
+    // ngOnInit() {
+    //   this.news = this.db.collection('123').snapshotChanges().map(actions => {
+    //     return actions.map(a => {
+    //       const data = a.payload.doc.data();
+    //       const id = a.payload.doc.id;
+    //       return { id, ...data };
+    //     });
+    // });
 
     return new Promise((resolve, reject) => {
       this.dbfire.collection("clubs").get().then((querySnapshot) => {
@@ -397,22 +394,20 @@ this.clubOne = []
     let ans = []
     let ans2 = []
     this.currClub = []
- console.log(myclubs, "the club select");
- 
-    //push current club
-    this.currClub.push({ myclubs})
-    // this.currentClub(this.currClub)
+    console.log(myclubs, "the club select");
+
+    this.currClub.push({ myclubs })
+
     console.log(this.currClub, "the current club hai");
     console.log(myclubs, "the current club from function");
-    // let user=this.readCurrentSession()
-    // let userID=user.uid
-    let clubKey = myclubs.clubKey
+
+    let clubKey = myclubs.id
     console.log(clubKey, " ClubID vele")
-    //
+
     return new Promise((resolve, reject) => {
       this.dbfire.collection("events").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          // ans.push(doc.data())
+
           console.log(doc.id, '=>', doc.data());
           this.eventsTemp.push({
             eventKey: doc.id,
@@ -420,7 +415,7 @@ this.clubOne = []
             price: doc.data().price,
             photoURL: doc.data().photoURL,
             address: doc.data().address,
-            date:doc.data().date,
+            date: doc.data().date,
             openingHours: doc.data().openingHours,
             closingHours: doc.data().closingHours,
             userID: doc.data().userID,
@@ -429,7 +424,7 @@ this.clubOne = []
           console.log(this.eventsTemp, "events array")
           console.log(name, "event array")
           console.log(this.eventsTemp.length, "events array SIZE")
-          //  this.todoTemp.push()
+
         });
         console.log(this.eventsTemp.length, "events array SIZE")
         for (let x = 0; x < this.eventsTemp.length; x++) {
@@ -444,6 +439,7 @@ this.clubOne = []
       });
     });
   }
+
   ////upload a club pic
   uploadClubPic(event) {
 
@@ -452,7 +448,7 @@ this.clubOne = []
     console.log("the user", userID);
     this.file = event.target.files[0];
     console.log(this.file)
-  
+
   }
 
 
@@ -514,7 +510,7 @@ this.clubOne = []
   }
 
   ///create event 
-  addEvent(newName, newAddress, newOpeningHours, newClosingHours, newPrice, newDistance, newDate,url) {
+  addEvent(newName, newAddress, newOpeningHours, newClosingHours, newPrice, newDistance, newDate, url) {
     console.log(this.rtMyClubs())
     console.log(newOpeningHours, newClosingHours, "times as strings");
 
@@ -522,38 +518,38 @@ this.clubOne = []
     let etyt = newClosingHours.substring(11, 16);
 
     let user = this.readCurrentSession()
-    let userID = user.uid 
+    let userID = user.uid
     let clubKey = this.currClub[0].myclubs.myclubs.clubKey
     console.log(this.currClub, " addevnt page club");
 
     console.log("HOT ", this.currClub[0].myclubs.myclubs.clubKey)
-  
-
-          this.dbfire.collection("events").add({
-            name: newName,
-            address: newAddress,
-            distance: newDistance,
-            date: newDate,
-            openingHours: styt,
-            closingHours: etyt,
-            userID: userID,
-            clubKey: clubKey,
-            price: newPrice,
-            photoURL: url
-
-          }).then((data) => {
-            console.log(data)
-            this.presentLoading();
-            this.navCtrl.navigateRoot("/club-profile")
 
 
-          }).catch((error) => {
-            console.log(error)
-          })
-          this.uploadPercent = null;
-       
-    
- 
+    this.dbfire.collection("events").add({
+      name: newName,
+      address: newAddress,
+      distance: newDistance,
+      date: newDate,
+      openingHours: styt,
+      closingHours: etyt,
+      userID: userID,
+      clubKey: clubKey,
+      price: newPrice,
+      photoURL: url
+
+    }).then((data) => {
+      console.log(data)
+      this.presentLoading();
+      this.navCtrl.navigateRoot("/club-profile")
+
+
+    }).catch((error) => {
+      console.log(error)
+    })
+    this.uploadPercent = null;
+
+
+
 
   }
   async presentLoading() {
@@ -587,114 +583,110 @@ this.clubOne = []
           console.log(doc.id, '=>', doc.data());
           this.usersTemp.push({
             userKey: doc.id,
-             name: doc.data().displayName,
-              address: doc.data().address,
-             age: doc.data().Age,
-             email: doc.data().Email,
-             gender: doc.data().gender,
-             photoURL: doc.data().photoURL
-           })
-             console.log( this.usersTemp,"users array")
-             console.log(name,"users array")
-         
-             console.log( this.usersTemp.length,"users array SIZE")
-         //  this.todoTemp.push()
-           
-         });
-         console.log( this.usersTemp.length,"users array SIZE")
-        
-         for(let x=0;x< this.usersTemp.length;x++)
-         {
-         
-      
-              if(this.usersTemp[x].userKey===userID)
-              {
-                console.log( this.usersTemp[x].userKey,"userid at x")
-                this.users.push(this.usersTemp[x])
-      
-              }
-      
-         }
-         resolve(this.users)
+            name: doc.data().displayName,
+            address: doc.data().address,
+            age: doc.data().Age,
+            email: doc.data().Email,
+            gender: doc.data().gender,
+            photoURL: doc.data().photoURL
+          })
+          console.log(this.usersTemp, "users array")
+          console.log(name, "users array")
+
+          console.log(this.usersTemp.length, "users array SIZE")
+          //  this.todoTemp.push()
+
+        });
+        console.log(this.usersTemp.length, "users array SIZE")
+
+        for (let x = 0; x < this.usersTemp.length; x++) {
+
+
+          if (this.usersTemp[x].userKey === userID) {
+            console.log(this.usersTemp[x].userKey, "userid at x")
+            this.users.push(this.usersTemp[x])
+
+          }
+
+        }
+        resolve(this.users)
       });
-      });
-    
+    });
+
     console.log(this.usersTemp, "clubs array")
     console.log(ans, "ans array")
 
   }
-///get tickets
-getTickets() {
-   this.tickets = []
-  this.ticketsTemp = []
-  
-  
+  ///get tickets
+  getTickets() {
+    this.tickets = []
+    this.ticketsTemp = []
 
-  let user = this.readCurrentSession()
-  let userID = user.uid
-  console.log(userID)
-  return new Promise((resolve, reject) => {
-    this.dbfire.collection("bookedEvents").get().then((querySnapshot) => {
-     
-      querySnapshot.forEach((doc) => {
 
-        // ans.push(doc.data())
-        console.log(doc.id, '=>', doc.data());
-        this.ticketsTemp.push({
-           bookingID: doc.id,
-           eventKey: doc.data().eventKey,
-           name: doc.data().name,
-           address: doc.data().address,
-           openingHours:  doc.data().openingHours,
-           closingHours:  doc.data().closingHours,
-           userID:  doc.data().userID,
-          //  clubID:  doc.data().clubID,
-          clubKey :  doc.data().clubID,
-           price:  doc.data().price,
-           date:  doc.data().date,
-   //  {{element.data.TimeStamp.toDate() | date:'dd-MM-yyy'}}
-           tickets: doc.data().tickets,
-           total:  doc.data().total,
-           approved: doc.data().approved,
-           deposited: doc.data().deposited
- 
-         })
-           console.log(this.ticketsTemp,"ticket array")
-          
-       
-     
-       console.log( this.ticketsTemp.length,"all bookings array SIZE")
-   
-      
-       });
-       for(let t=0;t<this.ticketsTemp.length;t++)
-       {
-        console.log( this.ticketsTemp,"tick %")
-        if(this.ticketsTemp[t].userID===userID && this.ticketsTemp[t].approved==true)
-        {
-          console.log( this.ticketsTemp[t].userID,"USER at x", userID," logged in user")
-          console.log( this.ticketsTemp[t].approved,"approved at t")
 
-          
-              console.log( this.ticketsTemp[t].approved,"approved at t")
-              this.tickets.push(this.ticketsTemp[t])
-              console.log(this.tickets,"+++++++++++")
+    let user = this.readCurrentSession()
+    let userID = user.uid
+    console.log(userID)
+    return new Promise((resolve, reject) => {
+      this.dbfire.collection("bookedEvents").get().then((querySnapshot) => {
+
+        querySnapshot.forEach((doc) => {
+
+          // ans.push(doc.data())
+          console.log(doc.id, '=>', doc.data());
+          this.ticketsTemp.push({
+            bookingID: doc.id,
+            eventKey: doc.data().eventKey,
+            name: doc.data().name,
+            address: doc.data().address,
+            openingHours: doc.data().openingHours,
+            closingHours: doc.data().closingHours,
+            userID: doc.data().userID,
+            //  clubID:  doc.data().clubID,
+            clubKey: doc.data().clubID,
+            price: doc.data().price,
+            date: doc.data().date,
+            //  {{element.data.TimeStamp.toDate() | date:'dd-MM-yyy'}}
+            tickets: doc.data().tickets,
+            total: doc.data().total,
+            approved: doc.data().approved,
+            deposited: doc.data().deposited
+
+          })
+          console.log(this.ticketsTemp, "ticket array")
+
+
+
+          console.log(this.ticketsTemp.length, "all bookings array SIZE")
+
+
+        });
+        for (let t = 0; t < this.ticketsTemp.length; t++) {
+          console.log(this.ticketsTemp, "tick %")
+          if (this.ticketsTemp[t].userID === userID && this.ticketsTemp[t].approved == true) {
+            console.log(this.ticketsTemp[t].userID, "USER at x", userID, " logged in user")
+            console.log(this.ticketsTemp[t].approved, "approved at t")
+
+
+            console.log(this.ticketsTemp[t].approved, "approved at t")
+            this.tickets.push(this.ticketsTemp[t])
+            console.log(this.tickets, "+++++++++++")
+          }
+
         }
 
-       }
 
-   
-       console.log(this.tickets,"+++++++++++")
-       resolve(this.tickets)
+        console.log(this.tickets, "+++++++++++")
+        resolve(this.tickets)
+      });
+
     });
-    
-    });
- 
-
-}
 
 
-///get tickets
+  }
+
+
+  ///get tickets
   ///retrieve event
   ///update event
   ///delete event
@@ -721,14 +713,14 @@ getTickets() {
     let total = tickets * price;
     // console.log(total,"total =================",userID);
     ///method three
-    
+
     return new Promise((resolve, reject) => {
       this.booking(this.currentBook).then(data => {
         console.log("the data>>>>>>>>>>>", data);
         console.log(data[0].myevents[0].myevents[0].myevents, "the selected one vele", data[0].myevents[0].myevents[0].myevents.eventKey);
 
         this.dbfire.collection("bookedEvents").add({
-          eventKey:  data[0].myevents[0].myevents[0].myevents.eventKey,
+          eventKey: data[0].myevents[0].myevents[0].myevents.eventKey,
           name: data[0].myevents[0].myevents[0].myevents.name,
           address: data[0].myevents[0].myevents[0].myevents.address,
           openingHours: data[0].myevents[0].myevents[0].myevents.openingHours,
@@ -744,19 +736,19 @@ getTickets() {
           deposited: false
 
         }).then((data) => {
-            
-          resolve(data) 
+
+          resolve(data)
 
           //  this.navCtrl.navigateRoot('/done')
           console.log(data)
-          this.bookingID=data.id;
+          this.bookingID = data.id;
 
         }).catch((error) => {
           console.log(error)
         })
 
       })
-     
+
     })
     //   console.log( "somethinf"+event)
 
@@ -811,7 +803,7 @@ getTickets() {
     this.currentBook = []
     console.log(myevents);
     return new Promise((resolve, reject) => {
-   
+
       this.currentBook.push(
 
         {
@@ -842,9 +834,9 @@ getTickets() {
     console.log(this.file)
   }
   uploadProfilePic(event) {
-    let user=this.readCurrentSession()
-  let userID=user['uid']
-  console.log("the user",userID);
+    let user = this.readCurrentSession()
+    let userID = user['uid']
+    console.log("the user", userID);
     const file = event.target.files[0];
     this.uniqkey = 'PIC' + this.dateTime;
     const filePath = this.uniqkey;
@@ -855,7 +847,7 @@ getTickets() {
       finalize(() => {
         this.downloadU = fileRef.getDownloadURL().subscribe(urlPath => {
           console.log(urlPath);
-         
+
           this.afs.doc('users/' + userID).update({
             photoURL: urlPath
           })
@@ -870,7 +862,7 @@ getTickets() {
 
 
 
-  
+
   updateName(userID, editName) {
 
     this.dbfire.collection("users").doc(userID).update({ displayName: editName }).then((data) => {
@@ -908,7 +900,7 @@ getTickets() {
     let ans2 = []
     let user = this.readCurrentSession()
     let userID = user.uid
-   
+
 
     return new Promise((resolve, reject) => {
       this.dbfire.collection("events").get().then((querySnapshot) => {
@@ -928,49 +920,50 @@ getTickets() {
             clubKey: doc.data().clubID
 
           })
-          console.log("events>>>>: ",this.eventsTemp)
+          console.log("events>>>>: ", this.eventsTemp)
         });
-       
+
         resolve(this.eventsTemp)
-       
+
       });
     });
 
 
   }
-  getEvent(){
+
+
+  getEvent() {
     this.events = []
     this.eventsTemp = []
     let ans = []
     let ans2 = []
     let user = this.readCurrentSession()
     let userID = user.uid
-    
+
     return this.afs.collection<any>('events').snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as any;
         const id = a.payload.doc.id;
         const price = a.payload.doc.data().price;
         return { id, ...data };
-        
+
       }
-      
+
       ))
-   
+
     )
-    ;
+      ;
   }
-  updateDeposit()
-  {
-    let dep=true
-    console.log( this.bookingID,"oooooooo")
-    this.dbfire.collection("bookedEvents").doc(this.bookingID).update('deposited',dep).then((data)=> {
-   
-      console.log("Document name successfully updated!",data);
-  }).catch(function(error) {
+  updateDeposit() {
+    let dep = true
+    console.log(this.bookingID, "oooooooo")
+    this.dbfire.collection("bookedEvents").doc(this.bookingID).update('deposited', dep).then((data) => {
+
+      console.log("Document name successfully updated!", data);
+    }).catch(function (error) {
       console.error("Error updating document: ", error);
-  });  
-    
+    });
+
   }
 
 }

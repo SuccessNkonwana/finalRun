@@ -43,9 +43,15 @@ export class ClubProfilePage implements OnInit {
   }
   ngOnInit() {
     // this.presentLoading();
+
+    this.runn.getEvent().subscribe(results =>{
+      console.log(results);
+      
+    })
   
 
   }
+
  
 getEES()
 {
