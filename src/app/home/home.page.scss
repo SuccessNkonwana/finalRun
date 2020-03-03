@@ -9,7 +9,7 @@
         left: 80%;
     }
     .cet {
-        $background-color:#11C2D4;
+        $background-color: #11C2D4;
         background-color: $background-color;
         $mywidth: 100%;
         width: $mywidth;
@@ -23,8 +23,8 @@
         border-top-left-radius: $border-top-left-radius;
         $border-bottom-left-radius: 15%;
         border-bottom-left-radius: $border-bottom-left-radius;
-        border-top-right-radius:35%;
-        border-bottom-right-radius:35%;
+        border-top-right-radius: 35%;
+        border-bottom-right-radius: 35%;
         .imgC {
             $myheight: 100%;
             height: $myheight;
@@ -35,14 +35,15 @@
             border-top-left-radius: $border-top-left-radius;
             $border-bottom-left-radius: 0%;
             border-bottom-left-radius: $border-bottom-left-radius;
-            border-top-right-radius:35%;
-            border-bottom-right-radius:35%;
+            border-top-right-radius: 35%;
+            border-bottom-right-radius: 35%;
         }
     }
     .cent {
         margin-left: 20px;
         margin-right: 20px;
         color: rgb(150, 147, 147);
+        font-size: 25px;
     }
     .slideCards {
         height: 180px;
@@ -52,14 +53,12 @@
         background-position: center;
         opacity: 0.8;
     }
-    
     .cName {
-     //   margin-top: 20px;
+        //   margin-top: 20px;
         // margin-bottom: 50px;
         position: center;
         zoom: 1.5;
-       // background-color:rgba(126, 126, 126, 0.336);
-      
+        // background-color:rgba(126, 126, 126, 0.336);
     }
     .iconSize {
         // margin-top: 50px;
@@ -68,7 +67,7 @@
         top: 6;
     }
     h1 {
-     //   font-family: Microsoft Sans Serif;
+        //   font-family: Microsoft Sans Serif;
         font-size: 25px;
         color: rgba(0, 0, 0, 1);
         margin-left: 18px;
@@ -83,26 +82,22 @@
         right: 3000px;
     }
     .img {
-    //     display: block;
-    //     margin-left: auto;
-    //     margin-right: auto;
-     
-      border: 2px solid #11C2D4;
-    //     height: 90px;
-    //     width: 90px;
+        //     display: block;
+        //     margin-left: auto;
+        //     margin-right: auto;
+        border: 2px solid #11C2D4;
+        //     height: 90px;
+        //     width: 90px;
         border-radius: 50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 110px;
-    height: 110px;
-    top: 50%;
-       
-      
-     
-    //     width: 150px;
-    //     height: 150px;
-    //    zoom: 0.7;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 110px;
+        height: 110px;
+        top: 50%;
+        //     width: 150px;
+        //     height: 150px;
+        //    zoom: 0.7;
     }
     ion-card {
         width: 90% !important;
@@ -135,40 +130,35 @@
     .booked {
         $background-color: rgba(17, 192, 212, 0.678);
         background-color: $background-color;
-      
         height: 120px;
-        width: 100px;
+        width: 150px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-    margin-left: 11%;
         color: white !important;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
     }
-    
-    .sadname
-    {
-        zoom:1.5;
+    .sadname {
+        zoom: 1.5;
         left: 20px;
         color: rgba(190, 186, 186, 0.993);
     }
-    .wordsCard
-    {
-     margin-left: 0px ;
-        font-size: 15px;
-      
-
+    .wordsCard {
+        // margin-left: 0px;
+        font-size: 13px;
+        text-align: start;
     }
-    .grid{
+    .wordsCards {
+        // margin-left: 0px;
+        font-size: 13px;
+        text-align: center;
+    }
+    .grid {
         text-align: center;
         width: 50%;
-        .col{
+        .col {
             border-right: 2px solid rgb(150, 147, 147);
             // color: rgb(150, 147, 147);
         }
-        
     }
     .imgC {
         // position: absolute;
@@ -182,82 +172,80 @@
         border-top-left-radius: $border-top-left-radius;
         $border-bottom-left-radius: 0%;
         border-bottom-left-radius: $border-bottom-left-radius;
-        border-top-right-radius:70%;
-        border-bottom-right-radius:70%;
-    //   right: 100px;
-
+        border-top-right-radius: 70%;
+        border-bottom-right-radius: 70%;
+        //   right: 100px;
     }
-    ion-item{
-       color: #11C2D4;
+    ion-item {
+        color: #11C2D4;
     }
-    .info{
+    .info {
         zoom: 2.5;
     }
 }
 
-    body {
-        // background: $bgcolor;
-        // color: $textcolor;
-        $bgcolor: #11C2D4;
-        $textcolor: #11C2D4;
-        $fontsize: 18px;
-        font-size: $fontsize;
+body {
+    // background: $bgcolor;
+    // color: $textcolor;
+    $bgcolor: #11C2D4;
+    $textcolor: #11C2D4;
+    $fontsize: 18px;
+    font-size: $fontsize;
+    $mywidth: 100%;
+    width: $mywidth;
+    $myheight: 100%;
+    height: $myheight;
+    text-align: center;
+    overflow-y: auto;
+    .avatar {
+        position: absolute;
+        z-index: 5;
+        top: 10%;
+        right: 0%;
+    }
+    .div2 {
+        $background-color: #fff;
+        background-color: $background-color;
         $mywidth: 100%;
         width: $mywidth;
-        $myheight: 100%;
+        $margin-left: 0%;
+        margin-left: $margin-left;
+        $myheight: 420px;
         height: $myheight;
+        $margin-bottom: 0%;
+        margin-bottom: $margin-bottom;
+        border-top-right-radius: 22%;
+        border-top-left-radius: 22%;
+        padding-left: 15px;
+    }
+    .ca {
+        background-color: white;
+    }
+    .div1 {
         text-align: center;
-        overflow-y: auto;
-        .avatar {
-            position: absolute;
-            z-index: 5;
-            top: 10%;
-            right: 0%;
+        margin: -5%;
+        background-image: url('/assets/images/man-running- png.png');
+        background-repeat: no-repeat;
+        background-size: 100% 80%;
+        #age {
+            color: white;
         }
-        
-        .div2 {
-            $background-color: #fff;
-            background-color: $background-color;
-            $mywidth: 100%;
-            width: $mywidth;
-            $margin-left: 0%;
-            margin-left: $margin-left;
-            $myheight: 500px;
-            height: $myheight;
-            $margin-bottom: 0%;
-            margin-bottom: $margin-bottom;
-            border-top-right-radius: 20%;
-            border-top-left-radius: 20%;
-            padding-left: 15px;
-        }
-        .ca{
-            background-color: white;
-        }
-     
-        .div1 {
-           text-align: center;
-            margin: -5%;
-            background-image: url('/assets/images/man-running- png.png');
-            background-repeat: no-repeat;
-           
-            background-size: 100% 80%;
-            #age {
-                color: white;
-            }
-        }
-      
-    .div3{
+    }
+    .div3 {
         // -webkit-text-fill-color: aliceblue;
         // width: 100%;
         margin-top: -5%;
         background-repeat: no-repeat;
-       
         background-size: 100% 50%;
         border-radius: 0px;
         background: rgba(0, 0, 0, 0.6);
-    
     }
-    }
-    h2{
-        color: #fff;
-    }
+}
+
+h2 {
+    color: #fff;
+}
+
+p {
+    font-size: 22px;
+}
