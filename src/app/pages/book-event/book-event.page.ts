@@ -18,16 +18,11 @@ export class BookEventPage implements OnInit {
   eventOpeningHours;
   eventClosingHours;
   price:number;
-  eventKey
-  // eventPrice;
-  // tickets;
-  // totalPrice;
-
-
-  // ticket price
+  eventKey;
+  name
+  date
+  distance
  
- 
- // adding tickets
  tickets:number=0;
  total:number=0;
   hasAEvent=true;
@@ -62,11 +57,15 @@ events=[];
           closingHours:data[0].myevents[0].myevents.closingHours,
           price:data[0].myevents[0].myevents.price,
           date:data[0].myevents[0].myevents.date,
+          distance:data[0].myevents[0].myevents.distance,
           clubKey:data[0].myevents[0].myevents.clubKey
         
         })
-        this.eventKey=""
-         this.eventKey=data[0].myevents[0].myevents.eventKey
+        // this.eventKey=""
+        this.name=  data[0].myevents[0].myevents.name;
+         this.eventKey=data[0].myevents[0].myevents.eventKey;
+         this.date=data[0].myevents[0].myevents.date;
+         this.distance=data[0].myevents[0].myevents.distance;
         
          if(this.events===null)
          {
@@ -104,10 +103,11 @@ sub(num:number) {
 //
 // this.total=this.price*this.tickets;
 }
+// events_=[];
 BookEvent(tickets,price)
   {
     this.clubService.BookEvent(tickets,price);
-    this.route.navigate(['/done'],{queryParams:{tickets:tickets,price:price,eventKey:this.eventKey}})
+    this.route.navigate(['/done'],{queryParams:{distance:this.distance,date:this.date,name:this.name,tickets:tickets,price:price,eventKey:this.eventKey}})
 
     // console.log(tickets,price,"=================",this.tickets,this.price);
 

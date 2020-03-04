@@ -47,7 +47,15 @@ const routes: Routes = [
   {
     path: 'map',
     loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
+  },  {
+    path: 'event-home',
+    loadChildren: () => import('./event-home/event-home.module').then( m => m.EventHomePageModule)
+  },
+  {
+    path: 'event-update',
+    loadChildren: () => import('./event-update/event-update.module').then( m => m.EventUpdatePageModule)
   }
+
 
 
 

@@ -171,6 +171,7 @@ export class RunningService {
     return result
 
   }
+  
 
 
   async rtUsers() {
@@ -276,6 +277,16 @@ export class RunningService {
           return { id, ...data };
 
         })))
+
+  }
+
+  // go to booked events
+  //  return this.afs.collection('spazashop').valueChanges();
+  rtb() {
+    let uid = this.auth.auth.currentUser.uid;
+    return this.afs.collection("bookedEvents", ref => ref.where('userID', '==', uid))
+      .valueChanges();
+      
 
   }
   getClubs() {
@@ -394,20 +405,18 @@ export class RunningService {
     let ans = []
     let ans2 = []
     this.currClub = []
-    console.log(myclubs, "the club select");
-
-    this.currClub.push({ myclubs })
-
-    console.log(this.currClub, "the current club hai");
-    console.log(myclubs, "the current club from function");
-
-    let clubKey = myclubs.id
+ console.log(myclubs, "the club select");
+ 
+    //push current club
+    this.currClub.push({ myclubs})
+ 
+    let clubKey = myclubs.clubKey
     console.log(clubKey, " ClubID vele")
-
+    
     return new Promise((resolve, reject) => {
       this.dbfire.collection("events").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-
+        
           console.log(doc.id, '=>', doc.data());
           this.eventsTemp.push({
             eventKey: doc.id,
@@ -415,16 +424,15 @@ export class RunningService {
             price: doc.data().price,
             photoURL: doc.data().photoURL,
             address: doc.data().address,
-            date: doc.data().date,
+            date:doc.data().date,
+            distance:doc.data().distance,
             openingHours: doc.data().openingHours,
             closingHours: doc.data().closingHours,
             userID: doc.data().userID,
             clubKey: doc.data().clubKey
           })
-          console.log(this.eventsTemp, "events array")
-          console.log(name, "event array")
-          console.log(this.eventsTemp.length, "events array SIZE")
-
+         
+         
         });
         console.log(this.eventsTemp.length, "events array SIZE")
         for (let x = 0; x < this.eventsTemp.length; x++) {
@@ -645,6 +653,7 @@ export class RunningService {
             //  clubID:  doc.data().clubID,
             clubKey: doc.data().clubID,
             price: doc.data().price,
+            distance: doc.data().distance,
             date: doc.data().date,
             //  {{element.data.TimeStamp.toDate() | date:'dd-MM-yyy'}}
             tickets: doc.data().tickets,
@@ -729,6 +738,7 @@ export class RunningService {
           clubID: data[0].myevents[0].myevents[0].myevents.clubKey,
           price: data[0].myevents[0].myevents[0].myevents.price,
           date: data[0].myevents[0].myevents[0].myevents.date,
+          distance: data[0].myevents[0].myevents[0].myevents.distance,
           //  {{element.data.TimeStamp.toDate() | date:'dd-MM-yyy'}}
           tickets: tickets,
           total: total,
@@ -915,6 +925,7 @@ export class RunningService {
             openingHours: doc.data().openingHours,
             closingHours: doc.data().closingHours,
             price: doc.data().price,
+            distance: doc.data().distance,
             userID: doc.data().userID,
             date: doc.data().date.toDate,
             clubKey: doc.data().clubID

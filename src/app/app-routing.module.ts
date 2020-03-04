@@ -40,15 +40,15 @@ const routes: Routes = [
     path: 'club-home',
     loadChildren: () => import('./pages/club-home/club-home.module').then( m => m.ClubHomePageModule)
   },
-  // {
-  //   path: 'profile',
-  //   loadChildren: () => import('./page/profile/profile.module').then( m => m.ProfilePageModule)
-  // },
- 
-  // {
-  //   path: 'payments',
-  //   loadChildren: () => import('./pages/payments/payments.module').then( m => m.PaymentsPageModule)
-  // },
+  {
+    path: 'eventHome',
+    loadChildren: () => import('./pages/event-home/event-home.module').then( m => m.EventHomePageModule)
+  },
+  {
+    path: 'eventUpdate',
+    loadChildren: () => import('./pages/event-update/event-update.module').then( m => m.EventUpdatePageModule)
+  }
+,
   {
     path: 'payments',
     loadChildren: () => import('./pages/payments/payments.module').then( m => m.PaymentsPageModule)

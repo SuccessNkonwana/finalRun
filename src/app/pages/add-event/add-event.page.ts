@@ -102,22 +102,25 @@ export class AddEventPage implements OnInit {
    this.theUser=[]    
  
    }
-   public date: string
-   x;
+  //  public date: string
+   
+   date:string = new Date().toISOString();
+   x= this.date.split('T')[0]
+   
   ngOnInit() {
-    this.date = new Date().toISOString();
-    // this.date = new Date().toISOString();
-   this.x= this.date.split('T')[0]
-    console.log(this.date)
-    console.log( this.x)
+  
+    console.log("the current date", this.date)
+    console.log("the current date x", this.x)
   }
  
 addEvent()
 {
  this.newDate=this.datePipe.transform(this.newDate,"dd-MM-yyyy");
  
+ this.newDate>this.x
+ 
  console.log(this.newDate)
-      this.runn.addEvent(this.newName,this.newAddress,this.newOpeningHours,this.newClosingHours,this.newPrice,this.newDistance,this.newDate>this.x, this.urlPath)
+      this.runn.addEvent(this.newName,this.newAddress,this.newOpeningHours,this.newClosingHours,this.newPrice,this.newDistance,this.newDate, this.urlPath)
 this.presentLoading()
     }
 
