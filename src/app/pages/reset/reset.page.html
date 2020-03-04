@@ -1,6 +1,6 @@
 <ion-content>
 
-    <body >
+    <body>
         <div id="bg">
             <ion-grid>
                 <ion-row color="primary" justify-content-center>
@@ -8,55 +8,55 @@
 
                         <div id="div1">
                             <div class="div3">
-                            <br>
-                            <br>
-                            <br>
-                            <img  src="assets/images/LOGO icon.png" alt="Avatar" class="imgC">
-                            <br>
-                            <br>
-                            <br>
-                            <div id="div2">
-                                <form [formGroup]="forgotpasswordForm" *ngIf="!isForgotPassword">
-                                    <ion-item id="item" color="transparent">
-                                        <ion-label position="floating">Enter Email</ion-label>
-                                        <ion-input type="email" formControlName="email"></ion-input>
-                                    </ion-item>
-                                    <div class="error" *ngIf="forgotpasswordForm.get('email').hasError('required') && forgotpasswordForm.get('email').touched">
-                                        Please input your email
-                                    </div>
-                                    <div class="error" *ngIf="forgotpasswordForm.get('email').hasError('pattern') && forgotpasswordForm.get('email').touched">
-                                        Email address invalid
-                                    </div>
-                                </form>
                                 <br>
-                                <ion-grid>
-                                    <ion-row>
-                                        <ion-col>
+                                <br>
+                                <br>
+                                <img src="assets/images/LOGO icon.png" alt="Avatar" class="imgC">
+                                <br>
+                                <br>
+                                <br>
+                                <div id="div2">
+                                    <form [formGroup]="forgotpasswordForm" *ngIf="!isForgotPassword">
+                                        <ion-item id="item" color="transparent">
+                                            <ion-label position="floating">Enter Email</ion-label>
+                                            <ion-input type="email" formControlName="email"></ion-input>
+                                        </ion-item>
+                                        <div class="error" *ngIf="forgotpasswordForm.get('email').hasError('required') && forgotpasswordForm.get('email').touched">
+                                            Please input your email
+                                        </div>
+                                        <div class="error" *ngIf="forgotpasswordForm.get('email').hasError('pattern') && forgotpasswordForm.get('email').touched">
+                                            Email address invalid
+                                        </div>
+                                    </form>
+                                    <br>
+                                    <ion-grid>
+                                        <ion-row>
+                                            <ion-col>
 
-                                            <!-- <div id="but">
+                                                <!-- <div id="but">
                                                 <ion-fab-button color="primary" (click)="Cancel()">
                                                     <ion-icon name="close-circle-outline"></ion-icon>
                                                 </ion-fab-button>
                                             </div> -->
-                                            <ion-button shape="round" color="primary" (click)="Cancel()">
-                                                <ion-icon name="close"></ion-icon>
-                                            </ion-button>
-                                        </ion-col>
-                                        <ion-col>
+                                                <ion-button shape="round" color="primary" (click)="Cancel()">
+                                                    <ion-icon name="close"></ion-icon>
+                                                </ion-button>
+                                            </ion-col>
+                                            <ion-col>
 
-                                            <!-- <div id="buts">
+                                                <!-- <div id="buts">
                                                 <ion-fab-button color="primary" [disabled]="!forgotpasswordForm.valid" (click)="reset()">
                                                     <ion-icon name="refresh"></ion-icon>
                                                 </ion-fab-button>
                                             </div> -->
-                                            <ion-button shape="round" color="primary" [disabled]="!forgotpasswordForm.valid" (click)="reset()">
-                                                <ion-icon name="refresh"></ion-icon>
-                                            </ion-button>
-                                        </ion-col>
-                                    </ion-row>
-                                </ion-grid>
+                                                <ion-button shape="round" color="primary" (click)="reset()">
+                                                    <ion-icon name="refresh"></ion-icon>
+                                                </ion-button>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     </ion-col>
                 </ion-row>

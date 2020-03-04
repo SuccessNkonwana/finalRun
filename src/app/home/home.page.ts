@@ -27,7 +27,7 @@ slideOpts = {
     }
     }
     slideOptsT = {
-      slidesPerView: 2.5,
+      slidesPerView: 1.9,
       coverflowEffect: {
         rotate: 50,
         stretch: 0,

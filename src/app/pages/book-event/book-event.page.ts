@@ -19,6 +19,7 @@ export class BookEventPage implements OnInit {
   eventClosingHours;
   price:number;
   eventKey
+  name
   // eventPrice;
   // tickets;
   // totalPrice;
@@ -33,7 +34,7 @@ export class BookEventPage implements OnInit {
   hasAEvent=true;
 events=[];
 
-  constructor(public navCtrl:NavController,private clubService:RunningService, public route:Router,private location: Location) {
+  constructor(public navCtrl:NavController,public runn: RunningService,private clubService:RunningService, public route:Router,private location: Location) {
     this.events= []; 
     this.bookE();
    
@@ -66,6 +67,7 @@ events=[];
         
         })
         this.eventKey=""
+        this.name=data[0].myevents[0].myevents.name
          this.eventKey=data[0].myevents[0].myevents.eventKey
         
          if(this.events===null)
@@ -107,9 +109,10 @@ sub(num:number) {
 BookEvent(tickets,price)
   {
     this.clubService.BookEvent(tickets,price);
-    this.route.navigate(['/done'],{queryParams:{tickets:tickets,price:price,eventKey:this.eventKey}})
+    this.route.navigate(['/done'],{queryParams:{tickets:tickets,name:this.name,price:price,eventKey:this.eventKey}})
 
     // console.log(tickets,price,"=================",this.tickets,this.price);
 
   }
+
 }

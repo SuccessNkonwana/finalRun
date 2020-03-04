@@ -973,5 +973,47 @@ getTickets() {
     
   }
 
+  done() {
+    let user = this.readCurrentSession()
+    let userID = user.uid
+    // console.log(tickets,price,"=================",userID);
+  
+    // console.log(total,"total =================",userID);
+    ///method three
+    
+    return new Promise((resolve, reject) => {
+      this.booking(this.currentBook).then(data => {
+        console.log("the data>>>>>>>>>>>", data);
+        console.log(data[0].myevents[0].myevents[0].myevents, "the selected one vele", data[0].myevents[0].myevents[0].myevents.eventKey);
+
+        this.dbfire.collection("bookedEvents").add({
+          eventKey:  data[0].myevents[0].myevents[0].myevents.eventKey,
+          name: data[0].myevents[0].myevents[0].myevents.name,
+          date: data[0].myevents[0].myevents[0].myevents.date,
+        
+          mame: name,
+          approved: false,
+          deposited: false
+
+        }).then((data) => {
+            
+          resolve(data) 
+
+         
+          console.log(data)
+          this.bookingID=data.id;
+
+        }).catch((error) => {
+          console.log(error)
+        })
+
+      })
+     
+    })
+ 
+
+
+  }
+
 }
 
