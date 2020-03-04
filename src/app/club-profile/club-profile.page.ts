@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RunningService } from '../services/running.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { LoadingController } from '@ionic/angular';
-
+import { LoadingController, NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-club-profile',
   templateUrl: './club-profile.page.html',
@@ -17,6 +17,7 @@ export class ClubProfilePage implements OnInit {
   events= [];
   isSlide: boolean = true;
   slides: any;
+  eventKey
   slideOpts = {
     slidesPerView: 2.5,
     spaceBetween:10,
@@ -28,14 +29,13 @@ export class ClubProfilePage implements OnInit {
       slideShadows: true,
     }
     }
-  constructor(public runn: RunningService, public loadingController: LoadingController) {
+  constructor( public route:Router, public navCtrl:NavController, public runn: RunningService, public loadingController: LoadingController) {
     this.clubs=[] 
     this.events= []; 
     this.clubName=null
   this.photoURL=null  
     this.getdata()
-    this.getEES()
-
+    // this.getEES()
    }
   slideChanged()
   {
@@ -44,16 +44,11 @@ export class ClubProfilePage implements OnInit {
   ngOnInit() {
     // this.presentLoading();
   
-
   }
  
 getEES()
 {
-
  this.events= []; 
-
-
-
  return new Promise((resolve, reject) => {
    this.runn.rtClubEvents().then(data =>{
   
@@ -81,15 +76,11 @@ getEES()
        this.hasAEvent=true;
        this.saved=true;
      }
-
    console.log(this.events,"LAST ONE")
-
   })
  
  })
-
 }
-
   getdata()
   {
     this.clubs=[] 
@@ -102,7 +93,6 @@ getEES()
   console.log(this.clubs," $$$$$$$$$$$$");
   console.log(this.clubName," $$$$$$$$$$$$");
   console.log(this.photoURL,"$$$$$$$$$");
-
     return new Promise((resolve, reject) => {
       this.runn.rtClubEvents().then(data =>{
      
@@ -118,11 +108,14 @@ getEES()
           openingHours:  data[x].openingHours,
           closingHours:data[x].closingHours,
           price:data[x].price,
+          date:data[x].date,
+          distance:data[x].distance,
           photoURL:data[x].photoURL,
           clubKey:data[x].clubKey
         
         })
-         
+       
+       
         }
         if(this.events.length!=0 && this.events!=null)
         {
@@ -130,7 +123,6 @@ getEES()
         }
  
       console.log(this.events,"the event")
-
      })
      this.presentLoading();
     })
@@ -138,7 +130,6 @@ getEES()
   }
   currentClub(myclubs)
   {
-
     console.log(myclubs+"@@@@@@@@@@")
     this.runn.currentClub(myclubs)
   }
@@ -151,5 +142,11 @@ getEES()
     
     loading.dismiss()
   }
+  update(myevents){
+    this.runn.booking(myevents)
+    // this.navCtrl.navigateRoot("/eventUpdate");
+    // this.route.navigate(['/eventUpdate'],{queryParams:{events:this.getEES()}})
 
+
+  }
 }

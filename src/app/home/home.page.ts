@@ -11,9 +11,11 @@ export class HomePage implements OnInit {
   clubs= [];
   tickets=[];
   theUser=[];
+  BE=[];
   hasATicket=false;
   hasAClub=false;
   defaultpic=true;
+ 
   isSlide: boolean = true;
   slides: any;
 slideOpts = {
@@ -45,10 +47,12 @@ slideOpts = {
     this.getUser()
     this.getTickets()
     this.presentLoading();
+    this. getbooked();
   }
   ngOnInit() {
   //  this.getBooked();
   }
+  k;
   getTickets()
   {
    
@@ -72,6 +76,7 @@ slideOpts = {
           clubID: data[x].clubKey,
           price: data[x].price,
           date: data[x].date,
+          distance: data[x].distance,
           tickets: data[x].tickets,
           total: data[x].total,
           approved: data[x].approved,
@@ -79,9 +84,9 @@ slideOpts = {
     
         })
       console.log(this.tickets,"LAST ONE")
-
+       
       }
-    
+     
       if(this.tickets.length!=0 && this.tickets!=null)
       {
         this.hasATicket=true;
@@ -126,7 +131,42 @@ slideOpts = {
     })
   
   }
+  sum=0;
+  kilos=0;
+  getbooked()
+  {
+    
+    
+      this.runn.rtb().subscribe(data =>{
 
+       this.BE ;
+      //  console.log("the info", data);
+       console.log( data.length);
+        for( let x = 0; x < data.length; x++ )
+        {
+         console.log(x);
+         
+        this.BE.push({ 
+        
+         info: data[x]
+        
+       
+        })
+        console.log(this.BE[x].info.distance,"distance only")
+        this.sum += this.BE[x].info.tickets;
+        this.kilos += this.BE[x].info.distance;
+       
+        }
+  
+     
+        console.log("total tickets=>",this.sum)
+        console.log("total distance=>",this.kilos)
+    
+     })
+     
+  
+   
+  }
   getUser()
   {
     
@@ -148,12 +188,7 @@ slideOpts = {
           photoURL:data[x].photoURL}
           
           )
-          // userKey: doc.id,
-          //    name: doc.data().displayName,
-          //    age: doc.data().Age,
-          //    Email: doc.data().Email,
-          //    gender: doc.data().gender,
-          //    photoURL: doc.data().photoURL
+     
     
         }
       console.log(this.theUser,"the LAST ONE vele" )
@@ -193,6 +228,7 @@ getBooked(){
         address: e.payload.doc.data()['address'],
         name: e.payload.doc.data()['name'],
         date: e.payload.doc.data()['date'],
+        distance: e.payload.doc.data()['distance'],
         approved: e.payload.doc.data()['approved'],
 
        
@@ -213,10 +249,12 @@ getBooked(){
         address: this.myEvents[r].address,
         name:this.myEvents[r].name ,
         date: this.myEvents[r].date,
+        distance: this.myEvents[r].distance,
         approved: this.myEvents[r].approved
       })
-      
+      // this.distance= this.myEvents[r].distance
      }
+    
      console.log(this.tickets);
 
     }

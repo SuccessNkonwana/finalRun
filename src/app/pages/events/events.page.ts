@@ -37,6 +37,7 @@ export class EventsPage implements OnInit {
           price:eventList[x].price,
           clubKey:eventList[x].clubKey,
           date:eventList[x].date,
+          distance:eventList[x].distance,
           photoURL:eventList[x].photoURL
         })
         console.log("<<<<<",this.events[x])

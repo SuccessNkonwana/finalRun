@@ -11,102 +11,102 @@
                             <div class="div1">
                                 <div class="div3">
                                     <br>
-                                <h2 id="heading" text-center>My Profile</h2>
+                                    <h2 id="heading" text-center>My Profile</h2>
 
-                                <ion-label (click)="nameUpdate(user)" id="name" text-center>{{user.name}}
-                                    <ion-icon name="create"></ion-icon>
-                                </ion-label>
-                                <br>
+                                    <ion-label (click)="nameUpdate(user)" id="name" text-center>{{user.name}}
+                                        <ion-icon name="create"></ion-icon>
+                                    </ion-label>
+                                    <br>
 
-                                <div class="profile-image">
-                                    <div *ngIf="defaultpic">
-                                        <img src="{{photoURL}}">
-                                    </div>
-                                    <div *ngIf="!defaultpic">
-                                        <img src="\assets\images\profile-user.png">
-                                    </div>
+                                    <div class="profile-image">
+                                        <div *ngIf="defaultpic">
+                                            <img src="{{photoURL}}">
+                                        </div>
+                                        <div *ngIf="!defaultpic">
+                                            <img src="\assets\images\profile-user.png">
+                                        </div>
 
-                                    <div class="image-upload">
-                                        <ion-fab horizontal="center" vertical="top" class="fab">
-                                            <ion-fab-button color="primary" size="small">
-                                                <ion-icon name="camera" class="input"> </ion-icon>
-                                            </ion-fab-button>
+                                        <div class="image-upload">
+                                            <ion-fab horizontal="center" vertical="top" class="fab">
+                                                <ion-fab-button color="primary" size="small">
+                                                    <ion-icon name="camera" class="input"> </ion-icon>
+                                                </ion-fab-button>
 
 
 
-                                            <ion-fab-list side="end">
-                                                <ion-fab-button color="primary" >
-                                                    <label for="file-input2">
+                                                <ion-fab-list side="end">
+                                                    <ion-fab-button color="primary">
+                                                        <label for="file-input2">
                                                                     <ion-icon name="document" class="document"> </ion-icon> 
                                                             </label>
-                                                </ion-fab-button>
-                                            </ion-fab-list>
-                                        </ion-fab>
+                                                    </ion-fab-button>
+                                                </ion-fab-list>
+                                            </ion-fab>
 
 
-                                        <input id="file-input2" class="input" type="file" (change)="uploadProfilePic($event)" />
+                                            <input id="file-input2" class="input" type="file" (change)="uploadProfilePic($event)" />
+                                        </div>
+                                        <div class="spinner" *ngIf="((uploadPercent | async ) >0 && (uploadPercent | async ) !='') || (progress>0 && progress !='')">
+                                            <ion-spinner name="crescent" color="success"></ion-spinner>
+                                        </div>
                                     </div>
-                                    <div class="spinner" *ngIf="((uploadPercent | async ) >0 && (uploadPercent | async ) !='') || (progress>0 && progress !='')">
-                                        <ion-spinner name="crescent" color="success"></ion-spinner>
+                                    <br>
+
+                                    <div class="div2">
+
+
+                                        <br><br><br>
+                                        <br><br><br>
+                                        <ion-list lines="none" class="ion-padding">
+                                            <ion-item detail-push>
+
+                                                <ion-label>
+                                                    <Nav>{{user.email}}</Nav>
+                                                </ion-label>
+
+                                                <ion-icon name="mail" color="primary" slot="start"></ion-icon>
+                                                <!-- <ion-icon name="create" color="dark" slot="end" (click)=" NameUpdate(user)"></ion-icon> -->
+                                            </ion-item>
+                                            <br>
+
+                                            <ion-item>
+
+                                                <ion-label>{{user.address}}
+
+                                                </ion-label>
+
+                                                <ion-icon name="navigate" color="primary" slot="start"></ion-icon>
+
+                                                <ion-icon name="create" (click)="AddressUpdate(user)"></ion-icon>
+                                            </ion-item>
+                                            <br>
+                                            <ion-item>
+
+                                                <ion-label>
+                                                    <Nav>{{user.age}}</Nav>
+                                                </ion-label>
+
+                                                <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
+                                                <!-- <ion-icon name="create" color="dark" slot="end" (click)=" AddressUpdate(user)"></ion-icon> -->
+                                                <ion-icon name="create" (click)="AgeUpdate(user)"></ion-icon>
+                                            </ion-item>
+                                            <br>
+                                            <ion-item>
+
+                                                <ion-label>{{user.gender}}</ion-label>
+
+                                                <ion-icon name="person" color="primary" slot="start"></ion-icon>
+                                                <!-- <ion-icon name="create" color="dark" slot="end" (click)=" GenderUpdate(user)"></ion-icon> -->
+                                            </ion-item>
+
+
+                                        </ion-list>
+
+
+
+
                                     </div>
                                 </div>
-                                <br>
-
-                                <div class="div2" >
-
-
-                                    <br><br><br>
-                                    <br><br><br>
-                                    <ion-list lines="none" class="ion-padding">
-                                        <ion-item detail-push>
-
-                                            <ion-label>
-                                                <Nav>{{user.email}}</Nav>
-                                            </ion-label>
-
-                                            <ion-icon name="mail" color="primary" slot="start"></ion-icon>
-                                            <!-- <ion-icon name="create" color="dark" slot="end" (click)=" NameUpdate(user)"></ion-icon> -->
-                                        </ion-item>
-                                        <br><br>
-                                    
-                                        <ion-item>
-
-                                            <ion-label >{{user.address}}
-                                                
-                                            </ion-label>
-
-                                            <ion-icon name="navigate" color="primary" slot="start"></ion-icon>
-                                            
-                                            <ion-icon name="create" (click)="AddressUpdate(user)"></ion-icon>
-                                        </ion-item>
-                                        <br>
-                                        <ion-item >
-
-                                            <ion-label>
-                                                <Nav>{{user.age}}</Nav>
-                                            </ion-label>
-
-                                            <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
-                                            <!-- <ion-icon name="create" color="dark" slot="end" (click)=" AddressUpdate(user)"></ion-icon> -->
-                                            <ion-icon name="create" (click)="AgeUpdate(user)"></ion-icon>
-                                        </ion-item>
-                                        <br>
-                                        <ion-item>
-
-                                            <ion-label>{{user.gender}}</ion-label>
-
-                                            <ion-icon name="person" color="primary" slot="start"></ion-icon>
-                                            <!-- <ion-icon name="create" color="dark" slot="end" (click)=" GenderUpdate(user)"></ion-icon> -->
-                                        </ion-item>
-
-
-                                    </ion-list>
-
-
-
-
-                                </div>
-                            </div>
                             </div>
                         </ion-col>
 
@@ -115,7 +115,7 @@
 
 
             </div>
-      
+
 
         </div>
     </body>

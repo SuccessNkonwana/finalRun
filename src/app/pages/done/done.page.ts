@@ -10,6 +10,7 @@ import { NavController } from '@ionic/angular';
 })
 export class DonePage implements OnInit {
   names;
+ 
   theAccount={
     name:'',
    
@@ -26,7 +27,8 @@ export class DonePage implements OnInit {
   email: any;
   myAccount;
   name:string;
-  eventKey1
+  eventKey1;
+  eventKey;
   theName:string;
   constructor(private route:ActivatedRoute,     private router: Router,
     private clubService:RunningService, public runn:RunningService,private navCtrl: NavController,) 
@@ -60,7 +62,7 @@ export class DonePage implements OnInit {
    }
 
 
-tickets;price;total;
+tickets;price;total;te=[]
   ngOnInit() {
     this.route.queryParams.subscribe(data=>{
       console.log(data);
@@ -69,6 +71,8 @@ tickets;price;total;
       this.name=data.name;
       this.names=data.name;
       this.eventKey1= data.eventKey;
+      this.eventKey=data.eventKey;
+      // this.te=data.
       this.total=this.tickets*this.price;
     
     })
@@ -86,7 +90,7 @@ tickets;price;total;
   
   done(){
     this.clubService.done();
-    this.router.navigate(['/complete'],{queryParams:{names:this.names,eventKey:this.eventKey1}})
+    this.router.navigate(['/complete'],{queryParams:{names:this.names,total:this.total,eventKey:this.eventKey1}})
 
   }
 
