@@ -1,9 +1,53 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>eventHome</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="body">
+  <div class="div4">
 
-<ion-content>
+
+  <div class="div2">
+
+     
+      <div class="backbutton">
+          <ion-fab horizontal="start" slot="start">
+
+              <ion-fab-button color="primary" routerLink="/tabs/home">
+                  <ion-icon color="dark" name="arrow-back"></ion-icon>
+              </ion-fab-button>
+
+          </ion-fab>
+
+
+      </div>
+    
+
+  </div>
+
+  </div>
+  
+  <div class="div1" *ngFor="let evn of events">
+      <div class="div3">
+          <ion-list>
+              <ion-item lines="none">
+                  <h1> {{evn.name}}</h1>
+              </ion-item>
+              <ion-item lines="none">
+                  <ion-icon name="map"></ion-icon>&nbsp; {{evn.address}}
+              </ion-item>
+              <ion-item lines="none">
+                <ion-icon name="map"></ion-icon>&nbsp; {{evn.date}}
+            </ion-item>
+                <ion-item lines="none">
+                  <ion-icon name="map"></ion-icon>&nbsp; {{evn.distance}}
+              </ion-item>
+              <ion-item lines="none">
+                  <ion-icon name="alarm"></ion-icon> &nbsp; {{evn.openingHours}} To {{evn.closingHours}}
+              </ion-item>
+          </ion-list>
+          <br>
+        
+      </div>
+
+      
+
+
+  </div>
 
 </ion-content>

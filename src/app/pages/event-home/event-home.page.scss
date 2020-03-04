@@ -1,0 +1,82 @@
+$bgcolor: #11C2D4;
+$textcolor: #11C2D4;
+$fontsize: 18px;
+.body {
+    font-size: $fontsize;
+    $mywidth: 100%;
+    width: $mywidth;
+    $myheight: 100%;
+    height: $myheight;
+    text-align: center;
+    // overflow: scroll;
+    .div2 {
+        // margin-top: -2%;
+        // background-repeat: no-repeat;
+       
+        // background-size: 100% 50%;
+        // border-radius: 0px;
+        background-position: center no-repeat;
+        background-size: cover;
+        $mywidth: 100%;
+        width: $mywidth;
+        margin-top: -35px;
+        height: 100%;
+        -ms-transform: skewY(0deg);
+        -webkit-transform: skewY(0deg);
+        transform: skewY(0deg);
+        background: rgba(0, 0, 0, 0.6);
+    }
+    .div4{
+        // margin-top: -15%;
+        background-image: url('/assets/images/man-running- png.png');
+        // background-repeat: no-repeat;
+       
+        // background-size: cover;
+        background-position: center no-repeat;
+        background-size: cover;
+        $mywidth: 100%;
+        width: $mywidth;
+        margin-top: -15px;
+        height: 30%;
+        -ms-transform: skewY(4deg);
+        -webkit-transform: skewY(4deg);
+        transform: skewY(4deg);
+    }
+    .backbutton {
+        padding-top: 20px;
+        -ms-transform: skewY(-4deg);
+        -webkit-transform: skewY(-4deg);
+        transform: skewY(-4deg);
+    }
+    .div1 {
+        -ms-transform: skewY(4deg);
+        -webkit-transform: skewY(4deg);
+        transform: skewY(4deg);
+    }
+    .div3 {
+        padding-top: 20px;
+        -ms-transform: skewY(-4deg);
+        -webkit-transform: skewY(-4deg);
+        transform: skewY(-4deg);
+    }
+    img {
+        $mywidth: 100%;
+        width: $mywidth;
+        border-right: 1000px solid transparent;
+        //   width         : 0;
+        height: 35%;
+        //transform     : rotate(33deg);  
+        border-bottom: 100px solid #fff;
+    }
+    ion-button {
+        width: 80%;
+        text-align: center;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        color: white;
+    }
+    .back {
+        padding: 5%;
+    }
+}

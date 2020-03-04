@@ -280,5 +280,7 @@ chooseClub(myclubs)
 
   this.runn.chooseClub(myclubs);
 }
-
+booking(myevents){
+  this.runn.booking(myevents)
+ }
 }
