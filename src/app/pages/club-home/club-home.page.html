@@ -14,11 +14,7 @@
 
 
         </div>
-        <!-- <div class="back">
-          <ion-buttons slot="start">
-              <ion-icon routerLink="/tabs/add" color="light" name="arrow-back" style="zoom:1.5"></ion-icon>
-          </ion-buttons>
-      </div> -->
+
 
     </div>
     <div class="div1" *ngFor="let myclub of club">
@@ -27,13 +23,15 @@
                 <ion-item lines="none">
                     <h1> {{myclub.name}}</h1>
                 </ion-item>
+                <br>
                 <ion-item lines="none">
-                    <ion-icon name="map"></ion-icon>&nbsp; {{myclub.address}}
+                    <ion-icon name="navigate" color="primary"></ion-icon>&nbsp; {{myclub.address}}
 
 
                 </ion-item>
+                <br>
                 <ion-item lines="none">
-                    <ion-icon name="alarm"></ion-icon> &nbsp; {{myclub.openingHours}} To {{myclub.closingHours}}
+                    <ion-icon name="alarm" color="primary"></ion-icon> &nbsp; {{myclub.openingHours}} To {{myclub.closingHours}}
                 </ion-item>
             </ion-list>
             <br>
