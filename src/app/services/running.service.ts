@@ -422,6 +422,7 @@ export class RunningService {
             eventKey: doc.id,
             name: doc.data().name,
             price: doc.data().price,
+            info: doc.data().info,
             photoURL: doc.data().photoURL,
             address: doc.data().address,
             date:doc.data().date,
@@ -543,7 +544,8 @@ export class RunningService {
       userID: userID,
       clubKey: clubKey,
       price: newPrice,
-      photoURL: url
+      photoURL: url,
+      info:''
 
     }).then((data) => {
       console.log(data)
@@ -655,6 +657,7 @@ export class RunningService {
             price: doc.data().price,
             distance: doc.data().distance,
             date: doc.data().date,
+            info: doc.data().info,
             //  {{element.data.TimeStamp.toDate() | date:'dd-MM-yyy'}}
             tickets: doc.data().tickets,
             total: doc.data().total,
@@ -738,6 +741,7 @@ export class RunningService {
           clubID: data[0].myevents[0].myevents[0].myevents.clubKey,
           price: data[0].myevents[0].myevents[0].myevents.price,
           date: data[0].myevents[0].myevents[0].myevents.date,
+          info: data[0].myevents[0].myevents[0].myevents.info,
           distance: data[0].myevents[0].myevents[0].myevents.distance,
           //  {{element.data.TimeStamp.toDate() | date:'dd-MM-yyy'}}
           tickets: tickets,
@@ -975,6 +979,16 @@ export class RunningService {
       console.error("Error updating document: ", error);
     });
 
+  }
+  // update event name
+  updateEName(userID, editName) {
+
+    this.dbfire.collection("events").doc(userID).update({ name: editName }).then((data) => {
+
+      console.log("Document name successfully updated!", data);
+    }).catch(function (error) {
+      console.error("Error updating document: ", error);
+    });
   }
 
 }

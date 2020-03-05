@@ -58,16 +58,17 @@ export class DonePage implements OnInit {
    }
 
 
-tickets;price;total;te=[]
+tickets;price;total;info
   ngOnInit() {
     this.route.queryParams.subscribe(data=>{
       console.log(data);
       this.tickets=data.tickets;
       this.price=data.price;
       this.eventKey=data.eventKey;
-      // this.te=data.
+      this.info=data.info;
       this.total=this.tickets*this.price;
       console.log(this.price);
+      console.log(this.info);
       console.log(this.tickets);
       console.log(this.total);
     })

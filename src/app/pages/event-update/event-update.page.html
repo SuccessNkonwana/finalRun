@@ -2,6 +2,18 @@
 <ion-content class="theBody">
 
   <body>
+    <div class="backbutton">
+        <ion-fab horizontal="start" slot="start">
+
+            <ion-fab-button color="primary" routerLink="/club-profile">
+                <ion-icon color="dark" name="arrow-back"></ion-icon>
+            </ion-fab-button>
+
+        </ion-fab>
+
+
+    </div>
+
       <div *ngFor="let myevents of events">
           <div id="bg">
               <ion-grid>
@@ -13,16 +25,16 @@
                               <div class="div3">
                                   <br>
                             
-                              <ion-label (click)="nameUpdate(user)" id="name" text-center>{{myevents.name}}
+                              <ion-label (click)="nameUpdate(myevents)" id="name" text-center>{{myevents.name}}
                                   <ion-icon name="create"></ion-icon>
                               </ion-label>
                               <br>
 
                               <div class="profile-image">
-                                  <div *ngIf="defaultpic">
-                                      <img src="{{photoURL}}">
-                                  </div>
                                   <div *ngIf="!defaultpic">
+                                      <img src="{{myevents.photoURL}}">
+                                  </div>
+                                  <div *ngIf="defaultpic">
                                       <img src="\assets\images\profile-user.png">
                                   </div>
 
@@ -126,7 +138,17 @@
                                     
                                     <ion-icon name="create" (click)="priceUpdate(myevents)"></ion-icon>
                                 </ion-item>
-                                  
+                                <!-- discription -->
+                                <ion-item>
+
+                                    <ion-label >{{myevents.info}}
+                                        
+                                    </ion-label>
+
+                                    <ion-icon name="cash" color="primary" slot="start"></ion-icon>
+                                    
+                                    <ion-icon name="create" (click)="infoUpdate(myevents)"></ion-icon>
+                                </ion-item>                                  
                               
 
 
