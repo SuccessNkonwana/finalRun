@@ -22,6 +22,7 @@ export class BookEventPage implements OnInit {
   name
   date
   distance
+  info
  
  tickets:number=0;
  total:number=0;
@@ -57,6 +58,7 @@ events=[];
           closingHours:data[0].myevents[0].myevents.closingHours,
           price:data[0].myevents[0].myevents.price,
           date:data[0].myevents[0].myevents.date,
+          info:data[0].myevents[0].myevents.info,
           distance:data[0].myevents[0].myevents.distance,
           clubKey:data[0].myevents[0].myevents.clubKey
         
@@ -66,6 +68,7 @@ events=[];
          this.eventKey=data[0].myevents[0].myevents.eventKey;
          this.date=data[0].myevents[0].myevents.date;
          this.distance=data[0].myevents[0].myevents.distance;
+         this.info=data[0].myevents[0].myevents.info;
         
          if(this.events===null)
          {
@@ -107,7 +110,7 @@ sub(num:number) {
 BookEvent(tickets,price)
   {
     this.clubService.BookEvent(tickets,price);
-    this.route.navigate(['/done'],{queryParams:{distance:this.distance,date:this.date,name:this.name,tickets:tickets,price:price,eventKey:this.eventKey}})
+    this.route.navigate(['/done'],{queryParams:{info:this.info,distance:this.distance,date:this.date,name:this.name,tickets:tickets,price:price,eventKey:this.eventKey}})
 
     // console.log(tickets,price,"=================",this.tickets,this.price);
 

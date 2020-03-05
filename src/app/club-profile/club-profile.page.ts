@@ -34,7 +34,7 @@ export class ClubProfilePage implements OnInit {
     this.events= []; 
     this.clubName=null
   this.photoURL=null  
-    this.getdata()
+
     // this.getEES()
    }
   slideChanged()
@@ -43,6 +43,8 @@ export class ClubProfilePage implements OnInit {
   }
   ngOnInit() {
     // this.presentLoading();
+
+    this.getdata();
   
   }
  
@@ -65,6 +67,7 @@ getEES()
        openingHours:  data[x].openingHours,
        closingHours:data[x].closingHours,
        price:data[x].price,
+       info:data[x].info,
        photoURL:data[x].photoURL,
        clubKey:data[x].clubKey
      
@@ -109,6 +112,7 @@ getEES()
           closingHours:data[x].closingHours,
           price:data[x].price,
           date:data[x].date,
+          info:data[x].info,
           distance:data[x].distance,
           photoURL:data[x].photoURL,
           clubKey:data[x].clubKey

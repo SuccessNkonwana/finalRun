@@ -71,7 +71,7 @@
 
                                                 <ion-icon name="navigate" color="primary" slot="start"></ion-icon>
 
-                                                <ion-icon name="create" (click)="addressUpdate(myevents)"></ion-icon>
+                                                <ion-icon name="create" (click)="AddressUpdate(user)"></ion-icon>
                                             </ion-item>
                                             <br>
                                             <!-- update date -->
@@ -83,7 +83,7 @@
 
                                                 <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
 
-                                                <ion-icon name="create" (click)="dateUpdate(myevents)"></ion-icon>
+                                                <ion-icon name="create" (click)="DateUpdate(user)"></ion-icon>
                                             </ion-item>
                                             <br>
                                             <!-- update open time -->
@@ -95,7 +95,7 @@
 
                                                 <ion-icon name="time" color="primary" slot="start"></ion-icon>
 
-                                                <ion-icon name="create" (click)="openUpdate(myevents)"></ion-icon>
+                                                <ion-icon name="create" (click)="OpenUpdate(user)"></ion-icon>
                                             </ion-item>
                                             <br>
                                             <!-- update closing time -->
@@ -108,7 +108,7 @@
 
                                                 <ion-icon name="time" color="primary" slot="start"></ion-icon>
 
-                                                <ion-icon name="create" (click)="closeUpdate(myevents)"></ion-icon>
+                                                <ion-icon name="create" (click)="CloseUpdate(user)"></ion-icon>
                                             </ion-item>
                                             <br>
                                             <!-- update km -->
@@ -120,7 +120,7 @@
 
                                                 <ion-icon name="speedometer" color="primary" slot="start"></ion-icon>
 
-                                                <ion-icon name="create" (click)="kmUpdate(myevents)"></ion-icon>
+                                                <ion-icon name="create" (click)="DistanceUpdate(user)"></ion-icon>
                                             </ion-item>
                                             <br>
                                             <!-- update price -->
@@ -132,10 +132,26 @@
 
                                                 <ion-icon name="cash" color="primary" slot="start"></ion-icon>
 
-                                                <ion-icon name="create" (click)="priceUpdate(myevents)"></ion-icon>
+                                                <ion-icon name="create" (click)="PriceUpdate(user)"></ion-icon>
                                             </ion-item>
+                                            <br>
 
+                                            <!-- 
+                                            <ion-icon name="cash" color="primary" slot="start"></ion-icon>
 
+                                            <ion-icon name="create" (click)="priceUpdate(myevents)"></ion-icon>
+                                            </ion-item> -->
+
+                                            <ion-item>
+
+                                                <ion-label>{{myevents.info}}
+
+                                                </ion-label>
+
+                                                <ion-icon name="information-circle" color="primary" slot="start"></ion-icon>
+
+                                                <ion-icon name="create" (click)="InfoUpdate(user)"></ion-icon>
+                                            </ion-item>
 
 
                                         </ion-list>

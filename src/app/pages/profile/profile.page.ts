@@ -67,9 +67,7 @@ export class ProfilePage implements OnInit {
 
   }
 
-  ngOnInit() {
-    
-  }
+
   
 //address
 search(event: any) {
@@ -313,5 +311,9 @@ onSelect(address:string,i){
     await loading.present();
     // this. getdata()
     loading.dismiss()
+  }
+
+  ngOnInit() {
+    
   }
 }

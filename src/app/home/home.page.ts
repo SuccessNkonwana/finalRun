@@ -79,6 +79,7 @@ slideOpts = {
           distance: data[x].distance,
           tickets: data[x].tickets,
           total: data[x].total,
+          info: data[x].info,
           approved: data[x].approved,
           deposited: data[x].deposited
     
@@ -133,6 +134,11 @@ slideOpts = {
   }
   sum=0;
   kilos=0;
+  past=0;
+  pastkilos=0;
+   dat;
+  day:string = new Date().toISOString();
+  x= this.day.split('T')[0]
   getbooked()
   {
     
@@ -152,13 +158,19 @@ slideOpts = {
         
        
         })
-        console.log(this.BE[x].info.distance,"distance only")
+        console.log(this.BE[x].info.info,"discription only")
+        console.log(this.BE[x].info.date,"dates only")
         this.sum += this.BE[x].info.tickets;
+        this.dat = this.BE[x].info.date;
         this.kilos += this.BE[x].info.distance;
        
         }
-  
-     
+  if(this.x>this.dat)
+  {
+    this.past+=1;
+  }
+        console.log("today=>",this.x)
+        console.log("past events",this.past)
         console.log("total tickets=>",this.sum)
         console.log("total distance=>",this.kilos)
     
@@ -228,6 +240,7 @@ getBooked(){
         address: e.payload.doc.data()['address'],
         name: e.payload.doc.data()['name'],
         date: e.payload.doc.data()['date'],
+        info: e.payload.doc.data()['info'],
         distance: e.payload.doc.data()['distance'],
         approved: e.payload.doc.data()['approved'],
 
@@ -249,6 +262,7 @@ getBooked(){
         address: this.myEvents[r].address,
         name:this.myEvents[r].name ,
         date: this.myEvents[r].date,
+        info: this.myEvents[r].info,
         distance: this.myEvents[r].distance,
         approved: this.myEvents[r].approved
       })

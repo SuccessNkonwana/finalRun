@@ -29,7 +29,7 @@ events=[];
     this.events= []; 
     this.bookE();
   }
-
+info=''
   bookE()
   {
  
@@ -47,12 +47,14 @@ events=[];
           closingHours:data[0].myevents[0].myevents.closingHours,
           price:data[0].myevents[0].myevents.price,
           date:data[0].myevents[0].myevents.date,
+          info:data[0].myevents[0].myevents.info,
           distance:data[0].myevents[0].myevents.distance,
           clubKey:data[0].myevents[0].myevents.clubKey
         
         })
         // this.eventKey=""
         this.name=  data[0].myevents[0].myevents.name;
+        this.info=  data[0].myevents[0].myevents.info;
          this.eventKey=data[0].myevents[0].myevents.eventKey;
          this.date=data[0].myevents[0].myevents.date;
          this.distance=data[0].myevents[0].myevents.distance;
