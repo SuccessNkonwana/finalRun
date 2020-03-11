@@ -28,7 +28,7 @@ export class ProfilePage implements OnInit {
   private MUsers: AngularFirestoreDocument
   sub
   username: string;
-  photoURL: string;
+  photoURL: '';
   uploadPercent: number;
   thegender: string;
   theKey;
@@ -48,7 +48,7 @@ export class ProfilePage implements OnInit {
   uniqkey: string;
   fileRef: any;
   task: any;
-  urlPath: any;
+  // urlPath = '';
  aname 
 
   constructor(
@@ -104,28 +104,37 @@ onSelect(address:string,i){
 //address
 
   uploadProfilePic(event){
-    this.runn.uploadProfilePic(event)
+    // this.runn.uploadProfilePic(event)
    //
+   let user = this.runn.readCurrentSession()
+   let userID = user['uid']
+   console.log("the user", userID);
+
    this.file = event.target.files[0];
          
    this.uniqkey ='pic' +  Math.random().toString(36).substring(2);
    const filePath = this.uniqkey;
    this.fileRef = this.storage.ref(filePath);
-   this.task = this.storage.upload(filePath, this.file);
+  //  this.task = this.storage.upload(filePath, this.file);
+  this.task = this.storage.upload("profilePictures/"+ filePath +"/", this.file);
    this.uploadPercent = this.task.percentageChanges();
 
-   this.task.snapshotChanges().pipe(
-     finalize(() => {
-       this.downloadU = this.fileRef.getDownloadURL().subscribe(urlPath => {
-         console.log(urlPath);
+   this.task.then(results => {
 
-         this.photoURL=urlPath
-         this.uploadPercent = null;
-         console.log(this.urlPath,"profile picture");
-         
-       });
-     })
-   ).subscribe();
+      return results.ref.getDownloadURL().then(url => {
+        console.log(url);
+
+        this.photoURL = url
+        this.afs.doc('users/' + userID).update({
+                  photoURL: url
+                })
+        this.uploadPercent = null;
+        console.log(this.photoURL, "profile picture");
+
+      })
+
+    });
+ 
  }
  file(filePath: any, file: any): any {
    throw new Error("Method not implemented.");
@@ -136,7 +145,7 @@ onSelect(address:string,i){
   getdata()
   {
     return new Promise((resolve, reject) => {
-      this.runn.rtUsers().then(data =>{
+      this.runn.getUser().subscribe(data =>{
      
         console.log( data.length);
         for( let x = 0; x < data.length; x++ )

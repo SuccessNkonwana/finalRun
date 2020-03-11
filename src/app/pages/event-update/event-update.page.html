@@ -14,7 +14,7 @@
 
     </div>
 
-      <div *ngFor="let myevents of events">
+      <div>
           <div id="bg">
               <ion-grid>
                   <ion-row color="primary" justify-content-center>
@@ -25,34 +25,37 @@
                               <div class="div3">
                                   <br>
                             
-                              <ion-label (click)="nameUpdate(myevents)" id="name" text-center>{{myevents.name}}
+                              <ion-label (click)="nameUpdate(eventData?.name)" id="name" text-center>{{eventData?.name}}
                                   <ion-icon name="create"></ion-icon>
                               </ion-label>
                               <br>
 
                               <div class="profile-image">
-                                  <div *ngIf="!defaultpic">
-                                      <img src="{{myevents.photoURL}}">
-                                  </div>
-                                  <div *ngIf="defaultpic">
-                                      <img src="\assets\images\profile-user.png">
-                                  </div>
+                                <div *ngIf="!defaultpic">
+                                    <img src="\assets\images\profile-user.png" class="x">
+                                </div>
+
+                                <div *ngIf="defaultpic ">
+                                    <img data-src="{{eventData?.photoURL}}">
+                                </div>
 
                                   <div class="image-upload">
                                       <ion-fab horizontal="center" vertical="top" class="fab">
                                           <ion-fab-button color="primary" size="small">
+                                            <label for="file-input2">
                                               <ion-icon name="camera" class="input"> </ion-icon>
+                                            </label>
                                           </ion-fab-button>
 
 
 
-                                          <ion-fab-list side="end">
+                                          <!-- <ion-fab-list side="end">
                                               <ion-fab-button color="primary" >
                                                   <label for="file-input2">
                                                                   <ion-icon name="document" class="document"> </ion-icon> 
                                                           </label>
                                               </ion-fab-button>
-                                          </ion-fab-list>
+                                          </ion-fab-list> -->
                                       </ion-fab>
 
 
@@ -74,7 +77,7 @@
                                        <!-- update address -->
                                        <ion-item>
 
-                                        <ion-label >{{myevents.address}}
+                                        <ion-label >{{eventData?.address}}
                                             
                                         </ion-label>
   
@@ -85,7 +88,7 @@
                                      <!-- update date -->
                                      <ion-item>
 
-                                      <ion-label >{{myevents.date}}
+                                      <ion-label >{{eventData?.date}}
                                           
                                       </ion-label>
 
@@ -96,7 +99,7 @@
                                      <!-- update open time -->
                                      <ion-item>
 
-                                      <ion-label >{{myevents.openingHours}}
+                                      <ion-label >{{eventData?.openingHours}}
                                           
                                       </ion-label>
 
@@ -108,7 +111,7 @@
                                    
                                    <ion-item>
 
-                                    <ion-label >{{myevents.closingHours}}
+                                    <ion-label >{{eventData?.closingHours}}
                                         
                                     </ion-label>
 
@@ -119,7 +122,7 @@
                                     <!-- update km -->
                                     <ion-item>
 
-                                      <ion-label >{{myevents.distance}} km
+                                      <ion-label >{{eventData?.distance}} km
                                           
                                       </ion-label>
 
@@ -130,7 +133,7 @@
                                    <!-- update price -->
                                    <ion-item>
 
-                                    <ion-label >{{myevents.price}}
+                                    <ion-label >{{eventData?.price}}
                                         
                                     </ion-label>
 
@@ -141,7 +144,7 @@
                                 <!-- discription -->
                                 <ion-item>
 
-                                    <ion-label >{{myevents.info}}
+                                    <ion-label >{{eventData?.info}}
                                         
                                     </ion-label>
 

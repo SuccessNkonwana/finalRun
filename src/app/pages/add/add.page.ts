@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RunningService } from 'src/app/services/running.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { StoreClubKeyService } from 'src/app/services/store-club-key.service';
 
 @Component({
   selector: 'app-add',
@@ -14,6 +15,7 @@ export class AddPage implements OnInit {
   hasAClub=false;
   isSlide: boolean = true;
   slides: any;
+  clubKey;
 slideOpts = {
     slidesPerView: 2.5,
     spaceBetween:10,
@@ -25,7 +27,9 @@ slideOpts = {
       slideShadows: true,
     }
     }
-  constructor(public runn: RunningService, private router: Router, public loadingController: LoadingController,) {
+  constructor(public runn: RunningService, private router: Router, 
+    public loadingController: LoadingController,
+    private _club: StoreClubKeyService, private _pic: StoreClubKeyService) {
 
     this.clubs=[]      
     
@@ -56,10 +60,12 @@ slideOpts = {
            userID:  data[x].userID,
            photoURL:data[x].photoURL})
            
-     
+           this.clubKey=this.clubs[x].clubKey
          }
        console.log(this.clubs,"LAST ONE")
-       
+       console.log(this.clubKey,"the master key")
+
+    
        if(this.clubs!=null)
        {
          this.hasAClub=true;
@@ -76,12 +82,13 @@ slideOpts = {
   }
 
 
-  getAClubsEvents(myclub){
-    // this.runn.chooseClub(myclub);
-   
-     this.runn.getAClubsEvents(myclub)
-     console.log(myclub);
-    this.router.navigateByUrl('club-profile');
+  getAClubsEvents(clubKey,clubPic){
+  
+    this.router.navigate(['/club-profile']);
+    this._club.storeClubKey(clubKey);
+    this._pic.storeClubPic(clubPic)
+
+    // this.router.navigateByUrl('club-profile');
 
 
   }

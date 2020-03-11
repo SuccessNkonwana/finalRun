@@ -13,34 +13,39 @@
                                     <br>
                                 <h2 id="heading" text-center>My Profile</h2>
 
-                                <ion-label (click)="nameUpdate(user)" id="name" text-center>{{user.name}}
+                                <ion-label (click)="nameUpdate(user)" id="name" text-center>{{user.displayName}}
                                     <ion-icon name="create"></ion-icon>
                                 </ion-label>
                                 <br>
+                                <!-- class="x"> -->
 
                                 <div class="profile-image">
-                                    <div *ngIf="defaultpic">
-                                        <img src="{{photoURL}}">
-                                    </div>
                                     <div *ngIf="!defaultpic">
-                                        <img src="\assets\images\profile-user.png">
+                                        <img src="\assets\images\profile-user.png" class="x">
                                     </div>
+
+                                    <div *ngIf="defaultpic">
+                                        <img data-src="{{user.photoURL}}">
+                                    </div>
+
 
                                     <div class="image-upload">
                                         <ion-fab horizontal="center" vertical="top" class="fab">
                                             <ion-fab-button color="primary" size="small">
+                                                <label for="file-input2">
                                                 <ion-icon name="camera" class="input"> </ion-icon>
+                                            </label>
                                             </ion-fab-button>
 
 
 
-                                            <ion-fab-list side="end">
+                                            <!-- <ion-fab-list side="end">
                                                 <ion-fab-button color="primary" >
                                                     <label for="file-input2">
                                                                     <ion-icon name="document" class="document"> </ion-icon> 
                                                             </label>
                                                 </ion-fab-button>
-                                            </ion-fab-list>
+                                            </ion-fab-list> -->
                                         </ion-fab>
 
 
@@ -61,7 +66,7 @@
                                         <ion-item detail-push>
 
                                             <ion-label>
-                                                <Nav>{{user.email}}</Nav>
+                                                <Nav>{{user.Email}}</Nav>
                                             </ion-label>
 
                                             <ion-icon name="mail" color="primary" slot="start"></ion-icon>
@@ -83,7 +88,7 @@
                                         <ion-item >
 
                                             <ion-label>
-                                                <Nav>{{user.age}}</Nav>
+                                                <Nav>{{user.Age}}</Nav>
                                             </ion-label>
 
                                             <ion-icon name="calendar" color="primary" slot="start"></ion-icon>

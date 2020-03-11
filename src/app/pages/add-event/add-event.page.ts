@@ -7,6 +7,7 @@ import { LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { StoreClubKeyService } from 'src/app/services/store-club-key.service';
 @Component({
   selector: 'app-add-event',
   templateUrl: './add-event.page.html',
@@ -80,7 +81,8 @@ export class AddEventPage implements OnInit {
   }
   //address
   constructor(private storage: AngularFireStorage,private datePipe:DatePipe,
-    private fb: FormBuilder,public runn: RunningService, private authService: AuthService,private mapboxService:MapboxService,private loadingController:LoadingController) {
+    private fb: FormBuilder,public runn: RunningService,
+    private authService: AuthService,private mapboxService:MapboxService,private loadingController:LoadingController) {
 
     
     this.eventForm = fb.group({
@@ -108,6 +110,7 @@ export class AddEventPage implements OnInit {
    x= this.date.split('T')[0]
    
   ngOnInit() {
+   
   
     console.log("the current date", this.date)
     console.log("the current date x", this.x)
@@ -115,6 +118,11 @@ export class AddEventPage implements OnInit {
  
 addEvent()
 {
+  this.newName = this.eventForm.get('newName').value
+  this.newAddress = this.eventForm.get('newAddress').value
+  this.newOpeningHours = this.eventForm.get('newOpeningHours').value
+  this.newPrice = this.eventForm.get('newPrice').value
+  this.newClosingHours = this.eventForm.get('newClosingHours').value
  this.newDate=this.datePipe.transform(this.newDate,"dd-MM-yyyy");
  
  this.newDate>this.x

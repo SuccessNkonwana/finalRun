@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RunningService } from 'src/app/services/running.service';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
+import { StoreEventKeyService } from 'src/app/services/store-event-key.service';
 
 @Component({
   selector: 'app-event-update',
@@ -9,9 +10,8 @@ import { NavController, AlertController, LoadingController } from '@ionic/angula
   styleUrls: ['./event-update.page.scss'],
 })
 export class EventUpdatePage implements OnInit {
-  name:string;
-  eventKey
-  theName:string;
+
+ 
   events=[];
   nn:string="";
   tempUser:string="";
@@ -22,44 +22,18 @@ export class EventUpdatePage implements OnInit {
   lng;
   user : any;
   list:any;
+  urlPath:'';
+  eventData
+  defaultpic=true
   private uid: string= null;
-  constructor(private route:ActivatedRoute,  public loadingController: LoadingController,
+  constructor(private route:ActivatedRoute, private _event: StoreEventKeyService,
+      public loadingController: LoadingController,
     public runn:RunningService,  private altctrl: AlertController,
     private navCtrl: NavController) {
       this.events= []; 
-    this.bookE();
+    // this.bookE();
      }
-    bookE()
-    {
-   
-    return new Promise((resolve, reject) => {
-        this.runn.rtBooking().then(data =>{
-          this.events= [];
-          console.log(data.length," the event to update",data);
-          
-         
-          this.events.push({ 
-            eventKey:  data[0].myevents[0].myevents.eventKey, 
-            name:  data[0].myevents[0].myevents.name,
-            address:  data[0].myevents[0].myevents.address,
-            openingHours:  data[0].myevents[0].myevents.openingHours,
-            closingHours:data[0].myevents[0].myevents.closingHours,
-            price:data[0].myevents[0].myevents.price,
-            date:data[0].myevents[0].myevents.date,
-            info:data[0].myevents[0].myevents.info,
-            distance:data[0].myevents[0].myevents.distance,
-            clubKey:data[0].myevents[0].myevents.clubKey
-          
-          })
-          // this.eventKey=""
-           this.eventKey=data[0].myevents[0].myevents.eventKey
-          
-        console.log(this.events,"the events")
-       
-       })
-      })
-    
-    }
+ 
     back(){
       this.navCtrl.navigateRoot("/club-profile");
     }
@@ -93,8 +67,16 @@ export class EventUpdatePage implements OnInit {
               this.nn=inputData.displayName;
   
               // this.tempUser=this.theUser[0]
-              console.log(this.nn+"ddfdddfdfdd",evnt)
-              this.runn.updateEName(this.eventKey,this.nn)
+              console.log(this.nn,evnt)
+              this.runn.updateEName(this.eventData.eventKey,this.nn).then(results=>{
+                 this.eventData = this._event.getEventData()
+                  console.log(this._event.getEventData());
+                  console.log(results);
+                  this.eventData.name = results;
+              }, error =>{
+                console.log(error);
+                
+              })
               this.presentLoading();
   
   
@@ -106,6 +88,7 @@ export class EventUpdatePage implements OnInit {
       let result = await alert.onDidDismiss();
   
     }
+    
     async presentLoading() {
       const loading = await this.loadingController.create({
         message: 'loading...',
@@ -116,7 +99,14 @@ export class EventUpdatePage implements OnInit {
       loading.dismiss()
     }
   ngOnInit() {
-   
+    this.eventData=this._event.getEventData();
+    console.log(this.eventData,"the event key")
+    console.log(this.eventData.photoURL,"the event name")
+    if(this.eventData.photoURL==null)
+    {
+       this.defaultpic=false;
+     
+    }
   }
 
 }

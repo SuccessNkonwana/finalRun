@@ -17,7 +17,7 @@
                                     </ion-label>
                                     <br>
 
-                                    <div *ngFor="let user of theUser ">
+                                    <!-- <div *ngFor="let user of theUser "> -->
                                         <br>
                                         <div *ngIf="defaultpic">
                                             <img class="img" src="{{user.photoURL}}">
@@ -25,7 +25,7 @@
                                         <div *ngIf="!defaultpic">
                                             <img class="img" src="\assets\images\profile-user.png">
                                         </div>
-                                    </div>
+                                    <!-- </div> -->
 
                                     <br>
                                     <ion-grid class="grid">
@@ -35,7 +35,7 @@
                                                 <p>kilos</p>
                                             </ion-col>
                                             <ion-col class="col">
-                                                <h2>4 km</h2>
+                                                <h2>{{past}} km</h2>
                                                 <p>completed</p>
                                             </ion-col>
                                             <ion-col>

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 // import { eventNames } from 'cluster';
 import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { StoreClubKeyService } from './store-club-key.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -68,7 +69,7 @@ export class RunningService {
   eventKey: string;
   address: string;
   price: string;
-  constructor(private auth: AngularFireAuth, public loadingController: LoadingController, public auths: AuthService, private storage: AngularFireStorage, private afs: AngularFirestore, public navCtrl: NavController, public route: Router) {
+  constructor( private _club: StoreClubKeyService,private auth: AngularFireAuth, public loadingController: LoadingController, public auths: AuthService, private storage: AngularFireStorage, private afs: AngularFirestore, public navCtrl: NavController, public route: Router) {
   }
   currentClub(myclubs) {
 
@@ -174,20 +175,20 @@ export class RunningService {
   
 
 
-  async rtUsers() {
-    let result: any
-    await this.getUser().then(data => {
-      result = data
+  // async rtUsers() {
+  //   let result: any
+  //   await this.getUser().then(data => {
+  //     result = data
 
-      console.log(result.length);
-    })
-    console.log(result);
-    //this.LandMarks()
-    return result
+  //     console.log(result.length);
+  //   })
+  //   console.log(result);
+  //   //this.LandMarks()
+  //   return result
 
-    // console.log(this.todos,"hh")
-    // return this.todos
-  }
+  //   // console.log(this.todos,"hh")
+  //   // return this.todos
+  // }
 
   //add a club
   addClub(newName, newAddress, newOpeningHours, newClosingHours, url) {
@@ -279,13 +280,41 @@ export class RunningService {
         })))
 
   }
+getUser(){
 
+  let uid = this.auth.auth.currentUser.uid;
+  return this.afs.collection("users", ref => ref.where('uid', '==', uid))
+    .snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
+        console.log("current user ID" + id,data)
+        return { id, ...data };
+
+      })))
+
+}
   // go to booked events
   //  return this.afs.collection('spazashop').valueChanges();
   rtb() {
     let uid = this.auth.auth.currentUser.uid;
     return this.afs.collection("bookedEvents", ref => ref.where('userID', '==', uid))
       .valueChanges();
+      
+
+  }
+  // return events in 1 user ID
+  rtE() {
+    let uid = this.auth.auth.currentUser.uid;
+    return this.afs.collection("events", ref => ref.where('userID', '==', uid))
+    .snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
+        console.log("event ID" + id)
+        return { id, ...data };
+
+      })))
       
 
   }
@@ -348,15 +377,7 @@ export class RunningService {
     let ans2 = []
     let user = this.readCurrentSession()
     let userID = user.uid
-    //
-    // ngOnInit() {
-    //   this.news = this.db.collection('123').snapshotChanges().map(actions => {
-    //     return actions.map(a => {
-    //       const data = a.payload.doc.data();
-    //       const id = a.payload.doc.id;
-    //       return { id, ...data };
-    //     });
-    // });
+    
 
     return new Promise((resolve, reject) => {
       this.dbfire.collection("clubs").get().then((querySnapshot) => {
@@ -520,20 +541,14 @@ export class RunningService {
 
   ///create event 
   addEvent(newName, newAddress, newOpeningHours, newClosingHours, newPrice, newDistance, newDate, url) {
-    console.log(this.rtMyClubs())
-    console.log(newOpeningHours, newClosingHours, "times as strings");
-
+let clubKey = this._club.getClubKey();
     let styt = newOpeningHours.substring(11, 16);
     let etyt = newClosingHours.substring(11, 16);
 
     let user = this.readCurrentSession()
     let userID = user.uid
-    let clubKey = this.currClub[0].myclubs.myclubs.clubKey
-    console.log(this.currClub, " addevnt page club");
-
-    console.log("HOT ", this.currClub[0].myclubs.myclubs.clubKey)
-
-
+    // let clubKey = this.currClub[0].myclubs.myclubs.clubKey
+   
     this.dbfire.collection("events").add({
       name: newName,
       address: newAddress,
@@ -576,57 +591,57 @@ export class RunningService {
     let userID = user.uid
 
   }
-  getUser() {
-    this.users = []
-    this.usersTemp = []
-    let ans = []
-    let ans2 = []
+  // getUser() {
+  //   this.users = []
+  //   this.usersTemp = []
+  //   let ans = []
+  //   let ans2 = []
 
-    let user = this.readCurrentSession()
-    let userID = user.uid
-    console.log(userID)
-    return new Promise((resolve, reject) => {
-      this.dbfire.collection("users").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
+  //   let user = this.readCurrentSession()
+  //   let userID = user.uid
+  //   console.log(userID)
+  //   return new Promise((resolve, reject) => {
+  //     this.dbfire.collection("users").get().then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
 
-          // ans.push(doc.data())
-          console.log(doc.id, '=>', doc.data());
-          this.usersTemp.push({
-            userKey: doc.id,
-            name: doc.data().displayName,
-            address: doc.data().address,
-            age: doc.data().Age,
-            email: doc.data().Email,
-            gender: doc.data().gender,
-            photoURL: doc.data().photoURL
-          })
-          console.log(this.usersTemp, "users array")
-          console.log(name, "users array")
+  //         // ans.push(doc.data())
+  //         console.log(doc.id, '=>', doc.data());
+  //         this.usersTemp.push({
+  //           userKey: doc.id,
+  //           name: doc.data().displayName,
+  //           address: doc.data().address,
+  //           age: doc.data().Age,
+  //           email: doc.data().Email,
+  //           gender: doc.data().gender,
+  //           photoURL: doc.data().photoURL
+  //         })
+  //         console.log(this.usersTemp, "users array")
+  //         console.log(name, "users array")
 
-          console.log(this.usersTemp.length, "users array SIZE")
-          //  this.todoTemp.push()
+  //         console.log(this.usersTemp.length, "users array SIZE")
+  //         //  this.todoTemp.push()
 
-        });
-        console.log(this.usersTemp.length, "users array SIZE")
+  //       });
+  //       console.log(this.usersTemp.length, "users array SIZE")
 
-        for (let x = 0; x < this.usersTemp.length; x++) {
+  //       for (let x = 0; x < this.usersTemp.length; x++) {
 
 
-          if (this.usersTemp[x].userKey === userID) {
-            console.log(this.usersTemp[x].userKey, "userid at x")
-            this.users.push(this.usersTemp[x])
+  //         if (this.usersTemp[x].userKey === userID) {
+  //           console.log(this.usersTemp[x].userKey, "userid at x")
+  //           this.users.push(this.usersTemp[x])
 
-          }
+  //         }
 
-        }
-        resolve(this.users)
-      });
-    });
+  //       }
+  //       resolve(this.users)
+  //     });
+  //   });
 
-    console.log(this.usersTemp, "clubs array")
-    console.log(ans, "ans array")
+  //   console.log(this.usersTemp, "clubs array")
+  //   console.log(ans, "ans array")
 
-  }
+  // }
   ///get tickets
   getTickets() {
     this.tickets = []
@@ -969,6 +984,20 @@ export class RunningService {
     )
       ;
   }
+  getclub(){
+    return this.afs.collection<any>('clubs').snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
+        const price = a.payload.doc.data().price;
+        return { id, ...data };
+
+      }
+
+      ))
+
+    )
+  }
   updateDeposit() {
     let dep = true
     console.log(this.bookingID, "oooooooo")
@@ -981,10 +1010,11 @@ export class RunningService {
 
   }
   // update event name
-  updateEName(userID, editName) {
+  async updateEName(eventID, editName) {
 
-    this.dbfire.collection("events").doc(userID).update({ name: editName }).then((data) => {
+    return await this.dbfire.collection("events").doc(eventID).update({ name: editName }).then((data) => {
 
+      return editName;
       console.log("Document name successfully updated!", data);
     }).catch(function (error) {
       console.error("Error updating document: ", error);
