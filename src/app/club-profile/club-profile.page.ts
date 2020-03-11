@@ -46,12 +46,14 @@ export class ClubProfilePage implements OnInit {
   {
    this.slides.startAutoplay();
   }
-  key;pic;
+  key;pic;data;
   ngOnInit() {
   this.pic=this._pic.getClubPic();
     this.key = this._club.getClubKey();
     console.log(this.key,"the key***");
     console.log(this.pic,"the pic***");
+    this.data=this._club.getEventData();
+    console.log("club info",this.data)
   }
   newEvents:[];name;
 getEES()
@@ -97,58 +99,9 @@ getEES()
  
  
 }
-  // getdata()
-  // {
-  //   this.clubs=[] 
-  //   this.events= []; 
-  // this.clubName=null
-  // this.photoURL=null
-  // this.clubs= this.runn.rtClubName() 
-  // this.clubName=this.clubs[0].myclubs.name
-  // this.photoURL=this.clubs[0].myclubs.photoURL
-  // console.log(this.clubs," $$$$$$$$$$$$");
-  // console.log(this.clubName," $$$$$$$$$$$$");
-  // console.log(this.photoURL,"$$$$$$$$$");
-  //   return new Promise((resolve, reject) => {
-  //     this.runn.rtClubEvents().then(data =>{
-     
-  //       console.log( data.length);
-  //       for( let x = 0; x < data.length; x++ )
-  //       {
-  //        console.log(x);
-         
-  //       this.events.push({ 
-  //         eventKey:  data[x].eventKey,
-  //         name:  data[x].name,
-  //         address:  data[x].address,
-  //         openingHours:  data[x].openingHours,
-  //         closingHours:data[x].closingHours,
-  //         price:data[x].price,
-  //         date:data[x].date,
-  //         info:data[x].info,
-  //         distance:data[x].distance,
-  //         photoURL:data[x].photoURL,
-  //         clubKey:data[x].clubKey
-        
-  //       })
-       
-       
-  //       }
-  //       if(this.events.length!=0 && this.events!=null)
-  //       {
-  //         this.hasAEvent=true;
-  //       }
- 
-  //     console.log(this.events,"the event")
-  //    })
-  //    this.presentLoading();
-  //   })
-  
-  // }
   currentClub()
   {
-    // console.log(myclubs+"@@@@@@@@@@")
-    // this.runn.currentClub(myclubs)
+   
   }
   async presentLoading() {
     const loading = await this.loadingController.create({
@@ -168,4 +121,5 @@ getEES()
     // this._event.storeEventKey(eventKey)
    
   }
+ 
 }

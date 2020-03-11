@@ -78,16 +78,16 @@ export class AddClubPage implements OnInit {
     },
     );
   }
-
+info;
   addClub() {
     this.newName = this.clubForm.get('newName').value
     this.newAddress = this.clubForm.get('newAddress').value
     this.newOpeningHours = this.clubForm.get('newOpeningHours').value
 
     this.newClosingHours = this.clubForm.get('newClosingHours').value
+this.info='';
 
-
-    this.clubService.addClub(this.newName, this.newAddress, this.newOpeningHours, this.newClosingHours, this.urlPath)
+    this.clubService.addClub(this.newName, this.newAddress, this.newOpeningHours, this.newClosingHours, this.urlPath,this.info)
     // routerLink="tabs/add"
   }
 

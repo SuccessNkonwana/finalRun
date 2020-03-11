@@ -14,14 +14,14 @@
                           <div class="div1">
                               <div class="div3">
                                 <div class="back">
-                                    <ion-buttons slot="start">
-                                        <ion-icon routerLink="/tabs/add" color="light" name="arrow-back"
-                                            style="zoom:1.5"></ion-icon>
-                                    </ion-buttons>
-                                </div>
+                                  <ion-buttons slot="start">
+                                      <ion-icon routerLink="/tabs/add" color="light" name="arrow-back"
+                                          style="zoom:1.5"></ion-icon>
+                                  </ion-buttons>
+                              </div>
                                   <br>
                             
-                              <ion-label (click)="nameUpdate(eventData?.name)" id="name" text-center style = "text-transform:capitalize;">{{eventData?.name}}
+                              <ion-label (click)="nameUpdate(clubData?.name)" id="name" text-center style = "text-transform:capitalize;">{{clubData?.name}}
                                   <ion-icon name="create"></ion-icon>
                               </ion-label>
                               <br>
@@ -32,7 +32,7 @@
                                 </div>
 
                                 <div *ngIf="defaultpic ">
-                                    <img data-src="{{eventData?.photoURL}}">
+                                    <img data-src="{{clubData?.photoURL}}">
                                 </div>
 
                                   <div class="image-upload">
@@ -59,88 +59,62 @@
                               <div class="div2" >
 
 
-                                  <br><br><br>
-                                  <br><br><br>
+                                <br><br>
                                   <ion-list lines="none" class="ion-padding">
-                                       <!-- update address -->
-                                       <ion-item>
-
-                                        <ion-label >{{eventData?.address}}
-                                            
-                                        </ion-label>
-  
-                                        <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
-                                        
-                                        <ion-icon name="create" (click)="addressUpdate(myevents)"></ion-icon>
-                                    </ion-item>
-                                     <!-- update date -->
-                                     <ion-item>
-
-                                      <ion-label >{{eventData?.date}}
-                                          
-                                      </ion-label>
-
-                                      <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
-                                      
-                                      <ion-icon name="create" (click)="dateUpdate(myevents)"></ion-icon>
-                                  </ion-item>
+                                   
+                                  
                                      <!-- update open time -->
-                                     <ion-item>
+                                     <ion-item  id="openingHours" text-center style = "text-transform:capitalize;">
 
-                                      <ion-label >{{eventData?.openingHours}}
+                                      <ion-label >{{clubData?.openingHours}}
                                           
                                       </ion-label>
 
-                                      <ion-icon name="navigate"color="primary" slot="start"></ion-icon>
+                                      <ion-icon name="time"color="primary" slot="start"></ion-icon>
                                       
-                                      <ion-icon name="create" (click)="openUpdate(myevents)"></ion-icon>
+                                      <ion-icon name="create"(click)="openUpdate(clubData?.openingHours)"></ion-icon>
                                   </ion-item>
                                    <!-- update closing time -->
                                    
-                                   <ion-item>
+                                   <ion-item id="openingHours" text-center style = "text-transform:capitalize;">
 
-                                    <ion-label >{{eventData?.closingHours}}
+                                    <ion-label >{{clubData?.closingHours}}
                                         
                                     </ion-label>
 
                                     <ion-icon name="time" color="primary" slot="start"></ion-icon>
                                     
-                                    <ion-icon name="create" (click)="closeUpdate(myevents)"></ion-icon>
+                                    <ion-icon name="create" (click)="closeUpdate(clubData?.closingHours)"></ion-icon>
                                 </ion-item>
-                                    <!-- update km -->
-                                    <ion-item>
+                                 
+                                   <!-- update address -->
+                                   <ion-item id="address" text-center style = "text-transform:capitalize;">
 
-                                      <ion-label >{{eventData?.distance}} km
-                                          
-                                      </ion-label>
-
-                                      <ion-icon name="swap-horizontal" color="primary" slot="start"></ion-icon>
-                                      
-                                      <ion-icon name="create" (click)="kmUpdate(myevents)"></ion-icon>
-                                  </ion-item>
-                                   <!-- update price -->
-                                   <ion-item>
-
-                                    <ion-label >{{eventData?.price}}
+                                    <ion-label >{{clubData?.address}}
                                         
                                     </ion-label>
                                     
                                     <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
                                         
-                                    <ion-icon name="create"></ion-icon>
+                                    <ion-icon name="create" (click)="addressUpdate(clubData?.address)"></ion-icon>
 
                                    </ion-item>
                                     
                                     <br>
-<ion-item>
-                                    <ion-label >{{eventData?.info}}
+
+                                       <!-- update info -->
+                                   <ion-item id="info" text-center style = "text-transform:capitalize;">
+
+                                    <ion-label >{{clubData?.info}}
                                         
                                     </ion-label>
+                                    
+                                    <ion-icon name="information" color="primary" slot="start"></ion-icon>
+                                        
+                                    <ion-icon name="create" (click)="infoUpdate(clubData?.info)"></ion-icon>
 
-                                    <ion-icon name="swap-horizontal" color="primary" slot="start"></ion-icon>
-                                      
-                                    <ion-icon name="create"></ion-icon>
-                                </ion-item>
+                                   </ion-item>
+                       
                                         </ion-list>
 
 

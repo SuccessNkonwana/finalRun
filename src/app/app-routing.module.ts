@@ -48,7 +48,15 @@ const routes: Routes = [
     path: 'eventUpdate',
     loadChildren: () => import('./pages/event-update/event-update.module').then( m => m.EventUpdatePageModule)
   }
+
+
+  ,
+  {
+    path: 'clubUpdate',
+    loadChildren: () => import('./pages/club-update/club-update.module').then( m => m.ClubUpdatePageModule)
+  }
 ,
+
   {
     path: 'payments',
     loadChildren: () => import('./pages/payments/payments.module').then( m => m.PaymentsPageModule)
