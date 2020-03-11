@@ -55,6 +55,8 @@ slideOpts = {
          this.clubs.push({ 
            clubKey:  data[x].id,
            name:  data[x].name,
+           address:  data[x].address,
+           info:  data[x].info,
            openingHours:  data[x].openingHours,
            closingHours:  data[x].closingHours,
            userID:  data[x].userID,
@@ -100,5 +102,13 @@ slideOpts = {
     await loading.present();
     
   }
-
+  next(eventKey, i: number){
+    console.log(i);
+    console.log(this.clubs[i]);
+    this._club.eventData(this.clubs[i]);
+    
+    this.router.navigate(['/clubUpdate']);
+    // this._event.storeEventKey(eventKey)
+   
+  }
 }

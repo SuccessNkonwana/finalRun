@@ -191,7 +191,7 @@ export class RunningService {
   // }
 
   //add a club
-  addClub(newName, newAddress, newOpeningHours, newClosingHours, url) {
+  addClub(newName, newAddress, newOpeningHours, newClosingHours, url,info) {
 
     var styt = newOpeningHours.substring(11, 16);
     var etyt = newClosingHours.substring(11, 16);
@@ -205,7 +205,8 @@ export class RunningService {
       openingHours: styt,
       closingHours: etyt,
       userID: userID,
-      photoURL: url
+      photoURL: url,
+      info:info
 
     }).then((data) => {
 
