@@ -88,7 +88,361 @@ export class EventUpdatePage implements OnInit {
       let result = await alert.onDidDismiss();
   
     }
+
+    //update address
+    async addressUpdate(evnt) {
+
     
+      const alert = await this.altctrl.create({
+        subHeader: 'Add/Edit Name',
+        inputs: [
+          {
+            name: 'address',
+            type: 'text',
+            // value: this.theUser[0].displayName,
+            placeholder: 'displayAddress'
+          },
+  
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+            }
+          }, {
+            text: 'Ok',
+            handler: (inputData) => {
+              this.nn=inputData.address;
+  
+           
+              console.log(this.nn,evnt)
+              this.runn.updateEAddress(this.eventData.eventKey,this.nn).then(results=>{
+                 this.eventData = this._event.getEventData()
+                  console.log(this._event.getEventData());
+                  console.log(results);
+                  this.eventData.address = results;
+              }, error =>{
+                console.log(error);
+                
+              })
+              this.presentLoading();
+  
+  
+            }
+          }
+        ]
+      });
+      await alert.present();
+      let result = await alert.onDidDismiss();
+  
+    }
+
+    //update date
+
+    async dateUpdate(evnt) {
+
+    
+      const alert = await this.altctrl.create({
+        subHeader: 'Add/Edit Name',
+        inputs: [
+          {
+            name: 'date',
+            type: 'text',
+            // value: this.theUser[0].displayName,
+            placeholder: '01-12-2022'
+          },
+  
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+            }
+          }, {
+            text: 'Ok',
+            handler: (inputData) => {
+              this.nn=inputData.date;
+  
+           
+              console.log(this.nn,evnt)
+              this.runn.updateEDate(this.eventData.eventKey,this.nn).then(results=>{
+                 this.eventData = this._event.getEventData()
+                  console.log(this._event.getEventData());
+                  console.log(results);
+                  this.eventData.date = results;
+              }, error =>{
+                console.log(error);
+                
+              })
+              this.presentLoading();
+  
+  
+            }
+          }
+        ]
+      });
+      await alert.present();
+      let result = await alert.onDidDismiss();
+  
+    }
+
+    //update open
+    async openUpdate(evnt) {
+
+    
+      const alert = await this.altctrl.create({
+        subHeader: 'Add/Edit Name',
+        inputs: [
+          {
+            name: 'openingHours',
+            type: 'text',
+            // value: this.theUser[0].displayName,
+            placeholder: '00:00'
+          },
+  
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+            }
+          }, {
+            text: 'Ok',
+            handler: (inputData) => {
+              this.nn=inputData.openingHours;
+  
+           
+              console.log(this.nn,evnt)
+              this.runn.updateEOpen(this.eventData.eventKey,this.nn).then(results=>{
+                 this.eventData = this._event.getEventData()
+                  console.log(this._event.getEventData());
+                  console.log(results);
+                  this.eventData.openingHours = results;
+              }, error =>{
+                console.log(error);
+                
+              })
+              this.presentLoading();
+  
+  
+            }
+          }
+        ]
+      });
+      await alert.present();
+      let result = await alert.onDidDismiss();
+  
+    }
+    
+    //update close
+
+    async closeUpdate(evnt) {
+
+    
+      const alert = await this.altctrl.create({
+        subHeader: 'Add/Edit Name',
+        inputs: [
+          {
+            name: 'closingHours',
+            type: 'text',
+            // value: this.theUser[0].displayName,
+            placeholder: '00:00'
+          },
+  
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+            }
+          }, {
+            text: 'Ok',
+            handler: (inputData) => {
+              this.nn=inputData.closingHours;
+  
+           
+              console.log(this.nn,evnt)
+              this.runn.updateEClose(this.eventData.eventKey,this.nn).then(results=>{
+                 this.eventData = this._event.getEventData()
+                  console.log(this._event.getEventData());
+                  console.log(results);
+                  this.eventData.closingHours = results;
+              }, error =>{
+                console.log(error);
+                
+              })
+              this.presentLoading();
+  
+  
+            }
+          }
+        ]
+      });
+      await alert.present();
+      let result = await alert.onDidDismiss();
+  
+    }
+
+    //update price
+
+    async priceUpdate(evnt) {
+
+    
+      const alert = await this.altctrl.create({
+        subHeader: 'Add/Edit Name',
+        inputs: [
+          {
+            name: 'price',
+            type: 'text',
+            // value: this.theUser[0].displayName,
+            placeholder: '00,00'
+          },
+  
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+            }
+          }, {
+            text: 'Ok',
+            handler: (inputData) => {
+              this.nn=inputData.price;
+  
+           
+              console.log(this.nn,evnt)
+              this.runn.updateEPrice(this.eventData.eventKey,this.nn).then(results=>{
+                 this.eventData = this._event.getEventData()
+                  console.log(this._event.getEventData());
+                  console.log(results);
+                  this.eventData.price = results;
+              }, error =>{
+                console.log(error);
+                
+              })
+              this.presentLoading();
+  
+  
+            }
+          }
+        ]
+      });
+      await alert.present();
+      let result = await alert.onDidDismiss();
+  
+    }
+
+    //update distance
+
+    async distanceUpdate(evnt) {
+
+    
+      const alert = await this.altctrl.create({
+        subHeader: 'Add/Edit Name',
+        inputs: [
+          {
+            name: 'distance',
+            type: 'text',
+            // value: this.theUser[0].displayName,
+            placeholder: 'kilo meter'
+          },
+  
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+            }
+          }, {
+            text: 'Ok',
+            handler: (inputData) => {
+              this.nn=inputData.distance;
+  
+           
+              console.log(this.nn,evnt)
+              this.runn.updateEDistance(this.eventData.eventKey,this.nn).then(results=>{
+                 this.eventData = this._event.getEventData()
+                  console.log(this._event.getEventData());
+                  console.log(results);
+                  this.eventData.distance = results;
+              }, error =>{
+                console.log(error);
+                
+              })
+              this.presentLoading();
+  
+  
+            }
+          }
+        ]
+      });
+      await alert.present();
+      let result = await alert.onDidDismiss();
+  
+    }
+
+    //update info
+
+    async infoUpdate(evnt) {
+
+    
+      const alert = await this.altctrl.create({
+        subHeader: 'Add/Edit Name',
+        inputs: [
+          {
+            name: 'info',
+            type: 'text',
+            // value: this.theUser[0].displayName,
+            placeholder: 'description'
+          },
+  
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+            }
+          }, {
+            text: 'Ok',
+            handler: (inputData) => {
+              this.nn=inputData.info;
+  
+           
+              console.log(this.nn,evnt)
+              this.runn.updateEInfo(this.eventData.eventKey,this.nn).then(results=>{
+                 this.eventData = this._event.getEventData()
+                  console.log(this._event.getEventData());
+                  console.log(results);
+                  this.eventData.info = results;
+              }, error =>{
+                console.log(error);
+                
+              })
+              this.presentLoading();
+  
+  
+            }
+          }
+        ]
+      });
+      await alert.present();
+      let result = await alert.onDidDismiss();
+  
+    }
     async presentLoading() {
       const loading = await this.loadingController.create({
         message: 'loading...',

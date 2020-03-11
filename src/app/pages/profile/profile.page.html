@@ -13,40 +13,33 @@
                                     <br>
                                     <h2 id="heading" text-center>My Profile</h2>
 
-                                <ion-label (click)="nameUpdate(user)" id="name" text-center>{{user.displayName}}
-                                    <ion-icon name="create"></ion-icon>
-                                </ion-label>
-                                <br>
-                                <!-- class="x"> -->
+                                    <ion-label (click)="nameUpdate(user)" id="name" text-center>{{user.displayName}}
+                                        <ion-icon name="create"></ion-icon>
+                                    </ion-label>
+                                    <br>
+                                    <!-- class="x"> -->
 
-                                <div class="profile-image">
-                                    <div *ngIf="!defaultpic">
-                                        <img src="\assets\images\profile-user.png" class="x">
-                                    </div>
+                                    <div class="profile-image">
+                                        <div *ngIf="!defaultpic">
+                                            <img src="\assets\images\profile-user.png" class="x">
+                                        </div>
 
-                                    <div *ngIf="defaultpic">
-                                        <img data-src="{{user.photoURL}}">
-                                    </div>
+                                        <div *ngIf="defaultpic">
+                                            <img data-src="{{user.photoURL}}">
+                                        </div>
 
 
-                                    <div class="image-upload">
-                                        <ion-fab horizontal="center" vertical="top" class="fab">
-                                            <ion-fab-button color="primary" size="small">
-                                                <label for="file-input2">
+                                        <div class="image-upload">
+                                            <ion-fab horizontal="center" vertical="top" class="fab">
+                                                <ion-fab-button color="primary" size="small">
+                                                    <label for="file-input2">
                                                 <ion-icon name="camera" class="input"> </ion-icon>
                                             </label>
-                                            </ion-fab-button>
-
-
-
-                                            <!-- <ion-fab-list side="end">
-                                                <ion-fab-button color="primary" >
-                                                    <label for="file-input2">
-                                                                    <ion-icon name="document" class="document"> </ion-icon> 
-                                                            </label>
                                                 </ion-fab-button>
-                                            </ion-fab-list> -->
-                                        </ion-fab>
+
+
+
+                                            </ion-fab>
 
 
                                             <input id="file-input2" class="input" type="file" (change)="uploadProfilePic($event)" />
@@ -76,11 +69,11 @@
 
                                             <ion-item>
 
-                                            <ion-label>
-                                                <Nav>{{user.Email}}</Nav>
-                                            </ion-label>
+                                                <ion-label>
+                                                    <Nav>{{user.Email}}</Nav>
+                                                </ion-label>
 
-                                                
+
 
                                                 <ion-icon name="navigate" color="primary" slot="start"></ion-icon>
 
@@ -89,9 +82,9 @@
                                             <br>
                                             <ion-item>
 
-                                            <ion-label>
-                                                <Nav>{{user.Age}}</Nav>
-                                            </ion-label>
+                                                <ion-label>
+                                                    <Nav>{{user.Age}}</Nav>
+                                                </ion-label>
 
                                                 <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
                                                 <!-- <ion-icon name="create" color="dark" slot="end" (click)=" AddressUpdate(user)"></ion-icon> -->

@@ -1,8 +1,8 @@
 <!--  *ngFor="let myevents of events" -->
 <ion-content class="theBody">
 
-  <body>
-    <div class="backbutton">
+    <body>
+        <!-- <div class="backbutton">
         <ion-fab horizontal="start" slot="start">
 
             <ion-fab-button color="primary" routerLink="/club-profile">
@@ -12,162 +12,172 @@
         </ion-fab>
 
 
-    </div>
+    </div> -->
+        <ion-buttons slot="start">
+            <ion-icon routerLink="/club-profile" color="light" name="arrow-back" style="zoom:1.5"></ion-icon>
+        </ion-buttons>
 
-      <div>
-          <div id="bg">
-              <ion-grid>
-                  <ion-row color="primary" justify-content-center>
-                      <br>
-                      <ion-col align-self-center size-md="12" size-lg="11" size-xs="12">
+        <div>
+            <div id="bg">
+                <ion-grid>
+                    <ion-row color="primary" justify-content-center>
+                        <br>
+                        <ion-col align-self-center size-md="12" size-lg="11" size-xs="12">
 
-                          <div class="div1">
-                              <div class="div3">
-                                  <br>
-                            
-                              <ion-label (click)="nameUpdate(eventData?.name)" id="name" text-center>{{eventData?.name}}
-                                  <ion-icon name="create"></ion-icon>
-                              </ion-label>
-                              <br>
+                            <div class="div1">
+                                <div class="div3">
+                                    <br>
 
-                              <div class="profile-image">
-                                <div *ngIf="!defaultpic">
-                                    <img src="\assets\images\profile-user.png" class="x">
-                                </div>
+                                    <ion-label id="name" text-center>{{eventData?.name}}
+                                    </ion-label>
+                                    <ion-icon class="ic" name="create" (click)="nameUpdate(eventData?.name)"></ion-icon>
 
-                                <div *ngIf="defaultpic ">
-                                    <img data-src="{{eventData?.photoURL}}">
-                                </div>
+                                    <br>
 
-                                  <div class="image-upload">
-                                      <ion-fab horizontal="center" vertical="top" class="fab">
-                                          <ion-fab-button color="primary" size="small">
-                                            <label for="file-input2">
+                                    <div class="profile-image">
+                                        <div *ngIf="!defaultpic">
+                                            <img src="\assets\images\profile-user.png" class="x">
+                                        </div>
+
+                                        <div *ngIf="defaultpic ">
+                                            <img data-src="{{eventData?.photoURL}}">
+                                        </div>
+
+                                        <div class="image-upload">
+                                            <ion-fab horizontal="center" vertical="top" class="fab">
+                                                <ion-fab-button color="primary" size="small">
+                                                    <label for="file-input2">
                                               <ion-icon name="camera" class="input"> </ion-icon>
                                             </label>
-                                          </ion-fab-button>
+                                                </ion-fab-button>
 
 
 
-                                          <!-- <ion-fab-list side="end">
+                                                <!-- <ion-fab-list side="end">
                                               <ion-fab-button color="primary" >
                                                   <label for="file-input2">
                                                                   <ion-icon name="document" class="document"> </ion-icon> 
                                                           </label>
                                               </ion-fab-button>
                                           </ion-fab-list> -->
-                                      </ion-fab>
+                                            </ion-fab>
 
 
-                                      <input id="file-input2" class="input" type="file" (change)="uploadProfilePic($event)" />
-                                  </div>
-                                  <div class="spinner" *ngIf="((uploadPercent | async ) >0 && (uploadPercent | async ) !='') || (progress>0 && progress !='')">
-                                      <ion-spinner name="crescent" color="success"></ion-spinner>
-                                  </div>
-                              </div>
-                              <br>
-                            
-                            <br>
-                              <div class="div2" >
-
-
-                                  <br><br><br>
-                                  <br><br><br>
-                                  <ion-list lines="none" class="ion-padding">
-                                       <!-- update address -->
-                                       <ion-item>
-
-                                        <ion-label >{{eventData?.address}}
-                                            
-                                        </ion-label>
-  
-                                        <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
-                                        
-                                        <ion-icon name="create" (click)="addressUpdate(myevents)"></ion-icon>
-                                    </ion-item>
-                                     <!-- update date -->
-                                     <ion-item>
-
-                                      <ion-label >{{eventData?.date}}
-                                          
-                                      </ion-label>
-
-                                      <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
-                                      
-                                      <ion-icon name="create" (click)="dateUpdate(myevents)"></ion-icon>
-                                  </ion-item>
-                                     <!-- update open time -->
-                                     <ion-item>
-
-                                      <ion-label >{{eventData?.openingHours}}
-                                          
-                                      </ion-label>
-
-                                      <ion-icon name="navigate"color="primary" slot="start"></ion-icon>
-                                      
-                                      <ion-icon name="create" (click)="openUpdate(myevents)"></ion-icon>
-                                  </ion-item>
-                                   <!-- update closing time -->
-                                   
-                                   <ion-item>
-
-                                    <ion-label >{{eventData?.closingHours}}
-                                        
-                                    </ion-label>
-
-                                    <ion-icon name="time" color="primary" slot="start"></ion-icon>
-                                    
-                                    <ion-icon name="create" (click)="closeUpdate(myevents)"></ion-icon>
-                                </ion-item>
-                                    <!-- update km -->
-                                    <ion-item>
-
-                                      <ion-label >{{eventData?.distance}} km
-                                          
-                                      </ion-label>
-
-                                      <ion-icon name="swap-horizontal" color="primary" slot="start"></ion-icon>
-                                      
-                                      <ion-icon name="create" (click)="kmUpdate(myevents)"></ion-icon>
-                                  </ion-item>
-                                   <!-- update price -->
-                                   <ion-item>
-
-                                    <ion-label >{{eventData?.price}}
-                                        
-                                    </ion-label>
-                                    
-                                    <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
-                                        
-                                    <ion-icon name="create"></ion-icon>
-
-                                   </ion-item>
-                                    
+                                            <input id="file-input2" class="input" type="file" (change)="uploadProfilePic($event)" />
+                                        </div>
+                                        <div class="spinner" *ngIf="((uploadPercent | async ) >0 && (uploadPercent | async ) !='') || (progress>0 && progress !='')">
+                                            <ion-spinner name="crescent" color="success"></ion-spinner>
+                                        </div>
+                                    </div>
                                     <br>
-<ion-item>
-                                    <ion-label >{{eventData?.info}}
-                                        
-                                    </ion-label>
 
-                                    <ion-icon name="swap-horizontal" color="primary" slot="start"></ion-icon>
-                                      
-                                    <ion-icon name="create"></ion-icon>
-                                </ion-item>
+                                    <br>
+                                    <div class="div2">
+
+
+                                        <br><br><br>
+                                        <br><br><br>
+                                        <ion-list lines="none" class="ion-padding">
+                                            <!-- update address -->
+                                            <ion-item>
+
+                                                <ion-label>{{eventData?.address}}
+
+                                                </ion-label>
+
+                                                <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
+
+                                                <ion-icon name="create" (click)="addressUpdate(eventData?.address)"></ion-icon>
+                                            </ion-item>
+                                            <br>
+                                            <!-- update date -->
+                                            <ion-item>
+
+                                                <ion-label>{{eventData?.date}}
+
+                                                </ion-label>
+
+                                                <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
+
+                                                <ion-icon name="create" (click)="dateUpdate(eventData?.date)"></ion-icon>
+                                            </ion-item>
+                                            <br>
+                                            <!-- update open time -->
+                                            <ion-item>
+
+                                                <ion-label>{{eventData?.openingHours}}
+
+                                                </ion-label>
+
+                                                <ion-icon name="time" color="primary" slot="start"></ion-icon>
+
+                                                <ion-icon name="create" (click)="openUpdate(eventData?.openingHours)"></ion-icon>
+                                            </ion-item>
+                                            <br>
+                                            <!-- update closing time -->
+
+                                            <ion-item>
+
+                                                <ion-label>{{eventData?.closingHours}}
+
+                                                </ion-label>
+
+                                                <ion-icon name="time" color="primary" slot="start"></ion-icon>
+
+                                                <ion-icon name="create" (click)="closeUpdate(eventData?.closingHours)"></ion-icon>
+                                            </ion-item>
+                                            <br>
+                                            <!-- update km -->
+                                            <ion-item>
+
+                                                <ion-label>{{eventData?.distance}} km
+
+                                                </ion-label>
+
+                                                <ion-icon name="speedometer" color="primary" slot="start"></ion-icon>
+
+                                                <ion-icon name="create" (click)="kiloUpdate(eventData?.distance)"></ion-icon>
+                                            </ion-item>
+                                            <br>
+                                            <!-- update price -->
+                                            <ion-item>
+
+                                                <ion-label>{{eventData?.price}}
+
+                                                </ion-label>
+
+                                                <ion-icon name="cash" color="primary" slot="start"></ion-icon>
+
+                                                <ion-icon name="create" (click)="priceUpdate(eventData?.price)"></ion-icon>
+
+                                            </ion-item>
+
+                                            <br>
+                                            <ion-item>
+                                                <ion-label>{{eventData?.info}}
+
+                                                </ion-label>
+
+                                                <ion-icon name="information-circle" color="primary" slot="start"></ion-icon>
+
+                                                <ion-icon name="create" (click)="nfopdate(eventData?.info)"></ion-icon>
+                                            </ion-item>
+
                                         </ion-list>
 
 
                                     </div>
-                                    </div>
-                                    </div>
-                                </ion-col>
-
-                            </ion-row>
-                        </ion-grid>
-        
-        
                                 </div>
                             </div>
-                        
+                        </ion-col>
+
+                    </ion-row>
+                </ion-grid>
+
+
+            </div>
+        </div>
+
     </body>
 
 </ion-content>
