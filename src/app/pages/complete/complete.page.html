@@ -15,14 +15,20 @@
         <div class="div2">
 
             <div class="div1">
-                <!-- <div id="bg"> -->
-
                 <ion-grid>
                     <ion-row color="primary" justify-content-center>
 
                         <ion-col align-self-center size-md="11" size-lg="11" size-xs="12">
 
+                            <ion-card>
+                                <div class="ttt">
+                                    <h5>Thank you!!!!</h5>
+                                    <h5>You have succesfully paid the deposit for event name: {{name}}
+                                    </h5>
+                                    <h5>You can now proceed</h5>
 
+                                </div>
+                            </ion-card>
 
                             <img src="\assets\images\done.gif" alt="Avatar" class="imgC">
 
@@ -38,9 +44,11 @@
 
                     </ion-row>
                 </ion-grid>
-                <!-- </div> -->
+                <br>
                 <ion-col>
-                    <ion-button class="shape" shape="round" routerLink="/tabs/events" expand="full" color="light">Done</ion-button>
+                    <!-- <ion-button class="shape" shape="round" routerLink="/tabs/events" expand="full" color="light">Done</ion-button> -->
+                    <ion-button style="width: 90%;" shape="round" expand="full" color="light" routerLink="/tabs/events">Done</ion-button>
+                    <!-- <ion-button style="width: 90%;" shape="round" expand="full" color="primary" (click)="login()">Login</ion-button> -->
                 </ion-col>
             </div>
 

@@ -921,6 +921,7 @@ let clubKey = this._club.getClubKey();
       console.error("Error updating document: ", error);
     });
   }
+ 
 
   getEvents() {
     this.events = []
@@ -1019,6 +1020,115 @@ let clubKey = this._club.getClubKey();
     }).catch(function (error) {
       console.error("Error updating document: ", error);
     });
+  }
+   updateEAddress(userID, editAddress) {
+
+    this.dbfire.collection("events").doc(userID).update({ address: editAddress }).then((data) => {
+
+      console.log("Document name successfully updated!", data);
+    }).catch(function (error) {
+      console.error("Error updating document: ", error);
+    });
+  }
+  updateEDate(userID, editDate) {
+
+    this.dbfire.collection("events").doc(userID).update({ date: editDate }).then((data) => {
+
+      console.log("Document name successfully updated!", data);
+    }).catch(function (error) {
+      console.error("Error updating document: ", error);
+    });
+  }
+  updateEOpen(userID, editOpeningHours) {
+
+    this.dbfire.collection("events").doc(userID).update({ openingHours: editOpeningHours}).then((data) => {
+
+      console.log("Document name successfully updated!", data);
+    }).catch(function (error) {
+      console.error("Error updating document: ", error);
+    });
+  }
+
+  updateEClose(userID, editClosingHours) {
+
+    this.dbfire.collection("events").doc(userID).update({ closingHours: editClosingHours}).then((data) => {
+
+      console.log("Document name successfully updated!", data);
+    }).catch(function (error) {
+      console.error("Error updating document: ", error);
+    });
+  }
+
+  updateEDistance(userID, editDistance) {
+
+    this.dbfire.collection("events").doc(userID).update({ distance: editDistance}).then((data) => {
+
+      console.log("Document name successfully updated!", data);
+    }).catch(function (error) {
+      console.error("Error updating document: ", error);
+    });
+  }
+
+  updateEPrice(userID, editPrice) {
+
+    this.dbfire.collection("events").doc(userID).update({ price: editPrice}).then((data) => {
+
+      console.log("Document name successfully updated!", data);
+    }).catch(function (error) {
+      console.error("Error updating document: ", error);
+    });
+  }
+
+  updateEInfo(userID, editInfo) {
+
+    this.dbfire.collection("events").doc(userID).update({ info: editInfo}).then((data) => {
+
+      console.log("Document name successfully updated!", data);
+    }).catch(function (error) {
+      console.error("Error updating document: ", error);
+    });
+  }
+
+  done() {
+    let user = this.readCurrentSession()
+    let userID = user.uid
+    // console.log(tickets,price,"=================",userID);
+  
+    // console.log(total,"total =================",userID);
+    ///method three
+    
+    return new Promise((resolve, reject) => {
+      this.booking(this.currentBook).then(data => {
+        console.log("the data>>>>>>>>>>>", data);
+        console.log(data[0].myevents[0].myevents[0].myevents, "the selected one vele", data[0].myevents[0].myevents[0].myevents.eventKey);
+
+        this.dbfire.collection("bookedEvents").add({
+          eventKey:  data[0].myevents[0].myevents[0].myevents.eventKey,
+          name: data[0].myevents[0].myevents[0].myevents.name,
+          date: data[0].myevents[0].myevents[0].myevents.date,
+        
+          mame: name,
+          approved: false,
+          deposited: false
+
+        }).then((data) => {
+            
+          resolve(data) 
+
+         
+          console.log(data)
+          this.bookingID=data.id;
+
+        }).catch((error) => {
+          console.log(error)
+        })
+
+      })
+     
+    })
+ 
+
+
   }
 
 }

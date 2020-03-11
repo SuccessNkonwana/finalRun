@@ -29,7 +29,7 @@ export class BookEventPage implements OnInit {
   hasAEvent=true;
 events=[];
 
-  constructor(public navCtrl:NavController,private clubService:RunningService, public route:Router,private location: Location) {
+  constructor(public navCtrl:NavController,public runn: RunningService,private clubService:RunningService, public route:Router,private location: Location) {
     this.events= []; 
     this.bookE();
    
@@ -115,4 +115,5 @@ BookEvent(tickets,price)
     // console.log(tickets,price,"=================",this.tickets,this.price);
 
   }
+
 }

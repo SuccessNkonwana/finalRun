@@ -18,7 +18,8 @@
                                 </ion-buttons>
 
                                 <ion-card class="card1">
-                                    <br><br><br>
+                                    <br><br>
+                                    <!-- <h5>{{names}}</h5> -->
                                     <ion-label class="ref">Deposit reference code</ion-label>
                                     <div class="cd">
                                         <h1>{{theName}}</h1>
@@ -32,6 +33,7 @@
 
                         <div class="div2" *ngFor="let item of myAccount">
                             <br>
+
                             <h1 class="blac">Make your deposit</h1>
 
                             <h6>Sign in to your bank, create a recipient and make &nbsp; a deposit using this information</h6>
@@ -52,7 +54,7 @@
                             <P>Use payment reference: {{theName}} </P>
                             <br>
                             <ion-col>
-                                <ion-button (click)="updateDeposit()" routerLink="/complete" style="width: 90%;" shape="round" expand="full" color="primary">Paid the deposit</ion-button>
+                                <ion-button (click)="done()" style="width: 90%;" shape="round" expand="full" color="primary">Paid the deposit</ion-button>
 
                             </ion-col>
                             <br><br>

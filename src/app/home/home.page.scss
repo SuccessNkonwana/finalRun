@@ -53,12 +53,23 @@
         background-position: center;
         opacity: 0.8;
     }
+    .tb {
+        margin-top: 1px;
+        margin-bottom: 5px;
+        background: rgba(15, 13, 13, 0.438);
+    }
     .cName {
         //   margin-top: 20px;
         // margin-bottom: 50px;
         position: center;
         zoom: 1.5;
         // background-color:rgba(126, 126, 126, 0.336);
+        // .sc-ion-card-md-h,
+        // .sc-ion-card-ios-h {
+        //     margin-top: 5px;
+        //     margin-bottom: 5px;
+        //     --background: black;
+        // }
     }
     .iconSize {
         // margin-top: 50px;
@@ -137,7 +148,6 @@
         background-position: center;
         color: white !important;
     }
-
     .sadname {
         zoom: 1.5;
         left: 20px;
@@ -153,7 +163,8 @@
         // margin-left: 0px;
         // background-color: #11C2D4;
         font-size: 13px;
-        text-align: center;
+        // text-align: center;
+        margin-right: 70px;
     }
     .grid {
         text-align: center;

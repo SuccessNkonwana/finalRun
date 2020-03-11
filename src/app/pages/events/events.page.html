@@ -65,12 +65,13 @@
                 <ion-item class="item" *ngIf="hasAEvent">
                     <ion-card>
                         <img class="ecardimg" src="{{myevents.photoURL}}">
-                        <ion-card-header>
+                        <ion-card-content>
+                            <!-- <ion-card-header> -->
                             <ion-card-subtitle>
                                 <ion-icon name="pin"></ion-icon> {{myevents.address}} </ion-card-subtitle>
                             <ion-card-title>{{myevents.name}}</ion-card-title>
-                        </ion-card-header>
-                        <ion-card-content>
+                            <!-- </ion-card-header> -->
+                            <!-- <ion-card-content> -->
                             <ion-icon name="alarm"></ion-icon> Opening Hours: {{myevents.openingHours}} <br/>
                             <ion-icon name="alarm"></ion-icon> Closing Hours: {{myevents.closingHours}} <br/>
                             <ion-icon name="cash"></ion-icon> Price: R{{myevents.price}} <br/>

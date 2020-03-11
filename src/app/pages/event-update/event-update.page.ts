@@ -98,6 +98,16 @@ export class EventUpdatePage implements OnInit {
       // this.getdata()
       loading.dismiss()
     }
+
+    async filepresentLoading() {
+      const loading = await this.loadingController.create({
+        message: 'loading...',
+        duration: 15000
+      });
+      await loading.present();
+      // this. getdata()
+      loading.dismiss()
+    }
   ngOnInit() {
     this.eventData=this._event.getEventData();
     console.log(this.eventData,"the event key")

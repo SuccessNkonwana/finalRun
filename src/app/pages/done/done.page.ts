@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RunningService } from 'src/app/services/running.service';
 import { NavController } from '@ionic/angular';
 
@@ -9,9 +9,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./done.page.scss'],
 })
 export class DonePage implements OnInit {
+  names;
  
   theAccount={
     name:'',
+   
     account:0,
     bank:'',
     branch:0,
@@ -25,9 +27,11 @@ export class DonePage implements OnInit {
   email: any;
   myAccount;
   name:string;
-  eventKey
+  eventKey1;
+  eventKey;
   theName:string;
-  constructor(private route:ActivatedRoute, public runn:RunningService,private navCtrl: NavController,) 
+  constructor(private route:ActivatedRoute,     private router: Router,
+    private clubService:RunningService, public runn:RunningService,private navCtrl: NavController,) 
   {
    
      this.runn.getAccount().subscribe(data=>{
@@ -64,6 +68,9 @@ tickets;price;total;info
       console.log(data);
       this.tickets=data.tickets;
       this.price=data.price;
+      this.name=data.name;
+      this.names=data.name;
+      this.eventKey1= data.eventKey;
       this.eventKey=data.eventKey;
       this.info=data.info;
       this.total=this.tickets*this.price;
@@ -73,11 +80,22 @@ tickets;price;total;info
       console.log(this.total);
     })
    this.user();
+   console.log(this.price);
+   console.log(this.tickets);
+   console.log(this.total);
+   console.log(this.names);
+   
   }
-  updateDeposit()
-  {
+  // updateDeposit()
+  // {
+  //   this.runn.updateDeposit();
+  // }
+  
+  done(){
+    this.clubService.done();
+    this.router.navigate(['/complete'],{queryParams:{names:this.names,total:this.total,eventKey:this.eventKey1}})
 
-    this.runn.updateDeposit();
   }
+
 
 }
