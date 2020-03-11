@@ -59,22 +59,21 @@
                               <div class="div2" >
 
 
-                                  <br><br><br>
-                                  <br><br><br>
+                                 <br><br>
                                   <ion-list lines="none" class="ion-padding">
                                        <!-- update address -->
                                        <ion-item>
 
-                                        <ion-label >{{eventData?.address}}
+                                        <ion-label  id="address" text-center style = "text-transform:capitalize;">{{eventData?.address}}
                                             
                                         </ion-label>
   
                                         <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
                                         
-                                        <ion-icon name="create" (click)="addressUpdate(myevents)"></ion-icon>
+                                        <ion-icon name="create" (click)="addressUpdate(eventData?.address)"></ion-icon>
                                     </ion-item>
                                      <!-- update date -->
-                                     <ion-item>
+                                     <ion-item id="date" text-center style = "text-transform:capitalize;">
 
                                       <ion-label >{{eventData?.date}}
                                           
@@ -82,10 +81,10 @@
 
                                       <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
                                       
-                                      <ion-icon name="create" (click)="dateUpdate(myevents)"></ion-icon>
-                                  </ion-item>
+                                      <ion-icon name="create" (click)="dateUpdate(eventData?.date)"></ion-icon>
+                                  </ion-item >
                                      <!-- update open time -->
-                                     <ion-item>
+                                     <ion-item  id="openingHours" text-center style = "text-transform:capitalize;">
 
                                       <ion-label >{{eventData?.openingHours}}
                                           
@@ -93,11 +92,11 @@
 
                                       <ion-icon name="navigate"color="primary" slot="start"></ion-icon>
                                       
-                                      <ion-icon name="create" (click)="openUpdate(myevents)"></ion-icon>
+                                      <ion-icon name="create" (click)="openUpdate(eventData?.openingHours)"></ion-icon>
                                   </ion-item>
                                    <!-- update closing time -->
                                    
-                                   <ion-item>
+                                   <ion-item id="closingHours" text-center style = "text-transform:capitalize;">
 
                                     <ion-label >{{eventData?.closingHours}}
                                         
@@ -105,10 +104,10 @@
 
                                     <ion-icon name="time" color="primary" slot="start"></ion-icon>
                                     
-                                    <ion-icon name="create" (click)="closeUpdate(myevents)"></ion-icon>
+                                    <ion-icon name="create" (click)="closeUpdate(eventData?.closingHours)"></ion-icon>
                                 </ion-item>
                                     <!-- update km -->
-                                    <ion-item>
+                                    <ion-item id="distance" text-center style = "text-transform:capitalize;">
 
                                       <ion-label >{{eventData?.distance}} km
                                           
@@ -116,10 +115,10 @@
 
                                       <ion-icon name="swap-horizontal" color="primary" slot="start"></ion-icon>
                                       
-                                      <ion-icon name="create" (click)="kmUpdate(myevents)"></ion-icon>
+                                      <ion-icon name="create" (click)="kmUpdate(eventData?.distance)"></ion-icon>
                                   </ion-item>
                                    <!-- update price -->
-                                   <ion-item>
+                                   <ion-item id="price" text-center style = "text-transform:capitalize;">
 
                                     <ion-label >{{eventData?.price}}
                                         
@@ -127,19 +126,19 @@
                                     
                                     <ion-icon name="calendar" color="primary" slot="start"></ion-icon>
                                         
-                                    <ion-icon name="create"></ion-icon>
+                                    <ion-icon name="create" (click)="priceUpdate(eventData?.price)"></ion-icon>
 
                                    </ion-item>
                                     
-                                    <br>
-<ion-item>
+                                
+                        <ion-item id="info" text-center style = "text-transform:capitalize;">
                                     <ion-label >{{eventData?.info}}
                                         
                                     </ion-label>
 
                                     <ion-icon name="swap-horizontal" color="primary" slot="start"></ion-icon>
                                       
-                                    <ion-icon name="create"></ion-icon>
+                                    <ion-icon name="create"(click)="infoUpdate(eventData?.info)"></ion-icon>
                                 </ion-item>
                                         </ion-list>
 
