@@ -17,21 +17,31 @@
     
 
   <!-- </div> -->
+
   <div class="div1" *ngFor="let evn of events">
       <div class="div3">
+       
+        
+<!--  
           <ion-list>
               <ion-item lines="none">
-                  <h1> {{evn.name}}</h1>
+                  <h1> {{evn?.name}}</h1>
+              </ion-item>
+             
+              <ion-item lines="none">
+                  <ion-icon name="map"></ion-icon>&nbsp; {{evn?.address}}
+            </ion-item>
+              <ion-item lines="none">
+                  <ion-icon name="alarm"></ion-icon> &nbsp; {{evn?.openingHours}} To {{evn?.closingHours}}
               </ion-item>
               <ion-item lines="none">
-                  <ion-icon name="map"></ion-icon>&nbsp; {{evn.address}}
-
-
-              </ion-item>
-              <ion-item lines="none">
-                  <ion-icon name="alarm"></ion-icon> &nbsp; {{evn.openingHours}} To {{evn.closingHours}}
-              </ion-item>
-          </ion-list>
+                <ion-icon name="information" color="primary"></ion-icon> &nbsp; {{evn?.info}}
+            </ion-item>
+            <ion-item lines="none">
+                <ion-icon name="map"></ion-icon>&nbsp; {{evn?.address}}
+          </ion-item>
+          </ion-list> -->
+          <h1>Name</h1>
           <br>
         
       </div>

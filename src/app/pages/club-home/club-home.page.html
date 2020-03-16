@@ -1,7 +1,7 @@
 <ion-content class="body">
 
 
-    <div class="div2" *ngFor="let myclub of club" [ngStyle]="{'background-image':'url('+myclub.photoURL+')'}">
+    <div class="div2"[ngStyle]="{'background-image':'url('+clubData?.photoURL+')'}">
         <!-- <img src="/assets/images/rep.jpg">      -->
         <div class="backbutton">
             <ion-fab horizontal="start" slot="start">
@@ -17,26 +17,29 @@
 
 
     </div>
-    <div class="div1" *ngFor="let myclub of club">
+    <div class="div1">
         <div class="div3">
             <ion-list>
                 <ion-item lines="none">
-                    <h1> {{myclub.name}}</h1>
+                    <h1> {{clubData.name}}</h1>
                 </ion-item>
                 <br>
                 <ion-item lines="none">
-                    <ion-icon name="navigate" color="primary"></ion-icon>&nbsp; {{myclub.address}}
+                    <ion-icon name="navigate" color="primary"></ion-icon>&nbsp; {{clubData?.address}}
 
 
                 </ion-item>
                 <br>
                 <ion-item lines="none">
-                    <ion-icon name="alarm" color="primary"></ion-icon> &nbsp; {{myclub.openingHours}} To {{myclub.closingHours}}
+                    <ion-icon name="alarm" color="primary"></ion-icon> &nbsp; {{clubData?.openingHours}} To {{clubData?.closingHours}}
+                </ion-item>
+                <ion-item lines="none">
+                    <ion-icon name="information" color="primary"></ion-icon> &nbsp; {{clubData?.info}}
                 </ion-item>
             </ion-list>
             <br>
             <!-- <ion-button style="width: 90%;" shape="round" expand="full" color="primary" (click)="login()">Login</ion-button> -->
-            <ion-button *ngIf="!saved" (click)="getAClubsEvents(myclub)" style="width: 90%;" shape="round" expand="full" color="primary">View Events</ion-button>
+            <ion-button *ngIf="!saved" (click)="getAClubsEvents()" style="width: 90%;" shape="round" expand="full" color="primary">View Events</ion-button>
             <ion-button *ngIf="saved" (click)="clearEvents()" style="width: 90%;" shape="round" expand="full" color="primary">
                 <ion-icon name="close"></ion-icon>
             </ion-button>

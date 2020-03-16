@@ -96,4 +96,16 @@ export class EventupdateService {
         console.error("Error updating document: ", error);
       });
     }
+
+      // closing picture
+      async updatepic(eventID, editpic) {
+
+        return await this.dbfire.collection("events").doc(eventID).update({ photoURL: editpic }).then((data) => {
+    
+          return editpic;
+          console.log("Document name successfully updated!", data);
+        }).catch(function (error) {
+          console.error("Error updating document: ", error);
+        });
+      }
 }

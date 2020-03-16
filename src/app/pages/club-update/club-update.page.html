@@ -47,7 +47,7 @@
                                       </ion-fab>
 
 
-                                      <input id="file-input2" class="input" type="file" (change)="uploadProfilePic($event)" />
+                                      <input id="file-input2" class="input" type="file" (change)="picUpdate($event)" />
                                   </div>
                                   <div class="spinner" *ngIf="((uploadPercent | async ) >0 && (uploadPercent | async ) !='') || (progress>0 && progress !='')">
                                       <ion-spinner name="crescent" color="success"></ion-spinner>

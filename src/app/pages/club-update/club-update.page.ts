@@ -4,7 +4,9 @@ import { LoadingController, AlertController, NavController } from '@ionic/angula
 import { RunningService } from 'src/app/services/running.service';
 import { StoreClubKeyService } from 'src/app/services/store-club-key.service';
 import { ClubupdateService } from 'src/app/services/clubupdate.service';
-
+import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
 @Component({
   selector: 'app-club-update',
   templateUrl: './club-update.page.html',
@@ -27,7 +29,7 @@ clubData
   defaultpic=true
   private uid: string= null;
   constructor(public router:Router, private route:ActivatedRoute, private _club: StoreClubKeyService,
-      public updateClub:ClubupdateService,public loadingController: LoadingController,
+    public afs:AngularFirestore, private storage: AngularFireStorage, public updateClub:ClubupdateService,public loadingController: LoadingController,
     public runn:RunningService,  private altctrl: AlertController,
     private navCtrl: NavController) {
       this.clubs= []; 
@@ -291,7 +293,57 @@ clubData
       });
       await alert.present();
       let result = await alert.onDidDismiss();
-  
+      
+    }
+    uniqkey;fileRef;task;uploadPercent; photoURL:'';
+    // update pictire
+    picUpdate(evnt){
+     
+
+      this.file = evnt.target.files[0];
+    
+   this.uniqkey ='club' +  Math.random().toString(36).substring(2);
+   const filePath = this.uniqkey;
+   this.fileRef = this.storage.ref(filePath);
+  //  this.task = this.storage.upload(filePath, this.file);
+  this.task = this.storage.upload("clubPictures/"+ filePath +"/", this.file);
+   this.uploadPercent = this.task.percentageChanges();
+   this.task.then(results => {
+
+    return results.ref.getDownloadURL().then(url => {
+      console.log(url);
+
+      this.photoURL = url
+      this.afs.doc('clubs/' + this.thisevnt).update({
+                photoURL: url
+              })
+      this.uploadPercent = null;
+      console.log(this.photoURL, "club profile picture");
+
+      this.updateClub.updatepic(this.thisevnt,url).then(results=>{
+        this.clubData = this._club.getEventData()
+        console.log(this._club.getEventData);
+        console.log(results);
+        this.clubData.photoURL = results;
+      },
+      error =>{
+        console.log(error);
+        
+      }
+      )
+    
+    }
+    
+    )
+
+  });
+ 
+      
+    }
+    file(filePath: any, file: any): any {
+      throw new Error("Method not implemented.");
+      //
+      // this.presentLoading();
     }
     async presentLoading() {
       const loading = await this.loadingController.create({
@@ -312,7 +364,7 @@ clubData
       // this. getdata()
       loading.dismiss()
     }
-    key;pic;data;
+    key;pic;data;thisevnt
   ngOnInit() {
 
     this.pic=this._club.getClubPic();
@@ -324,6 +376,8 @@ clubData
     console.log("club info",this.data)
     this.clubData=this._club.getEventData()
     console.log(this.clubData,"the event key")
+    this.thisevnt=this.clubData.clubKey;  
+    console.log(this.thisevnt,"the xclub")
    
   }
  
