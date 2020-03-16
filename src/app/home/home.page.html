@@ -62,7 +62,7 @@
 
                                                     <ion-slide *ngFor="let event of tickets">
 
-                                                        <ion-card class="booked" routerLink="/eventHome" (click)="booking(event)">
+                                                        <ion-card class="booked" routerLink="/eventHome" (click)="booking(event)" style="text-transform:capitalize;">
                                                             <br>
                                                             <ion-card-title class="wordsCards">
                                                                 <ion-icon name="information-circle"></ion-icon> {{event.name}}</ion-card-title> <br/>
@@ -97,7 +97,7 @@
                                                 <ion-slides class="slick-slide" startAutoplay [options]="slideOpts">
                                                     <ion-slide *ngFor="let clubss of clubs">
                                                         <ion-card class="slideCards" [ngStyle]="{'background-image':'url('+clubss.photoURL+')'}" routerLink="/club-home" (click)="chooseClub(clubss)">
-                                                            <ion-card-content class="tb">
+                                                            <ion-card-content class="tb" style="text-transform:capitalize;">
                                                                 <h2 class="cName">{{clubss.name}}</h2>
                                                             </ion-card-content>
                                                         </ion-card>

@@ -13,7 +13,7 @@
                                     <br>
                                     <h2 id="heading" text-center>My Profile</h2>
 
-                                    <ion-label (click)="nameUpdate(user)" id="name" text-center>{{user.displayName}}
+                                    <ion-label (click)="nameUpdate(user)" id="name" text-center>{{user.name}}
                                         <ion-icon name="create"></ion-icon>
                                     </ion-label>
                                     <br>
@@ -59,7 +59,7 @@
                                             <ion-item detail-push>
 
                                                 <ion-label>
-                                                    {{user.Email}}
+                                                    {{user.email}}
                                                 </ion-label>
 
                                                 <ion-icon name="mail" color="primary" slot="start"></ion-icon>
@@ -70,7 +70,7 @@
                                             <ion-item>
 
                                                 <ion-label>
-                                                    <Nav>{{user.Email}}</Nav>
+                                                    <Nav>{{user.address}}</Nav>
                                                 </ion-label>
 
 
@@ -83,7 +83,7 @@
                                             <ion-item>
 
                                                 <ion-label>
-                                                    <Nav>{{user.Age}}</Nav>
+                                                    <Nav>{{user.age}}</Nav>
                                                 </ion-label>
 
                                                 <ion-icon name="calendar" color="primary" slot="start"></ion-icon>

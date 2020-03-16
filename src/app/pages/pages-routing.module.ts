@@ -59,7 +59,11 @@ const routes: Routes = [
   {
     path: 'clubUpdate',
     loadChildren: () => import('./club-update/club-update.module').then( m => m.ClubUpdatePageModule)
+  },  {
+    path: 'more-popover',
+    loadChildren: () => import('./more-popover/more-popover.module').then( m => m.MorePopoverPageModule)
   }
+
 
 
 

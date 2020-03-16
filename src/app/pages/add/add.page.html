@@ -57,15 +57,20 @@
 
                                         <ion-list lines="none" *ngFor="let myclubs of clubs;let i = index">
                                             <ion-item routerDirection="forward" class="item" *ngIf="hasAClub" (click)="getAClubsEvents(myclubs.clubKey,myclubs.photoURL)">
+                                                <!-- (click)="getAClubsEvents(myclubs.clubKey,myclubs.photoURL)" -->
 
                                                 <ion-avatar> <img src="{{myclubs.photoURL}}"></ion-avatar> &nbsp;
-                                                <p class="clubname"> {{myclubs.name}}</p>
-                                                <!-- <i class="fas fa-ellipsis-v" slot="end"></i> -->
-                                                <!-- <ion-icon class="fas fa-ellipsis-v"></ion-icon> -->
-                                                <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+                                                <p class="clubname" style="text-transform:capitalize;"> {{myclubs.name}}</p>
+
+                                                <!-- <ion-icon slot="end" name="more"></ion-icon> -->
+
+                                                <!-- <ion-tab-button slot="end" (click)="more($event)">
+                                                    <ion-icon name="more"></ion-icon>
+                                                    <ion-label>More</ion-label>
+                                                </ion-tab-button> -->
 
                                             </ion-item>
-                                            <ion-icon name="create" slot="end" (click)="next(myclubs.clubKey,i)"></ion-icon>
+                                            <!-- <ion-icon name="create" slot="end" (click)="next(myclubs.clubKey,i)"></ion-icon> -->
 
                                         </ion-list>
                                     </div>
@@ -91,3 +96,8 @@
 
 
 </ion-content>
+
+<!-- <button ion-item>
+    <ion-icon name="cafe" item-start></ion-icon>
+    Cafe
+  </button> -->

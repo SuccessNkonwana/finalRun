@@ -27,11 +27,11 @@
                             <div class="div1">
                                 <div class="div3">
                                     <br>
-
-                                    <ion-label id="name" text-center>{{eventData?.name}}
+                                    <!-- <ion-item color="transparent"> -->
+                                    <ion-label id="name" text-center (click)="nameUpdate(eventData?.name)" style="text-transform:capitalize;">{{eventData?.name}}
+                                        <ion-icon name="create"></ion-icon>
                                     </ion-label>
-                                    <ion-icon class="ic" name="create" (click)="nameUpdate(eventData?.name)"></ion-icon>
-
+                                    <!-- </ion-item> -->
                                     <br>
 
                                     <div class="profile-image">
@@ -79,7 +79,7 @@
                                         <br><br><br>
                                         <ion-list lines="none" class="ion-padding">
                                             <!-- update address -->
-                                            <ion-item>
+                                            <ion-item style="text-transform:capitalize;">
 
                                                 <ion-label>{{eventData?.address}}
 
@@ -91,7 +91,7 @@
                                             </ion-item>
                                             <br>
                                             <!-- update date -->
-                                            <ion-item>
+                                            <ion-item style="text-transform:capitalize;">
 
                                                 <ion-label>{{eventData?.date}}
 
@@ -103,7 +103,7 @@
                                             </ion-item>
                                             <br>
                                             <!-- update open time -->
-                                            <ion-item>
+                                            <ion-item style="text-transform:capitalize;">
 
                                                 <ion-label>{{eventData?.openingHours}}
 
@@ -116,7 +116,7 @@
                                             <br>
                                             <!-- update closing time -->
 
-                                            <ion-item>
+                                            <ion-item style="text-transform:capitalize;">
 
                                                 <ion-label>{{eventData?.closingHours}}
 
@@ -128,7 +128,7 @@
                                             </ion-item>
                                             <br>
                                             <!-- update km -->
-                                            <ion-item>
+                                            <ion-item style="text-transform:capitalize;">
 
                                                 <ion-label>{{eventData?.distance}} km
 
@@ -140,7 +140,7 @@
                                             </ion-item>
                                             <br>
                                             <!-- update price -->
-                                            <ion-item>
+                                            <ion-item style="text-transform:capitalize;">
 
                                                 <ion-label>{{eventData?.price}}
 
@@ -153,7 +153,7 @@
                                             </ion-item>
 
                                             <br>
-                                            <ion-item>
+                                            <ion-item style="text-transform:capitalize;">
                                                 <ion-label>{{eventData?.info}}
 
                                                 </ion-label>

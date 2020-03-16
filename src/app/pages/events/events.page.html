@@ -62,7 +62,7 @@
 
         <div class="eventCard">
             <ion-list lines="none" *ngFor="let myevents of events">
-                <ion-item class="item" *ngIf="hasAEvent">
+                <ion-item class="item" *ngIf="hasAEvent" style="text-transform:capitalize;">
                     <ion-card>
                         <img class="ecardimg" src="{{myevents.photoURL}}">
                         <ion-card-content>
