@@ -220,7 +220,7 @@
         .profile-image {
             position: absolute;
             z-index: 5;
-            top: 11%;
+            top: 14%;
             left: 6%;
         }
         .image-upload>input {
@@ -255,6 +255,9 @@
         width: 20px;
         height: 20px;
     }
+    ion-label {
+        text-align: start;
+    }
     .div3 {
         // -webkit-text-fill-color: aliceblue;
         // width: 100%;
@@ -266,6 +269,5 @@
     }
     .backbutton {
         padding-top: 20px;
-       
     }
 }

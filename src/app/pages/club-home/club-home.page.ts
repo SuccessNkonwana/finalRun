@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RunningService } from 'src/app/services/running.service';
 import { StoreClubKeyService } from 'src/app/services/store-club-key.service';
 import { StoreEventKeyService } from 'src/app/services/store-event-key.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-club-home',
@@ -14,7 +15,7 @@ saved=false;
 events=[]
 hasAEvent=false
 eventData;
-  constructor( private _event: StoreEventKeyService,private _club: StoreClubKeyService,public runn: RunningService) { 
+  constructor(private route:Router, private _event: StoreEventKeyService,private _club: StoreClubKeyService,public runn: RunningService) { 
     this.club=[] 
    
    
@@ -55,9 +56,20 @@ x;
       
   }
  
-  booking(myevents){
-    this.runn.booking(myevents)
-   }
+  booking(myevents, i: number){
+  
+  
+    console.log(i);
+    console.log(this.events[i]);
+    this._event.eventData(this.events[i]);
+ 
+    this.route.navigate(['/book-event']);
+    
+   
+  }
+
+
+ 
   clearEvents()
   {
 

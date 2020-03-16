@@ -15,6 +15,9 @@
         <div class="div2">
 
             <div class="div1">
+                <ion-buttons slot="start">
+                    <ion-icon color="light" routerLink="/done" name="arrow-back" style="zoom:1.5"></ion-icon>
+                </ion-buttons>
                 <ion-grid>
                     <ion-row color="primary" justify-content-center>
 
@@ -23,7 +26,7 @@
                             <ion-card>
                                 <div class="ttt">
                                     <h5>Thank you!!!!</h5>
-                                    <h5>You have succesfully paid the deposit for event name: {{name}}
+                                    <h5>You have succesfully paid the deposit for event name: <b style="text-transform:capitalize;">{{name}}</b>
                                     </h5>
                                     <h5>You can now proceed</h5>
 

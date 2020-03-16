@@ -61,7 +61,7 @@
 
 
                                     <div class="div2">
-                                        <br><br><br><br>
+                                        <br><br><br><br><br>
                                         <!-- club name -->
                                         <ion-label position="floating" class="lbl">Club name</ion-label>
                                         <ion-item id="item">
@@ -76,6 +76,7 @@
                                         <div class="error" *ngIf="clubForm.get('newName').hasError('maxlength') && clubForm.get('newName').touched">
                                             Maximum 30 characters
                                         </div>
+                                        <br>
                                         <!-- address search -->
                                         <ion-label position="floating">Address</ion-label>
                                         <ion-item id="item">
@@ -97,6 +98,7 @@
                                         <div class="error" *ngIf="clubForm.get('newAddress').hasError('required') && clubForm.get('newAddress').touched">
                                             Please input your Address
                                         </div>
+                                        <br>
                                         <!--  -->
                                         <ion-grid>
                                             <ion-row>

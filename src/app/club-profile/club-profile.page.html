@@ -9,22 +9,20 @@
                             <div class="div3">
                                 <div class="back">
                                     <ion-buttons slot="start">
-                                        <ion-icon routerLink="/tabs/add" color="light" name="arrow-back"
-                                            style="zoom:1.5"></ion-icon>
+                                        <ion-icon routerLink="/tabs/add" color="light" name="arrow-back" style="zoom:1.5"></ion-icon>
                                     </ion-buttons>
                                 </div>
                                 <!-- div 1 content should come here -->
                                 <div class="title">
-                                   <h1>{{clubData?.name}}</h1>
-                                   
-                                         <ion-icon name="create" slot="end" (click)="next()"></ion-icon>
+                                    <h1>{{clubData?.name}}</h1>
+
+                                    <ion-icon name="create" slot="end" (click)="next()"></ion-icon>
                                 </div>
+                                <br>
                                 <div class="div2">
                                     <!-- div 2 content should come here -->
                                     <ion-item lines="none">
-                                        <ion-button (click)="currentClub()" style="width: 90%;" shape="round"
-                                            expand="full" routerLink="/add-event" class="actButtons" color="primary"
-                                            shape="round">
+                                        <ion-button (click)="currentClub()" style="width: 90%;" shape="round" expand="full" routerLink="/add-event" class="actButtons" color="primary" shape="round">
                                             <ion-icon name="add-circle"></ion-icon> Create Event
                                         </ion-button>
                                     </ion-item>
@@ -32,26 +30,23 @@
                                         <h1>
                                             Events
                                         </h1>
-                                        <ion-list lines="none" *ngFor="let myevents of events; let i = index">
-                                             <!-- <ion-icon name="create" slot="end" (click)="next(myclubs.clubKey,i)"></ion-icon> -->
+                                        <div *ngFor="let myevents of events; let i = index">
+                                            <!-- <ion-icon name="create" slot="end" (click)="next(myclubs.clubKey,i)"></ion-icon> -->
                                             <div *ngIf="key== myevents.clubKey">
                                                 <!-- {{myevents | json}} -->
-                                                <ion-item class="eventCard" class="item" >
+                                                <div class="eventCard" class="item" style="text-transform:capitalize;">
                                                     <ion-card>
                                                         <img class="ecardimg" src="{{myevents.photoURL}}" />
-                                                        <ion-card-header>
+                                                        <ion-card-content>
+
                                                             <ion-card-subtitle>
                                                                 <ion-icon name="pin"></ion-icon> {{myevents.address}}
                                                             </ion-card-subtitle>
-                                                            <ion-card-title>{{myevents.name}}</ion-card-title>
-                                                        </ion-card-header>
-                                                        <ion-card-content>
-                                                            <ion-icon name="alarm"></ion-icon> Opening Hours:
-                                                            {{myevents.openingHours}} <br />
-                                                            <ion-icon name="alarm"></ion-icon> Closing Hours:
-                                                            {{myevents.closingHours}} <br />
-                                                            <ion-icon name="alarm"></ion-icon> Distance:
-                                                            {{myevents.distance}} km<br />
+                                                            <ion-card-title style="margin-bottom:10px">{{myevents.name}}</ion-card-title>
+
+                                                            <ion-icon name="alarm"></ion-icon> Opening Hours: {{myevents.openingHours}} <br />
+                                                            <ion-icon name="alarm"></ion-icon> Closing Hours: {{myevents.closingHours}} <br />
+                                                            <ion-icon name="alarm"></ion-icon> Distance: {{myevents.distance}} km<br />
                                                             <ion-icon name="cash"></ion-icon> Price: R{{myevents.price}}
                                                             <br />
                                                         </ion-card-content>
@@ -59,15 +54,15 @@
                                                             <ion-icon name="create" slot="end"></ion-icon>
                                                         </ion-item>
                                                     </ion-card>
-                                                </ion-item>
+                                                </div>
                                             </div>
-                                        </ion-list>
+                                        </div>
                                     </div>
-                                    <div class="noClubs" *ngIf="!hasAEvent">
+                                    <!-- <div class="noClubs" *ngIf="!hasAEvent">
                                         <br />
                                         <p text-center color="medium" class="sadname"> No Events Are Scheduled ! </p>
                                         <br />
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

@@ -32,7 +32,7 @@ export class HomePage implements OnInit {
     }
   }
   slideOptsT = {
-    slidesPerView: 2.5,
+    slidesPerView: 1.8,
     coverflowEffect: {
       rotate: 50,
       stretch: 0,

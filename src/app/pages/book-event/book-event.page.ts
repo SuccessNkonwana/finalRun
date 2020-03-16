@@ -4,6 +4,7 @@ import { RunningService } from 'src/app/services/running.service';
 import { Directive, HostListener } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StoreEventKeyService } from 'src/app/services/store-event-key.service';
 // import { eventNames } from 'cluster';
 
 @Component({
@@ -29,14 +30,15 @@ export class BookEventPage implements OnInit {
   hasAEvent=true;
 events=[];
 
-  constructor(public navCtrl:NavController,public runn: RunningService,private clubService:RunningService, public route:Router,private location: Location) {
+  constructor(private _event: StoreEventKeyService,public navCtrl:NavController,public runn: RunningService,private clubService:RunningService, public route:Router,private location: Location) {
     this.events= []; 
-    this.bookE();
+    // this.bookE();
    
    }
-
+   eventData;
   ngOnInit() {
-    
+    this.eventData=this._event.getEventData();
+    console.log(this.eventData,"the event key")
   }
   backClicked() {
     this.location.back();

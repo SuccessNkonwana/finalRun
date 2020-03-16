@@ -144,7 +144,7 @@ onSelect(address:string,i){
   {
     return new Promise((resolve, reject) => {
       this.runn.getUser().subscribe(data =>{
-     
+        console.log( data);
         console.log( data.length);
         for( let x = 0; x < data.length; x++ )
         {
@@ -154,25 +154,26 @@ onSelect(address:string,i){
          
         this.theUser.push({ 
           userKey:  data[x].userKey,
-          name:  data[x].name,
+          name:  data[x].displayName,
           address:  data[x].address,
-          age:  data[x].age,
-          email:  data[x].email,
+          age:  data[x].Age,
+          email:  data[x].Email,
           gender:  data[x].gender,
           photoURL:data[x].photoURL
         }
           
           )
+
+          console.log(this.theUser,"the LAST ONE vele" )
+          if(this.theUser[0].photoURL==null)
+          {
+             this.defaultpic=false;
+           
+          }
         }
-        this.aname =this.theUser[0].name
-        this.email=this.theUser[0].Email
-        this.photoURL=this.theUser[0].photoURL
-      console.log(this.theUser,"the LAST ONE vele" )
-           if(this.theUser[0].photoURL==null)
-           {
-              this.defaultpic=false;
-            
-           }
+        
+        
+     
      })
     }
     )

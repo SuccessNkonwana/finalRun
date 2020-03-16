@@ -15,6 +15,7 @@ import { TabsPage } from './pages/tabs/tabs.page';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { MorePopoverPageModule } from './pages/more-popover/more-popover.module';
 const firebaseConfig = {
   apiKey: "AIzaSyAv85O55WcgVEXgWUTr5GVqspI__ywOSn4",
     authDomain: "runningclub-46ede.firebaseapp.com",
@@ -39,6 +40,7 @@ const firebaseConfig = {
     AngularFirestoreModule,
     HttpClientModule,
     AngularFireStorageModule,
+    MorePopoverPageModule,
     AngularFireModule.initializeApp(firebaseConfig),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RunningService } from 'src/app/services/running.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { StoreEventKeyService } from 'src/app/services/store-event-key.service';
 
 @Component({
   selector: 'app-events',
@@ -17,7 +18,7 @@ export class EventsPage implements OnInit {
     autoplay:true
    };
  
-  constructor(public runn: RunningService,public route:Router, public loadingController: LoadingController) {
+  constructor( private _event: StoreEventKeyService,public runn: RunningService,public route:Router, public loadingController: LoadingController) {
 
     this.events= []; 
     this.getdata()
@@ -61,16 +62,19 @@ export class EventsPage implements OnInit {
     loading.dismiss()
   }
   
-   book()
+  booking(myevents, i: number)
    {
 
+    console.log(i);
+    console.log(this.events[i]);
+    this._event.eventData(this.events[i]);
+ 
     this.route.navigate(['/book-event']);
+    
  
    
    }
-   booking(myevents){
-    this.runn.booking(myevents)
-   }
+ 
   ngOnInit() {
   }
 

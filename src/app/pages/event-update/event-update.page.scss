@@ -58,6 +58,9 @@
             color: $textcolor;
             text-align: start;
         }
+        .ic {
+            color: white;
+        }
         h2 {
             $fontsize: 25px;
             font-size: $fontsize;
@@ -111,6 +114,12 @@
             border-top-left-radius: 20%;
             padding-left: 15px;
             padding-right: 15px;
+        }
+        ion-label {
+            color: black;
+        }
+        ion-item {
+            color: black;
         }
         .back {
             padding: 5%;
@@ -266,6 +275,5 @@
     }
     .backbutton {
         padding-top: 20px;
-       
     }
 }

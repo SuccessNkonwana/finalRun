@@ -75,7 +75,7 @@ export class EventUpdatePage implements OnInit {
                    this.eventData = this._event.getEventData()
                     console.log(this._event.getEventData);
                     console.log(results);
-                    this.eventData.name = results;
+                    this.eventData.displayName = results;
                 }, error =>{
                   console.log(error);
                   

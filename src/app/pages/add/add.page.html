@@ -25,40 +25,52 @@
                                 <br>
 
 
-
-
-
-
                                 <div class="div2">
+                                    <br>
                                     <ion-item lines="none">
                                         <ion-button routerLink="/add-club" style="width: 90%;" color="primary" shape="round" class="actButtons" expand="full">
 
-                                            <ion-icon name="add-circle"></ion-icon> Create Club</ion-button>
+                                            <ion-icon name="add-circle"></ion-icon>Create Club</ion-button>
 
                                     </ion-item>
+                                    <br>
 
 
-                                    <!-- <h1 class="subtitle">
-                                        Clubs
-                                    </h1> -->
+
+                                    <!-- <ion-item>
+
+                                        <ion-label>{{eventData?.price}}
+
+                                        </ion-label>
+
+                                        <ion-icon name="cash" color="primary" slot="start"></ion-icon>
+
+                                        <ion-icon name="create" (click)="priceUpdate(eventData?.price)"></ion-icon>
+
+                                    </ion-item> -->
 
                                     <div class="subtitle">
-                                        <h1>
+                                        <!-- <h1>
                                             Clubs
-                                        </h1>
+                                        </h1> -->
 
 
                                         <ion-list lines="none" *ngFor="let myclubs of clubs;let i = index">
                                             <ion-item routerDirection="forward" class="item" *ngIf="hasAClub" (click)="getAClubsEvents(myclubs.clubKey,i)">
 
                                                 <ion-avatar> <img src="{{myclubs.photoURL}}"></ion-avatar> &nbsp;
-                                                <p class="clubname"> {{myclubs.name}}</p>
-                                               <!-- <i class="fas fa-ellipsis-v" slot="end"></i> -->
-                                               <!-- <ion-icon class="fas fa-ellipsis-v"></ion-icon> -->
-                                               <ion-icon name="ellipsis-vertical-outline" ></ion-icon>
+                                                <p class="clubname" style="text-transform:capitalize;"> {{myclubs.name}}</p>
+
+                                                <!-- <ion-icon slot="end" name="more"></ion-icon> -->
+
+                                                <!-- <ion-tab-button slot="end" (click)="more($event)">
+                                                    <ion-icon name="more"></ion-icon>
+                                                    <ion-label>More</ion-label>
+                                                </ion-tab-button> -->
+
                                             </ion-item>
                                             <!-- <ion-icon name="create" slot="end" (click)="next(myclubs.clubKey,i)"></ion-icon> -->
-                                    
+
                                         </ion-list>
                                     </div>
                                     <div class="noClubs" *ngIf="!hasAClub">
@@ -83,3 +95,8 @@
 
 
 </ion-content>
+
+<!-- <button ion-item>
+    <ion-icon name="cafe" item-start></ion-icon>
+    Cafe
+  </button> -->

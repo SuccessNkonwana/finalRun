@@ -1,7 +1,7 @@
 <ion-content class="body">
 
 
-    <div class="div2"[ngStyle]="{'background-image':'url('+clubData?.photoURL+')'}">
+    <div class="div2" [ngStyle]="{'background-image':'url('+clubData?.photoURL+')'}">
         <!-- <img src="/assets/images/rep.jpg">      -->
         <div class="backbutton">
             <ion-fab horizontal="start" slot="start">
@@ -34,7 +34,7 @@
                     <ion-icon name="alarm" color="primary"></ion-icon> &nbsp; {{clubData?.openingHours}} To {{clubData?.closingHours}}
                 </ion-item>
                 <ion-item lines="none">
-                    <ion-icon name="information" color="primary"></ion-icon> &nbsp; {{clubData?.info}}
+                    <ion-icon name="information-circle" color="primary"></ion-icon> &nbsp; {{clubData?.info}}
                 </ion-item>
             </ion-list>
             <br>
@@ -46,8 +46,8 @@
         </div>
 
         <div *ngIf="saved">
-            <div *ngFor="let ev of events" class="div3">
-                <ion-item routerLink="/book-event" (click)="booking(ev)">
+            <div *ngFor="let ev of events;let i = index" class="div3">
+                <ion-item  (click)="booking(ev.eventKey,i)">
                     <ion-icon name="calendar"></ion-icon> &nbsp; Event Name: {{ev.name}}<br/> Date: {{ev.date}}
 
                 </ion-item>

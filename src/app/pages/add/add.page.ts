@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RunningService } from 'src/app/services/running.service';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, PopoverController } from '@ionic/angular';
 import { StoreClubKeyService } from 'src/app/services/store-club-key.service';
+import { MorePopoverPage } from '../more-popover/more-popover.page';
 
 @Component({
   selector: 'app-add',
@@ -29,7 +30,7 @@ slideOpts = {
     }
   constructor(public runn: RunningService, private router: Router, 
     public loadingController: LoadingController,
-    private _club: StoreClubKeyService, private _pic: StoreClubKeyService) {
+    private _club: StoreClubKeyService, private _pic: StoreClubKeyService,public popoverController: PopoverController) {
 
     this.clubs=[]      
     
@@ -111,7 +112,21 @@ slideOpts = {
     this._club.eventData(this.clubs[i]);
     
     this.router.navigate(['/clubUpdate']);
-    // this._event.storeEventKey(eventKey)
+   
    
   }
+
+  //popOver
+//   async more(ev: any ){
+   
+//     const popover= await this.popoverController.create({
+//       component: MorePopoverPage,
+//       event: ev,
+ 
+//     });
+//     return await popover.present();
+  
+// }
+
+  
 }
