@@ -132,19 +132,18 @@ export class RunningService {
     // return this.todos
   }
   //tickets
-  async rtTickets() {
-    let result: any
-    await this.getTickets().then(data => {
-      result = data
+  rtTickets() {
+    let uid = this.auth.auth.currentUser.uid;
+    return this.afs.collection("bookedEvents", ref => ref.where('userID', '==', uid))
+      .snapshotChanges().pipe(
+        map(actions => actions.map(a => {
+          const data = a.payload.doc.data() as any;
+          const id = a.payload.doc.id;
+          console.log("booked events" + id ,"the booked ones:",data)
+          return { id, ...data };
 
-      console.log(result.length);
-    })
-    console.log(result);
-    //this.LandMarks()
-    return result
+        })))
 
-    // console.log(this.todos,"hh")
-    // return this.todos
   }
   //tickets
   async rtEvents() {
@@ -592,76 +591,7 @@ let clubKey = this._club.getClubKey();
     let userID = user.uid
 
   }
-  
-  ///get tickets
-  getTickets() {
-    this.tickets = []
-    this.ticketsTemp = []
 
-
-
-    let user = this.readCurrentSession()
-    let userID = user.uid
-    console.log(userID)
-    return new Promise((resolve, reject) => {
-      this.dbfire.collection("bookedEvents").get().then((querySnapshot) => {
-
-        querySnapshot.forEach((doc) => {
-
-          // ans.push(doc.data())
-          console.log(doc.id, '=>', doc.data());
-          this.ticketsTemp.push({
-            bookingID: doc.id,
-            eventKey: doc.data().eventKey,
-            name: doc.data().name,
-            address: doc.data().address,
-            openingHours: doc.data().openingHours,
-            closingHours: doc.data().closingHours,
-            userID: doc.data().userID,
-            //  clubID:  doc.data().clubID,
-            clubKey: doc.data().clubID,
-            price: doc.data().price,
-            distance: doc.data().distance,
-            date: doc.data().date,
-            info: doc.data().info,
-            //  {{element.data.TimeStamp.toDate() | date:'dd-MM-yyy'}}
-            tickets: doc.data().tickets,
-            total: doc.data().total,
-            approved: doc.data().approved,
-            deposited: doc.data().deposited
-
-          })
-          console.log(this.ticketsTemp, "ticket array")
-
-
-
-          console.log(this.ticketsTemp.length, "all bookings array SIZE")
-
-
-        });
-        for (let t = 0; t < this.ticketsTemp.length; t++) {
-          console.log(this.ticketsTemp, "tick %")
-          if (this.ticketsTemp[t].userID === userID && this.ticketsTemp[t].approved == true) {
-            console.log(this.ticketsTemp[t].userID, "USER at x", userID, " logged in user")
-            console.log(this.ticketsTemp[t].approved, "approved at t")
-
-
-            console.log(this.ticketsTemp[t].approved, "approved at t")
-            this.tickets.push(this.ticketsTemp[t])
-            console.log(this.tickets, "+++++++++++")
-          }
-
-        }
-
-
-        console.log(this.tickets, "+++++++++++")
-        resolve(this.tickets)
-      });
-
-    });
-
-
-  }
 
 
   ///get tickets
@@ -951,6 +881,21 @@ let clubKey = this._club.getClubKey();
 
     )
   }
+  // getclub(){
+  //   return this.afs.collection<any>('clubs').snapshotChanges().pipe(
+  //     map(actions => actions.map(a => {
+  //       const data = a.payload.doc.data() as any;
+  //       const id = a.payload.doc.id;
+       
+  //       console.log(data)
+  //       return { id, ...data };
+
+  //     }
+
+  //     ))
+
+  //   )
+  // }
   updateDeposit() {
     let dep = true
     console.log(this.bookingID, "oooooooo")

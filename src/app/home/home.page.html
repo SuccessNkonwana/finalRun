@@ -60,8 +60,7 @@
                                             <div *ngIf="isSlide">
                                                 <ion-slides startAutoplay [options]="slideOptsT">
 
-                                                    <ion-slide *ngFor="let event of tickets">
-
+                                                    <ion-slide *ngFor="let event of tickets" >
                                                         <ion-card class="booked" routerLink="/eventHome" (click)="booking(event)">
                                                             <br>
                                                             <ion-card-title class="wordsCards">

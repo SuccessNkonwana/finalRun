@@ -30,7 +30,7 @@ export class CompletePage implements OnInit {
  
  
  
-   console.log(this.name);
+  //  console.log(this.names);
    
   }
 }
