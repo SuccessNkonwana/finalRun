@@ -60,7 +60,7 @@
 
 
                                         <div padding>
-                                            <br><br><br>
+                                            <br><br><br><br>
                                             <ion-label position="floating" class="lbl">Event name</ion-label>
                                             <ion-item id="item">
 
@@ -75,6 +75,7 @@
                                             <div class="error" *ngIf="eventForm.get('newName').hasError('maxlength') && eventForm.get('newName').touched">
                                                 Maximum 20 characters
                                             </div>
+                                            <br>
                                             <!-- address search -->
                                             <ion-label position="floating">Address</ion-label>
                                             <ion-item id="item">
@@ -96,6 +97,7 @@
                                             <div class="error" *ngIf="eventForm.get('newAddress').hasError('required') && eventForm.get('newAddress').touched">
                                                 Please input your Address
                                             </div>
+                                            <br>
                                             <ion-label position="floating">Distance (KM)</ion-label>
                                             <ion-item id="item">
 
@@ -111,7 +113,7 @@
                                                 Maximum 6 numbers
                                             </div>
                                             <!-- event date -->
-
+                                            <br>
                                             <ion-label position="floating">Date: MM DD YY</ion-label>
                                             <ion-item id="item">
 
@@ -124,7 +126,7 @@
                                             </div>
 
 
-
+                                            <br>
                                             <!-- event times -->
                                             <ion-grid>
                                                 <ion-row>
@@ -154,6 +156,7 @@
                                                     </ion-col>
                                                 </ion-row>
                                             </ion-grid>
+                                            <br>
                                             <!-- price -->
                                             <ion-label position="floating">Price(R)</ion-label>
                                             <ion-item id="item">
@@ -170,7 +173,7 @@
                                             <!-- price -->
 
 
-                                            <br><br>
+                                            <br>
                                             <ion-col>
                                                 <ion-button style="width: 90%;" shape="round" expand="full" color="primary" (click)="addEvent()">Add</ion-button>
                                             </ion-col>

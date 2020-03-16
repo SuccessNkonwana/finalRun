@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RunningService } from '../services/running.service';
 import { LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
+import { StoreClubKeyService } from '../services/store-club-key.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -40,7 +41,7 @@ export class HomePage implements OnInit {
       slideShadows: true,
     }
   }
-  constructor(private datePipe: DatePipe, private router: Router, public runn: RunningService, public loadingController: LoadingController, ) {
+  constructor(  private _club: StoreClubKeyService,private datePipe: DatePipe, private router: Router, public runn: RunningService, public loadingController: LoadingController, ) {
     this.tickets = []
     this.clubs = []
     this.theUser = []
@@ -97,17 +98,19 @@ export class HomePage implements OnInit {
   }
   
   getdata() {
-    this.clubs = []
+    
     this.runn.getclub().subscribe(data=>{
+      this.clubs = []
       console.log(data.length);
           for (let x = 0; x < data.length; x++) {
             console.log(x);
   
             this.clubs.push({
-              clubKey: data[x].clubKey,
+              clubKey: data[x].id,
               name: data[x].name,
               openingHours: data[x].openingHours,
               address: data[x].address,
+              info: data[x].info,
               closingHours: data[x].closingHours,
               userID: data[x].userID,
               photoURL: data[x].photoURL
@@ -138,7 +141,7 @@ export class HomePage implements OnInit {
 
     this.runn.rtb().subscribe(data => {
 
-      this.BE;
+      this.BE=[];
       //  console.log("the info", data);
       console.log(data.length);
       for (let x = 0; x < data.length; x++) {
@@ -173,10 +176,10 @@ export class HomePage implements OnInit {
 
       }
 
-      console.log("today=>", this.y)
-      console.log("past events", this.past)
-      console.log("total tickets=>", this.sum)
-      console.log("total distance=>", this.kilos)
+      // console.log("today=>", this.y)
+      // console.log("past events", this.past)
+      // console.log("total tickets=>", this.sum)
+      // console.log("total distance=>", this.kilos)
 
     })
 
@@ -234,6 +237,7 @@ export class HomePage implements OnInit {
   myEvents; closingHours; openingHours; address; date; name
   getBooked() {
     this.runn.getBooked().subscribe(data => {
+      this.myEvents =[];
       this.myEvents = data.map(e => {
         return {
           key: e.payload.doc.id,
@@ -288,11 +292,29 @@ export class HomePage implements OnInit {
 
     loading.dismiss()
   }
-  chooseClub(myclubs) {
-
-    this.runn.chooseClub(myclubs);
-  }
+  
   booking(myevents) {
     this.runn.booking(myevents)
+  }
+
+  getAClubsEvents(clubKey,clubPic){
+  
+    this.router.navigate(['/club-profile']);
+    this._club.storeClubKey(clubKey);
+    // this._pic.storeClubPic(clubPic)
+
+    // this.router.navigateByUrl('club-profile');
+
+
+  }
+ 
+  next(eventKey, i: number){
+    console.log(i);
+    console.log(this.clubs[i]);
+    this._club.eventData(this.clubs[i]);
+    
+    this.router.navigate(['/club-home']);
+    // this._event.storeEventKey(eventKey)
+   
   }
 }

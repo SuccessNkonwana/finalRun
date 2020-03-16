@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RunningService } from 'src/app/services/running.service';
+import { StoreClubKeyService } from 'src/app/services/store-club-key.service';
+import { StoreEventKeyService } from 'src/app/services/store-event-key.service';
 
 @Component({
   selector: 'app-club-home',
@@ -11,94 +13,48 @@ club=[]
 saved=false;
 events=[]
 hasAEvent=false
-  constructor(public runn: RunningService) { 
+eventData;
+  constructor( private _event: StoreEventKeyService,private _club: StoreClubKeyService,public runn: RunningService) { 
     this.club=[] 
-    this.events=[]
-    this. getdata()
+   
+   
     
   }
-
+  key;pic;data;clubData
   ngOnInit() {
-  }
-
-  getdata()
-  {
-    this.club=[]  
-    return new Promise((resolve, reject) => {
-      this.club=[]  
-      this.runn.rtAClubs().then(data =>{
-     
-        console.log( data.length);
-        
-         console.log(data[0].myclubs[0].myclubs.clubKey,"flower child")
-         
-        this.club.push({ 
-          clubKey: data[0].myclubs[0].myclubs.clubKey,
-          name: data[0].myclubs[0].myclubs.name,
-          address: data[0].myclubs[0].myclubs.address,
-          openingHours: data[0].myclubs[0].myclubs.openingHours,
-          closingHours:  data[0].myclubs[0].myclubs.closingHours,
-          userID:  data[0].myclubs[0].myclubs.userID,
-          photoURL:data[0].myclubs[0].myclubs.photoURL})
-          
-    
-        
-      console.log(this.club,"LAST ONE ts")
-
-     
-     })
-    
-    })
+    // this.pic=this._club.getClubPic();
   
-  }
+    this.data=this._club.getEventData();
 
-    getAClubsEvents(myclub) {
-       this.runn.getAClubsEvents(myclub) 
-       this.getEES()
+    console.log("club info",this.data)
+    this.clubData=this._club.getEventData()
+    console.log(this.clubData,"the event key")
+    this.key = this.clubData.clubKey;
+    console.log(this.key,"the key***");
+   
+  }
+x;
+  
+    getAClubsEvents() {
+      this.saved=true;
+       this.runn.getEvent().subscribe(data=>{
+        console.log(data)
+        this.events=[]
+         for(let x=0;x<data.length;x++){
+            console.log(data[x])
+           if(data[x].clubKey== this.key){
+            console.log("The events of the current club",data)
+            this.events.push(data[x])
+            console.log("The events",this.events)
+           }
+         
+         }
+        
+       })
+    
       
   }
-  getEES()
-  {
-   
-    this.events= []; 
-  
-
-
-    return new Promise((resolve, reject) => {
-      this.runn.rtClubEvents().then(data =>{
-     
-        console.log( data.length);
-        for( let x = 0; x < data.length; x++ )
-        {
-         console.log(x);
-         
-        this.events.push({ 
-          eventKey:  data[x].eventKey,
-          name:  data[x].name,
-          address:  data[x].address,
-          date: data[x].date,
-          openingHours:  data[x].openingHours,
-          closingHours:data[x].closingHours,
-          price:data[x].price,
-          photoURL:data[x].photoURL,
-          clubKey:data[x].clubKey
-        
-        })
-         
-        }
-        if(this.events.length!=0 && this.events!=null)
-        {
-          this.hasAEvent=true;
-          this.saved=true;
-        }
  
-      console.log(this.events,"LAST ONE")
-
-     })
-    
-    })
-
-  }
   booking(myevents){
     this.runn.booking(myevents)
    }

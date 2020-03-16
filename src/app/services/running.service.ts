@@ -592,57 +592,7 @@ let clubKey = this._club.getClubKey();
     let userID = user.uid
 
   }
-  // getUser() {
-  //   this.users = []
-  //   this.usersTemp = []
-  //   let ans = []
-  //   let ans2 = []
-
-  //   let user = this.readCurrentSession()
-  //   let userID = user.uid
-  //   console.log(userID)
-  //   return new Promise((resolve, reject) => {
-  //     this.dbfire.collection("users").get().then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-
-  //         // ans.push(doc.data())
-  //         console.log(doc.id, '=>', doc.data());
-  //         this.usersTemp.push({
-  //           userKey: doc.id,
-  //           name: doc.data().displayName,
-  //           address: doc.data().address,
-  //           age: doc.data().Age,
-  //           email: doc.data().Email,
-  //           gender: doc.data().gender,
-  //           photoURL: doc.data().photoURL
-  //         })
-  //         console.log(this.usersTemp, "users array")
-  //         console.log(name, "users array")
-
-  //         console.log(this.usersTemp.length, "users array SIZE")
-  //         //  this.todoTemp.push()
-
-  //       });
-  //       console.log(this.usersTemp.length, "users array SIZE")
-
-  //       for (let x = 0; x < this.usersTemp.length; x++) {
-
-
-  //         if (this.usersTemp[x].userKey === userID) {
-  //           console.log(this.usersTemp[x].userKey, "userid at x")
-  //           this.users.push(this.usersTemp[x])
-
-  //         }
-
-  //       }
-  //       resolve(this.users)
-  //     });
-  //   });
-
-  //   console.log(this.usersTemp, "clubs array")
-  //   console.log(ans, "ans array")
-
-  // }
+  
   ///get tickets
   getTickets() {
     this.tickets = []
@@ -863,30 +813,30 @@ let clubKey = this._club.getClubKey();
     this.file = event.target.files[0];
     console.log(this.file)
   }
-  uploadProfilePic(event) {
-    let user = this.readCurrentSession()
-    let userID = user['uid']
-    console.log("the user", userID);
-    const file = event.target.files[0];
-    this.uniqkey = 'PIC' + this.dateTime;
-    const filePath = this.uniqkey;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
-    // observe percentage changes
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        this.downloadU = fileRef.getDownloadURL().subscribe(urlPath => {
-          console.log(urlPath);
+  // uploadProfilePic(event) {
+  //   let user = this.readCurrentSession()
+  //   let userID = user['uid']
+  //   console.log("the user", userID);
+  //   const file = event.target.files[0];
+  //   this.uniqkey = 'PIC' + this.dateTime;
+  //   const filePath = this.uniqkey;
+  //   const fileRef = this.storage.ref(filePath);
+  //   const task = this.storage.upload(filePath, file);
+  //   // observe percentage changes
+  //   task.snapshotChanges().pipe(
+  //     finalize(() => {
+  //       this.downloadU = fileRef.getDownloadURL().subscribe(urlPath => {
+  //         console.log(urlPath);
 
-          this.afs.doc('users/' + userID).update({
-            photoURL: urlPath
-          })
-          this.uploadPercent = null;
-        });
-      })
-    ).subscribe();
-    return this.uploadPercent = task.percentageChanges();
-  }
+  //         this.afs.doc('users/' + userID).update({
+  //           photoURL: urlPath
+  //         })
+  //         this.uploadPercent = null;
+  //       });
+  //     })
+  //   ).subscribe();
+  //   return this.uploadPercent = task.percentageChanges();
+  // }
 
 
 
@@ -991,7 +941,8 @@ let clubKey = this._club.getClubKey();
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as any;
         const id = a.payload.doc.id;
-        const price = a.payload.doc.data().price;
+       
+        console.log(data)
         return { id, ...data };
 
       }

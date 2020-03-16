@@ -95,9 +95,9 @@
 
 
                                                 <ion-slides class="slick-slide" startAutoplay [options]="slideOpts">
-                                                    <ion-slide *ngFor="let clubss of clubs">
-                                                        <ion-card class="slideCards" [ngStyle]="{'background-image':'url('+clubss.photoURL+')'}" routerLink="/club-home" (click)="chooseClub(clubss)">
-                                                            <ion-card-content class="tb" style="text-transform:capitalize;">
+                                                    <ion-slide *ngFor="let clubss of clubs; let i=index">
+                                                        <ion-card class="slideCards" [ngStyle]="{'background-image':'url('+clubss.photoURL+')'}" (click)="next(clubss.clubKey,i)">
+                                                            <ion-card-content class="tb">
                                                                 <h2 class="cName">{{clubss.name}}</h2>
                                                             </ion-card-content>
                                                         </ion-card>

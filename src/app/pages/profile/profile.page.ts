@@ -110,7 +110,7 @@ onSelect(address:string,i){
 
    this.file = event.target.files[0];
          
-   this.uniqkey ='pic' +  Math.random().toString(36).substring(2);
+   this.uniqkey ='profile' +  Math.random().toString(36).substring(2);
    const filePath = this.uniqkey;
    this.fileRef = this.storage.ref(filePath);
   //  this.task = this.storage.upload(filePath, this.file);

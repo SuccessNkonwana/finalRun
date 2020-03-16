@@ -46,7 +46,7 @@ export class ClubProfilePage implements OnInit {
   {
    this.slides.startAutoplay();
   }
-  key;pic;data;
+  key;pic;data;clubData
   ngOnInit() {
   this.pic=this._pic.getClubPic();
     this.key = this._club.getClubKey();
@@ -54,6 +54,25 @@ export class ClubProfilePage implements OnInit {
     console.log(this.pic,"the pic***");
     this.data=this._club.getEventData();
     console.log("club info",this.data)
+
+    this.pic=this._club.getClubPic();
+    this.key = this._club.getClubKey();
+    console.log(this.key,"the key***");
+    console.log(this.pic,"the pic***");
+    this.data=this._club.getEventData();
+
+    console.log("club info",this.data)
+    this.clubData=this._club.getEventData()
+    console.log(this.clubData,"the event key")
+  
+  }
+  next(){
+   
+    this._club.eventData(this.clubData);
+    
+    this.route.navigate(['/clubUpdate']);
+    // this._event.storeEventKey(eventKey)
+   
   }
   newEvents:[];name;
 getEES()

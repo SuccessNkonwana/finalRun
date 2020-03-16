@@ -4,6 +4,8 @@ import { RunningService } from 'src/app/services/running.service';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { StoreEventKeyService } from 'src/app/services/store-event-key.service';
 import { EventupdateService } from 'src/app/services/eventupdate.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-event-update',
@@ -28,7 +30,7 @@ export class EventUpdatePage implements OnInit {
   defaultpic=true
   private uid: string= null;
   constructor(private route:ActivatedRoute, private _event: StoreEventKeyService,
-      public eventUpdate:EventupdateService,public loadingController: LoadingController,
+    public afs:AngularFirestore, private storage: AngularFireStorage,public eventUpdate:EventupdateService,public loadingController: LoadingController,
     public runn:RunningService,  private altctrl: AlertController,
     private navCtrl: NavController) {
       this.events= []; 
@@ -40,55 +42,6 @@ export class EventUpdatePage implements OnInit {
     }
 
 
-    // update event name
-    // async nameUpdate(evnt) {
-
-    
-    //   const alert = await this.altctrl.create({
-    //     subHeader: 'Add/Edit Name',
-    //     inputs: [
-    //       {
-    //         name: 'displayName',
-    //         type: 'text',
-    //         // value: this.theUser[0].displayName,
-    //         placeholder: 'displayName'
-    //       },
-  
-    //     ],
-    //     buttons: [
-    //       {
-    //         text: 'Cancel',
-    //         role: 'cancel',
-    //         cssClass: 'secondary',
-    //         handler: () => {
-    //         }
-    //       }, {
-    //         text: 'Ok',
-    //         handler: (inputData) => {
-    //           this.nn=inputData.displayName;
-  
-    //           // this.tempUser=this.theUser[0]
-    //           console.log(this.nn,evnt)
-    //           this.runn.updateEName(this.eventData.eventKey,this.nn).then(results=>{
-    //              this.eventData = this._event.getEventData()
-    //               console.log(this._event.getEventData());
-    //               console.log(results);
-    //               this.eventData.name = results;
-    //           }, error =>{
-    //             console.log(error);
-                
-    //           })
-    //           this.presentLoading();
-  
-  
-    //         }
-    //       }
-    //     ]
-    //   });
-    //   await alert.present();
-    //   let result = await alert.onDidDismiss();
-  
-    // }
       // update club name
       async nameUpdate(evnt) {
 
@@ -450,57 +403,109 @@ export class EventUpdatePage implements OnInit {
     
       }
 
-              // update open price
+  // update open price
     
+
+  async dateUpdate(evnt) {
+
+
+    const alert = await this.altctrl.create({
+      subHeader: 'Add/Edit date',
+      inputs: [
+        {
+          name: 'date',
+          type: 'text',
+          // value: this.theUser[0].displayName,
+          placeholder: 'DD-MM-YYYY'
+        },
+
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+          }
+        }, {
+          text: 'Ok',
+          handler: (inputData) => {
+            this.nn=inputData.info;
+
+            // this.tempUser=this.theUser[0]
+            console.log(this.nn,evnt)
+            this.eventUpdate.updateDate(this.eventData.eventKey,this.nn).then(results=>{
+                this.eventData = this._event.getEventData()
+                console.log(this._event.getEventData);
+                console.log(results);
+                this.eventData.date = results;
+            }, error =>{
+              console.log(error);
+              
+            })
+            this.presentLoading();
+
+
+          }
+        }
+      ]
+    });
+    await alert.present();
+    let result = await alert.onDidDismiss();
+
+  }
+
+  uniqkey;fileRef;task;uploadPercent; photoURL:'';
+    // update pictire
+    picUpdate(evnt){
      
-              async dateUpdate(evnt) {
-  
+
+      this.file = evnt.target.files[0];
+    
+   this.uniqkey ='event' +  Math.random().toString(36).substring(2);
+   const filePath = this.uniqkey;
+   this.fileRef = this.storage.ref(filePath);
+  //  this.task = this.storage.upload(filePath, this.file);
+  this.task = this.storage.upload("eventPictures/"+ filePath +"/", this.file);
+   this.uploadPercent = this.task.percentageChanges();
+   this.task.then(results => {
+
+    return results.ref.getDownloadURL().then(url => {
+      console.log(url);
+
+      this.photoURL = url
+      this.afs.doc('events/' + this.thisevnt).update({
+                photoURL: url
+              })
+      this.uploadPercent = null;
+      console.log(this.photoURL, "event profile picture");
+
+      this.eventUpdate.updatepic(this.thisevnt,url).then(results=>{
+        this.eventData = this._event.getEventData()
+        console.log(this._event.getEventData);
+        console.log(results);
+        this.eventData.photoURL = results;
+      },
+      error =>{
+        console.log(error);
+        
+      }
+      )
+    
+    }
+    
+    )
+
+  });
+ 
       
-                const alert = await this.altctrl.create({
-                  subHeader: 'Add/Edit date',
-                  inputs: [
-                    {
-                      name: 'date',
-                      type: 'text',
-                      // value: this.theUser[0].displayName,
-                      placeholder: 'DD-MM-YYYY'
-                    },
-            
-                  ],
-                  buttons: [
-                    {
-                      text: 'Cancel',
-                      role: 'cancel',
-                      cssClass: 'secondary',
-                      handler: () => {
-                      }
-                    }, {
-                      text: 'Ok',
-                      handler: (inputData) => {
-                        this.nn=inputData.info;
-            
-                        // this.tempUser=this.theUser[0]
-                        console.log(this.nn,evnt)
-                        this.eventUpdate.updateDate(this.eventData.eventKey,this.nn).then(results=>{
-                           this.eventData = this._event.getEventData()
-                            console.log(this._event.getEventData);
-                            console.log(results);
-                            this.eventData.date = results;
-                        }, error =>{
-                          console.log(error);
-                          
-                        })
-                        this.presentLoading();
-            
-            
-                      }
-                    }
-                  ]
-                });
-                await alert.present();
-                let result = await alert.onDidDismiss();
-            
-              }
+    }
+    file(filePath: any, file: any): any {
+      throw new Error("Method not implemented.");
+      //
+      // this.presentLoading();
+    }
+
     async presentLoading() {
       const loading = await this.loadingController.create({
         message: 'loading...',
@@ -510,7 +515,7 @@ export class EventUpdatePage implements OnInit {
       // this.getdata()
       loading.dismiss()
     }
-
+    thisevnt
     async filepresentLoading() {
       const loading = await this.loadingController.create({
         message: 'loading...',
@@ -524,11 +529,14 @@ export class EventUpdatePage implements OnInit {
     this.eventData=this._event.getEventData();
     console.log(this.eventData,"the event key")
     console.log(this.eventData.photoURL,"the event name")
+    this.thisevnt=this.eventData.eventKey;  
+    console.log(this.thisevnt,"the xevent")
     if(this.eventData.photoURL==null)
     {
        this.defaultpic=false;
      
     }
   }
+  
 
 }

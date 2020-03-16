@@ -85,11 +85,17 @@ slideOpts = {
   }
 
 
-  getAClubsEvents(clubKey,clubPic){
+  getAClubsEvents(clubKey, i: number){
   
     this.router.navigate(['/club-profile']);
     this._club.storeClubKey(clubKey);
-    this._pic.storeClubPic(clubPic)
+    // this._pic.storeClubPic(clubPic)
+
+    console.log(i);
+    console.log(this.clubs[i]);
+    this._club.eventData(this.clubs[i]);
+    // this.router.navigateByUrl('club-profile');
+
 
   }
   async presentLoading() {

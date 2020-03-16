@@ -56,8 +56,7 @@
 
 
                                         <ion-list lines="none" *ngFor="let myclubs of clubs;let i = index">
-                                            <ion-item routerDirection="forward" class="item" *ngIf="hasAClub" (click)="getAClubsEvents(myclubs.clubKey,myclubs.photoURL)">
-                                                <!-- (click)="getAClubsEvents(myclubs.clubKey,myclubs.photoURL)" -->
+                                            <ion-item routerDirection="forward" class="item" *ngIf="hasAClub" (click)="getAClubsEvents(myclubs.clubKey,i)">
 
                                                 <ion-avatar> <img src="{{myclubs.photoURL}}"></ion-avatar> &nbsp;
                                                 <p class="clubname" style="text-transform:capitalize;"> {{myclubs.name}}</p>

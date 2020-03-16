@@ -62,4 +62,16 @@ export class ClubupdateService {
       console.error("Error updating document: ", error);
     });
   }
+
+    // closing picture
+    async updatepic(clubID, editpic) {
+
+      return await this.dbfire.collection("clubs").doc(clubID).update({ photoURL: editpic }).then((data) => {
+  
+        return editpic;
+        console.log("Document name successfully updated!", data);
+      }).catch(function (error) {
+        console.error("Error updating document: ", error);
+      });
+    }
 }

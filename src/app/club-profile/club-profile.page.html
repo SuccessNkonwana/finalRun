@@ -14,11 +14,9 @@
                                 </div>
                                 <!-- div 1 content should come here -->
                                 <div class="title">
-                                    <img src="{{pic}}">
-                                    <!-- <h1>{{myclubs.name}}</h1> -->
-                                    <ion-icon name="create"></ion-icon>
+                                    <h1>{{clubData?.name}}</h1>
 
-
+                                    <ion-icon name="create" slot="end" (click)="next()"></ion-icon>
                                 </div>
                                 <br>
                                 <div class="div2">
@@ -33,6 +31,7 @@
                                             Events
                                         </h1>
                                         <ion-list lines="none" *ngFor="let myevents of events; let i = index">
+                                            <!-- <ion-icon name="create" slot="end" (click)="next(myclubs.clubKey,i)"></ion-icon> -->
                                             <div *ngIf="key== myevents.clubKey">
                                                 <!-- {{myevents | json}} -->
                                                 <ion-item class="eventCard" class="item" style="text-transform:capitalize;">
